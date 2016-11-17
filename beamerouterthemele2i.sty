@@ -42,14 +42,15 @@
   \ifnum \insertpagenumber<3
   % Otherwise, we have to show the outline
   \else
-  \vskip4.5ex
+  \vskip1.5ex
   \begin{beamercolorbox}[ignorebg,ht=2.25ex,dp=3.75ex]{section in head/foot}
     \begin{tikzpicture}
       \useasboundingbox (0,.8) rectangle(\the\paperwidth,1.4);
+      \fill[azulunam](0, .37) rectangle(1.\paperwidth,1.4);
       % Insert the navigation var
-      {\node[anchor=west, nicewhite] at (0.2, 0.8){\insertnavigation{.8\paperwidth}};}
+      {\node[anchor=west, nicewhite] at (0.1, 0.8){\insertnavigation{.95\paperwidth}};}
       % Insert the logo of the Universite de Bourgogne
-      {\node[anchor=west, nicewhite] at (10.8, 0.9){\includegraphics[width=1.2cm]{\logoubnobg}};}
+      %{\node[anchor=west, nicewhite] at (10.8, 0.9){\includegraphics[width=1.2cm]{\logoubnobg}};}
     \end{tikzpicture}
   \end{beamercolorbox}
   \fi
@@ -58,27 +59,27 @@
 
 \defbeamertemplate*{frametitle}{smoothbars theme}
 {%
-  \vskip2.5ex
+  \vskip1ex
   \usebeamerfont{headline}%
-  \vskip1.5ex%
+  \vskip.5ex%
   \definecolor{imred}{HTML}{BD2026}
   \definecolor{imyellowOB}{HTML}{FCED27}
   \definecolor{imorange}{HTML}{F6B419}
   \begin{beamercolorbox}[wd=\paperwidth,ht=1.9cm]{frametitle}
     \begin{tikzpicture}
       \useasboundingbox (0,0) rectangle(\the\paperwidth,1.4);
-      {\node[anchor=west, nicewhite] at (0.4, 0.85){\includegraphics[width=1.2cm]{\logoimate}};}
-      % {\node[anchor=west, nicewhite] at (10.8, 0.8){\includegraphics[width=1.2cm]{\logoubnobg}};}
-      \fill[azulunam](2.2, 0.3) rectangle(.95\paperwidth,1.4);
+      {\node[anchor=west, nicewhite] at (.8, 0.95){\includegraphics[height=.6cm]{\logoimate}};}
+      {\node[anchor=west, nicewhite] at (11.2, 0.93){\includegraphics[height=.6cm]{\logoubnobg}};}
+      \fill[azulunam](1.7, 0.6) rectangle(.86\paperwidth,1.4);
       \ifx\insertframesubtitle\@empty%
-      {\node[anchor=west, nicewhite, font=\large] at (3.0,0.82){\insertframetitle};}
+      {\node[anchor=west, nicewhite, font=\large] at (2.2,1.02){\insertframetitle};}
       \else%
-      {\node[anchor=west, nicewhite, font=\large] at (3.0, 1.02){\insertframetitle};%
-        \node[anchor=west, nicewhite, font=\small] at (3.0, 0.63){\insertframesubtitle};}%        
+      {%\node[anchor=west, nicewhite, font=\large] at (2.2, 1.02){\insertframetitle};%
+        \node[anchor=west, nicewhite, font=\large] at (2.2, 1.02){\insertframesubtitle};}%        
       \fi
     \end{tikzpicture}
   \end{beamercolorbox}
-  \vskip-5ex
+  \vskip -8ex
 }
 
 \mode<all>

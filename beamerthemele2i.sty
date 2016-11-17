@@ -13,18 +13,27 @@
 \RequirePackage[absolute, overlay]{textpos}
 
 % Definition of color used in the template
-\definecolor{orounam}{HTML}{F46F1B}
-\definecolor{azulunam}{HTML}{00294B}
-\definecolor{nicewhite}{HTML}{F8FFFF}
+\definecolor{orounam}{HTML}{F0932A}
+\definecolor{le2iblue}{HTML}{00294B}
+\definecolor{azulunam}{HTML}{33546F}
+\definecolor{nicewhite}{HTML}{FFFFFF}
 \definecolor{niceblack}{HTML}{333333}
 
+% Define the color of the UBFC
+\definecolor{greenubfc}{HTML}{A6CE38}
+\definecolor{purpleubfc}{HTML}{B41E8E}
+\definecolor{redubfc}{HTML}{AE1136}
+\definecolor{greyubfc}{HTML}{54666F}
+\definecolor{blueubfc}{HTML}{0571BC}
+\definecolor{orangeubfc}{HTML}{F0932A}
+
 % Define the logo of the LE2I
-\newcommand{\logoimate}{./images/logos/le2i-logo.pdf}
-\newcommand{\logoblanco}{./images/logos/le2i-logo-white.pdf}
+\newcommand{\logoimate}{./images/logos/udg_blue.png}
+\newcommand{\logoblanco}{./images/logos/udg_white.png}
 
 % Define the logo of the Universite de Bourgogne
-\newcommand{\logoub}{./images/logos/logo-ub.pdf}
-\newcommand{\logoubnobg}{./images/logos/logo-ub-no-bg.pdf}
+\newcommand{\logoub}{./images/logos/ubfc_white.png}
+\newcommand{\logoubnobg}{./images/logos/ubfc.png}
 
 \ProcessOptions\relax
 
@@ -33,7 +42,44 @@
 \useinnertheme{le2i}
 \useoutertheme{le2i}
 
+% % Add the slides information in the footnote
+% \addtobeamertemplate{navigation symbols}{}{%
+%     \usebeamerfont{footline}%
+%     \usebeamercolor[fg]{footline}%
+%     \hspace{1em}%
+%     \insertframenumber/\inserttotalframenumber
+% }
+% \setbeamercolor{footline}{fg=blue}
+% \setbeamerfont{footline}{series=\bfseries}
+
+
 \setbeamertemplate{navigation symbols}{}
+% \setbeamerfont{page number in head/foot}{size=\tiny}
+% \setbeamertemplate{footline}[frame number]
+
+\setbeamercolor{footlinecolor}{fg=black,bg=azulunam}
+\setbeamertemplate{footline}
+{
+  \leavevmode%
+  \hbox{%   
+    \begin{beamercolorbox}[wd=\paperwidth,ht=2.25ex,dp=1ex,center]{footlinecolor}
+      \usebeamerfont{author in head/foot}\color{orangeubfc}{\tiny \insertshortauthor} \hfill
+      \usebeamerfont{title in head/foot}\color{orangeubfc}{\insertshorttitle} \hfill
+      \usebeamerfont{date in head/foot}\color{orangeubfc}{\insertframenumber{} / \inserttotalframenumber}
+    \end{beamercolorbox}}
+    % \begin{beamercolorbox}[wd=.2\paperwidth,ht=2.25ex,dp=1ex,center]{author in head/foot}%
+    %   \usebeamerfont{author in head/foot}\color{orangeubfc}{\tiny \insertshortauthor}
+    % \end{beamercolorbox}%
+    % \begin{beamercolorbox}[wd=.6\paperwidth,ht=2.25ex,dp=1ex,center]{title in head/foot}%
+    %   \usebeamerfont{title in head/foot}\color{azulunam}{\insertshorttitle}
+    % \end{beamercolorbox}%
+    % \begin{beamercolorbox}[wd=.2\paperwidth,ht=2.25ex,dp=1ex,center]{date in head/foot}%
+    %   \usebeamerfont{date in head/foot}\color{orangeubfc}{\insertframenumber{} / \inserttotalframenumber} %\hspace*{2ex}
+    % \end{beamercolorbox}}%
+  \vskip0pt%
+}
+\makeatother
+
 \setbeamertemplate{blocks}[rounded][shadow=true]
 
 \mode<all>
