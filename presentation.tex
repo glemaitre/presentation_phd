@@ -694,7 +694,7 @@
         \begin{itemize}\scriptsize
           \item[\tick]<1-> 3 modalities better than 2
           \item[\tick]<2-> Texture and edge features are predominant
-          \item[\tick]<3-> Feature selection/extraction tends to improve performance
+          \item[\tick]<3-> Features selection/extraction tends to improve performance
           \item[\tick]<4-> Pre-eminence of SVM and ensemble classifier (i.e., AdaBoost, RF, etc.)
         \end{itemize}
       \end{greenblock}}
@@ -703,7 +703,7 @@
         \begin{itemize}\scriptsize
           \item[\tick]<1-> 3 modalities better than 2
           \item[\tick]<2-> Texture and edge features are predominant
-          \item[\tick]<3-> Feature selection/extraction tends to improve performance
+          \item[\tick]<3-> Features selection/extraction tends to improve performance
           \item[\tick]<4-> Pre-eminence of SVM and ensemble classifier (i.e., AdaBoost, RF, etc.)
         \end{itemize}
       \end{greenblock}}
@@ -712,7 +712,7 @@
         \begin{itemize}\scriptsize
           \item[\tick]<1-> 3 modalities better than 2
           \item[\tick]<2-> Texture and edge features are predominant
-          \item[\tick]<3-> Feature selection/extraction tends to improve performance
+          \item[\tick]<3-> Features selection/extraction tends to improve performance
           \item[\tick]<4-> Pre-eminence of SVM and ensemble classifier (i.e., AdaBoost, RF, etc.)
         \end{itemize}
       \end{greenblock}}
@@ -721,7 +721,7 @@
         \begin{itemize}\scriptsize
           \item[\tick]<1-> 3 modalities better than 2
           \item[\tick]<2-> Texture and edge features are predominant
-          \item[\tick]<3-> Feature selection/extraction tends to improve performance
+          \item[\tick]<3-> Features selection/extraction tends to improve performance
           \item[\tick]<4-> Pre-eminence of SVM and ensemble classifier (i.e., AdaBoost, RF, etc.)
         \end{itemize}
       \end{greenblock}}
@@ -730,7 +730,7 @@
         \begin{itemize}\scriptsize
           \item[\tick]<1-> 3 modalities better than 2
           \item[\tick]<2-> Texture and edge features are predominant
-          \item[\tick]<3-> Feature selection/extraction tends to improve performance
+          \item[\tick]<3-> Features selection/extraction tends to improve performance
           \item[\tick]<4-> Pre-eminence of SVM and ensemble classifier (i.e., AdaBoost, RF, etc.)
         \end{itemize}
       \end{greenblock}}
@@ -757,7 +757,7 @@
         \begin{itemize}\scriptsize
           \item[\tick]<1-> 3 modalities better than 2
           \item[\tick]<2-> Texture and edge features are predominant
-          \item[\tick]<3-> Feature selection/extraction tends to improve performance
+          \item[\tick]<3-> Features selection/extraction tends to improve performance
           \item[\tick]<4-> Pre-eminence of SVM and ensemble classifier (i.e., AdaBoost, RF, etc.)
         \end{itemize}
       \end{greenblock}}
@@ -766,7 +766,7 @@
         \begin{itemize}\scriptsize
           \item[\tick]<1-> 3 modalities better than 2
           \item[\tick]<2-> Texture and edge features are predominant
-          \item[\tick]<3-> Feature selection/extraction tends to improve performance
+          \item[\tick]<3-> Features selection/extraction tends to improve performance
           \item[\tick]<4-> Pre-eminence of SVM and ensemble classifier (i.e., AdaBoost, RF, etc.)
         \end{itemize}
       \end{greenblock}}
@@ -940,7 +940,7 @@
   \begin{block}{\small \texttt{protoclass} toolbox}
     \begin{itemize}\scriptsize
       \item Data management
-      \item Feature detection
+      \item Features detection
     \end{itemize}
   \end{block}
   \begin{block}{\small \texttt{imbalanced-learn} toolbox\footnotemark}
@@ -1030,9 +1030,185 @@
 
 \section{Toward a mp-MRI CAD for CaP}
 
-\subsection{Regularization}
+\begin{frame}
+    \tableofcontents[currentsection,currentsubsection,subsectionstyle=show/show/hide]
+\end{frame}
+
+\begin{frame}
+  \frametitle{Toward a mp-MRI CAD for CaP}
+  \framesubtitle{Toward a mp-MRI CAD for CaP}
+  \begin{block}{Mp-MRI CAD for CaP}
+    \input{./images/cad/cad_1.tex}
+  \end{block}
+\end{frame}
+
+\subsection{Image regularization}
+
+\begin{frame}
+  \frametitle{Toward a mp-MRI CAD for CaP}
+  \framesubtitle{Image regularization}
+  \begin{block}{Pre-processing}
+    \input{./images/cad/cad_2.tex}
+  \end{block}
+\end{frame}
+
+\subsubsection{T$_2$W-MRI normalization}
+
+\begin{frame}
+  \frametitle{Toward a mp-MRI CAD for CaP}
+  \framesubtitle{T$_2$W-MRI normalization}
+\end{frame}
+
+\subsubsection{DCE-MRI normalization}
+
+\begin{frame}
+  \frametitle{Toward a mp-MRI CAD for CaP}
+  \framesubtitle{DCE-MRI normalization}
+\end{frame}
+
+\subsubsection{MRSI pre-processing}
+
+\begin{frame}
+  \frametitle{Toward a mp-MRI CAD for CaP}
+  \framesubtitle{MRSI pre-processing}
+\end{frame}
+
+\subsubsection{Segmentation \& registration}
+
+\begin{frame}
+  \frametitle{Toward a mp-MRI CAD for CaP}
+  \framesubtitle{Image regularization}
+  \begin{block}{Segmentation \& registration}
+    \input{./images/cad/cad_3.tex}
+  \end{block}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Toward a mp-MRI CAD for CaP}
+  \framesubtitle{Segmentation \& registration}
+\end{frame}
 
 \subsection{CADe-CADx}
+
+\subsubsection{Features detection}
+
+\begin{frame}
+  \frametitle{Toward a mp-MRI CAD for CaP}
+  \framesubtitle{CADe-CADx}
+  \begin{block}{Features detection}
+    \input{./images/cad/cad_4.tex}
+  \end{block}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Toward a mp-MRI CAD for CaP}
+  \framesubtitle{T$_2$W-MRI and ADC map}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Toward a mp-MRI CAD for CaP}
+  \framesubtitle{DCE-MRI}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Toward a mp-MRI CAD for CaP}
+  \framesubtitle{MRSI}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Toward a mp-MRI CAD for CaP}
+  \framesubtitle{Anatomical features}
+\end{frame}
+
+\subsubsection{Data balancing}
+
+\begin{frame}
+  \frametitle{Toward a mp-MRI CAD for CaP}
+  \framesubtitle{CADe-CADx}
+  \begin{block}{Data balancing}
+    \input{./images/cad/cad_5.tex}
+  \end{block}
+\end{frame}
+
+\subsubsection{Features selection/extraction}
+
+\begin{frame}
+  \frametitle{Toward a mp-MRI CAD for CaP}
+  \framesubtitle{CADe-CADx}
+  \begin{block}{Features selection/extraction}
+    \input{./images/cad/cad_6.tex}
+  \end{block}
+\end{frame}
+
+\subsubsection{Features classification}
+
+\begin{frame}
+  \frametitle{Toward a mp-MRI CAD for CaP}
+  \framesubtitle{CADe-CADx}
+  \begin{block}{Features classification}
+    \input{./images/cad/cad_6.tex}
+  \end{block}
+\end{frame}
+
+\section{Experiments \& validation}
+
+\subsection{T$_2$W-MRI normalization}
+
+\begin{frame}
+  \frametitle{Experiments \& validation}
+  \framesubtitle{T$_2$W-MRI normalization}
+\end{frame}
+
+\subsection{DCE-MRI normalization}
+
+\begin{frame}
+  \frametitle{Experiments \& validation}
+  \framesubtitle{DCE-MRI normalization}
+\end{frame}
+
+\subsection{Standalone modalities}
+
+\begin{frame}
+  \frametitle{Experiments \& validation}
+  \framesubtitle{Standalone modalities}
+\end{frame}
+
+\subsection{Coarse combination}
+
+\begin{frame}
+  \frametitle{Experiments \& validation}
+  \framesubtitle{Coarse combination}
+\end{frame}
+
+\subsection{Data balancing}
+
+\begin{frame}
+  \frametitle{Experiments \& validation}
+  \framesubtitle{Data balancing}
+\end{frame}
+
+\subsection{Features selection/extraction}
+
+\begin{frame}
+  \frametitle{Experiments \& validation}
+  \framesubtitle{Features selection/extraction}
+\end{frame}
+
+\subsection{Fine-tuned combination}
+
+\begin{frame}
+  \frametitle{Experiments \& validation}
+  \framesubtitle{Fine-tuned combination}
+\end{frame}
+
+\subsection{MRSI benefit}
+
+\begin{frame}
+  \frametitle{Experiments \& validation}
+  \framesubtitle{MRSI benefit}
+\end{frame}
+
+
 
 \section{Conclusion}
 

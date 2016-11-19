@@ -6,12 +6,9 @@
   \tikzstyle{module}=[draw, draw=azulunam!80, text width=10em, 
   text centered, minimum height=5em, minimum width = 15em, drop shadow, rounded corners,
   fill=azulunam!30]
-  \tikzstyle{modulegreen}=[draw, draw=green!80, text width=10em, 
+  \tikzstyle{moduleorange}=[draw, draw=orangeubfc!80, text width=10em, 
   text centered, minimum height=5em, minimum width = 15em, drop shadow, rounded corners,
-  fill=green!30]
-  \tikzstyle{modulered}=[draw, draw=red!80, text width=10em, 
-  text centered, minimum height=5em, minimum width = 15em, drop shadow, rounded corners,
-  fill=red!30]
+  fill=orangeubfc!30]
   
   \tikzstyle{vecArrow} = [thick, decoration={markings,mark=at position
     1 with {\arrow[semithick]{open triangle 60}}},
@@ -23,7 +20,7 @@
   \def\blockdist{1.5}
   \def\edgedist{2.5}
 
-  \begin{tikzpicture}[node distance=3cm,thick,scale=0.2, every node/.style={scale=0.2},path image/.style={
+  \begin{tikzpicture}[node distance=3cm,thick,scale=0.3, every node/.style={scale=0.3},path image/.style={
       path picture={
         \node at (path picture bounding box.center) {
           \includegraphics[width=1cm]{#1}
@@ -49,19 +46,19 @@
     \path (pre.north) +(0,+\blockdist) node (bgreg) {\Large Image regularization};
 
     \begin{scope}[node distance=10cm]
-      \node[module] (det) [below right=0cm and 1cm of pre] {\Large Features detection};
+      \node[module] (det) [below right=0cm and 2cm of pre] {\Large Features detection};
     \end{scope}
     \begin{scope}[node distance=3.5cm]
       \node[module,above of=det] (roi) {\Large ROIs\\detection/selection};
     \end{scope}
-    \node[modulered,below of=det] (bal) {\Large Data\\balancing};
-    \node[module,below of=bal] (sel) {\Large Features\\selection/extraction};
-    \node[module,below of=sel] (cla) {\Large Features\\classification/fusion};
+    \node[module,below of=det] (sel) {\Large Data\\balancing};
+    \node[module,below of=sel] (bal) {\Large Features\\selection/extraction};
+    \node[module,below of=bal] (cla) {\Large Features\\classification/fusion};
 
     \draw[->] (roi)--(det);
-    \draw[->,red] (det)--(bal);
-    \draw[->,red] (bal)--(sel);
-    \draw[->] (sel)--(cla);
+    \draw[->] (det)--(sel);
+    \draw[->] (sel)--(bal);
+    \draw[->] (bal)--(cla);
 
     \begin{pgfonlayer}{background}
       \path (roi.west |- roi.north)+(-0.25,0.8) node (c) {};
@@ -91,19 +88,6 @@
 
     \draw[double distance =3pt,preaction={-triangle 90,thin,draw,shorten >=-1mm}] (e) -- (f) node[midway,above,above=.3em] {\large Regularized data};
 
-    \begin{scope}[yshift=34,xshift=-86]
-      \transparent{0.6}\draw[path image=images/tikzimage/t2.eps] (0,0) rectangle (1.0,1.0);
-    \end{scope}
-
-    \begin{scope}[yshift=31,xshift=-83]
-      \transparent{0.6}\draw[path image=images/tikzimage/t2.eps] (0,0) rectangle (1.0,1.0);
-    \end{scope}
-
-    \begin{scope}[yshift=28,xshift=-80]
-      \transparent{0.8}\draw[path image=images/tikzimage/t2.eps] (0,0) rectangle (1.0,1.0);
-      \path (0,0)+(-1.65,0.3) node {\Large T$_2$-W MRI};
-    \end{scope}
-
     \begin{scope}[yshift=-33,xshift=-86]
       \transparent{0.6}\draw[path image=images/tikzimage/t2.eps] (0,0) rectangle (1.0,1.0);
     \end{scope}
@@ -114,7 +98,7 @@
 
     \begin{scope}[yshift=-39,xshift=-80]
       \transparent{0.8}\draw[path image=images/tikzimage/t2.eps] (0,0) rectangle (1.0,1.0);
-      \path (0,0)+(-1.35,0.3) node {\Large T$_2$ map};
+      \path (0,0)+(-1.35,0.3) node {\Large T$_2$W-MRI};
     \end{scope}
 
     \begin{scope}[yshift=-100,xshift=-86]
@@ -140,37 +124,24 @@
 
     \begin{scope}[yshift=-173,xshift=-80]
       \transparent{0.8}\draw[path image=images/tikzimage/dwi1.eps] (0,0) rectangle (1.0,1.0);
-      \path (0,0)+(-1.65,0.3) node {\Large DW-MRI};
+      \path (0,0)+(-1.65,0.3) node {\Large ADC};
     \end{scope}
 
     \begin{scope}[yshift=-234,xshift=-86]
-      \transparent{0.6}\draw[path image=images/tikzimage/dwi1.eps] (0,0) rectangle (1.0,1.0);
+      \transparent{0.6}\draw[path image=images/tikzimage/mrsi.eps] (0,0) rectangle (1.0,1.0);
     \end{scope}
 
     \begin{scope}[yshift=-237,xshift=-83]
-      \transparent{0.6}\draw[path image=images/tikzimage/dwi1.eps] (0,0) rectangle (1.0,1.0);
+      \transparent{0.6}\draw[path image=images/tikzimage/mrsi.eps] (0,0) rectangle (1.0,1.0);
     \end{scope}
 
     \begin{scope}[yshift=-240,xshift=-80]
-      \transparent{0.8}\draw[path image=images/tikzimage/dwi1.eps] (0,0) rectangle (1.0,1.0);
-      \path (0,0)+(-1.5,0.3) node {\Large ADC};
-    \end{scope}
-
-    \begin{scope}[yshift=-301,xshift=-86]
-      \transparent{0.6}\draw[path image=images/tikzimage/mrsi.eps] (0,0) rectangle (1.0,1.0);
-    \end{scope}
-
-    \begin{scope}[yshift=-304,xshift=-83]
-      \transparent{0.6}\draw[path image=images/tikzimage/mrsi.eps] (0,0) rectangle (1.0,1.0);
-    \end{scope}
-
-    \begin{scope}[yshift=-307,xshift=-80]
       \transparent{0.8}\draw[path image=images/tikzimage/mrsi.eps] (0,0) rectangle (1.0,1.0);
-      \path (0,0)+(-1.1,0.3) node {\Large MRSI};
+      \path (0,0)+(-1.5,0.3) node {\Large MRSI};
     \end{scope}
 
-    \path (pre.west |- roi.north)+(-3.5,1.0+\blockdist) node (g) {};
-    \path (reg.west |- bal.south)+(-3.5,-0.5) node (h) {};
+    \path (pre.west |- roi.north)+(-2.5,-1.+\blockdist) node (g) {};
+    \path (reg.west |- reg.south)+(-2.5,.5) node (h) {};
 
     \draw[decorate,decoration={brace,raise=2pt,amplitude=5pt}, thick]
     (g)--(h) ;
@@ -185,3 +156,8 @@
     
   \end{tikzpicture}
 \end{figure}
+
+%%% Local Variables: 
+%%% mode: latex
+%%% TeX-master: "../../presentation"
+%%% End: 
