@@ -3,9 +3,15 @@
 
   % Define block styles used later
 
-  \tikzstyle{module}=[draw, draw=blue!80, text width=10em, 
+  \tikzstyle{module}=[draw, draw=azulunam!80, text width=10em, 
   text centered, minimum height=5em, minimum width = 15em, drop shadow, rounded corners,
-  fill=blue!30]
+  fill=azulunam!30]
+  \tikzstyle{modulegreen}=[draw, draw=green!80, text width=10em, 
+  text centered, minimum height=5em, minimum width = 15em, drop shadow, rounded corners,
+  fill=green!30]
+  \tikzstyle{modulered}=[draw, draw=red!80, text width=10em, 
+  text centered, minimum height=5em, minimum width = 15em, drop shadow, rounded corners,
+  fill=red!30]
   
   \tikzstyle{vecArrow} = [thick, decoration={markings,mark=at position
     1 with {\arrow[semithick]{open triangle 60}}},
@@ -37,7 +43,7 @@
       \path (pre.west |- pre.north)+(-0.9,1.0+\blockdist) node (a) {};
       \path (reg.east |- reg.south)+(+0.9,-0.5) node (b) {};
       
-      \path[fill=blue!10,rounded corners, draw=blue!20, dashed] (a) rectangle (b);
+      \path[fill=azulunam!10,rounded corners, draw=azulunam!20, dashed] (a) rectangle (b);
     \end{pgfonlayer}
     
     \path (pre.north) +(0,+\blockdist) node (bgreg) {\Large Image regularization};
@@ -48,7 +54,7 @@
     \begin{scope}[node distance=3.5cm]
       \node[module,above of=det] (roi) {\Large ROIs\\detection/selection};
     \end{scope}
-    \node[module,below of=det] (sel) {\Large Features\\selection/extraction};
+    \node[modulegreen,below of=det] (sel) {\Large Features\\selection/extraction};
     \node[module,below of=sel] (cla) {\Large Features\\classification/fusion};
 
     \draw[->] (roi)--(det);
@@ -59,7 +65,7 @@
       \path (roi.west |- roi.north)+(-0.25,0.8) node (c) {};
       \path (roi.east |- roi.south)+(+0.25,-0.25) node (d) {};
       
-      \path[fill=blue!20,rounded corners, draw=blue!25, dashed] (c) rectangle (d);
+      \path[fill=azulunam!20,rounded corners, draw=azulunam!25, dashed] (c) rectangle (d);
     \end{pgfonlayer}
 
     \path (roi.west |- roi.north) +(.75,0.4) node (bgfea) {\Large \textbf{CADe}};
@@ -68,14 +74,14 @@
       \path (det.west |- det.north)+(-0.25,0.8) node (c) {};
       \path (cla.east |- cla.south)+(+0.25,-0.25) node (d) {};
       
-      \path[fill=blue!20,rounded corners, draw=blue!25, dashed] (c) rectangle (d);
+      \path[fill=azulunam!20,rounded corners, draw=azulunam!25, dashed] (c) rectangle (d);
     \end{pgfonlayer}
 
     \path (roi.west |- det.north) +(.75,0.4) node (bgfea) {\Large \textbf{CADx}};     
 
-    \begin{scope}
-      \transparent{0.6}\filldraw[fill=green!20!white,rounded corners,draw=green!25,dashed] (11.5,-6) rectangle (19,-9);
-    \end{scope}
+    % \begin{scope}
+    %   \transparent{0.6}\filldraw[fill=green!20!white,rounded corners,draw=green!25,dashed] (11.5,-6) rectangle (19,-9);
+    % \end{scope}
 
     % Define the place where the arrow should start anf finish
     \path (seg.east |- seg.north)+(+1.15,0) node (e) {};

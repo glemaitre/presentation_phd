@@ -894,71 +894,44 @@
     \end{block}}
 \end{frame}
 
-% \begin{frame}
-%   \frametitle{Introduction}
-%   \framesubtitle{CAD for CaP}
-%   \begin{block}{MR images}
-%     \renewcommand\arraystretch{.5}
-%     \begin{table}
-%       \centering
-%       \tiny
-%       \begin{tabular}{llll}
-%         \toprule
-%         \multicolumn{2}{c}{Voxel-wise detection} & \multicolumn{2}{c}{Region-wise detection} \\
-%         \cmidrule(lr){1-2} \cmidrule(lr){3-4}
-%         & Intensity-based & & \\ \\ \\
-%         \multirow{4}{*}{\textit{Edge-based}} & Prewitt operator & & \\
-%         & Sobel operator & \multirow{2}{*}{\textit{Statistical-based}} & Percentiles \\
-%         & Kirsch operator & & Statistical-moments \\
-%         & Gabor filtering & & \\ \\ \\
-%         \multirow{6}{*}{\textit{Texture-based}} & Haralick features & & \\
-%         & Tamura features & & \\
-%         & Fractal analysis & \multirow{4}{*}{\textit{Histogram-based}} & PDF \\
-%         & DCT & & HOG \\
-%         & Wavelet features & & Shape context \\
-%         & Gaussian filters bank & & LBP \\
-%         & LoG filters bank & & \\ \\ \\
-%         & Position-based & & \\
-%         \bottomrule
-%       \end{tabular}
-%     \end{table}
-%     \begin{columns}
-%       \begin{column}{0.33\textwidth}
-%       \end{column}
-%       \begin{column}{0.33\textwidth}
-%       \end{column}
-%       \begin{column}{0.33\textwidth}
-%       \end{column}
-%     \end{columns}
-%   \end{block}
-% \end{frame}
-
-\subsection{The MedIA evil}
+\section{I2CVB}
 
 \begin{frame}
-  \frametitle{The Medical Imaging evil}
-  \begin{block}<1->{\small The reasons of a nightmare}\footnotesize
-    \begin{itemize}
-    \item[$\rightarrow$] Multidisciplinary competences: medical doctors vs. computer scientists
-    \end{itemize}
-  \end{block}
-  \begin{redblock}<2->{\small Some examples}\footnotesize
-    \begin{itemize}
-    \item Delay in the data acquisition
-    \item Interest differences between the different core competences
-    \item[$\rightarrow$] Lack of interest
-    \end{itemize}
-  \end{redblock}
-  \begin{greenblock}<3->{\small The keystones needed}\footnotesize
-    \begin{itemize}
-    \item Common datasets
-    \item Algorithms comparisons
-    \item Full benchmarking
-    \end{itemize}
-  \end{greenblock}
+    \tableofcontents[currentsection,currentsubsection,subsectionstyle=show/show/hide]
 \end{frame}
 
-\section{I2CVB}
+\subsection{Mp-MRI prostate datasets}
+
+\begin{frame}
+  \frametitle{I2CVB}
+  \framesubtitle{Mp-MRI prostate datasets}
+  \begin{block}{\small 1.5 T General Electric scanner}
+    \begin{itemize}\scriptsize
+      \item T$_2$W-MRI, DW-MRI, DCE-MRI, and MRSI
+      \item Ground-truth (GT) for CaP, PZ, and CG associated to T$_2$W-MRI modality
+      \item Healthy: $4$ \emph{vs.} CaP: \{ PZ: $14 + 3$, CG: $0 + 3$ \}
+    \end{itemize}
+  \end{block}
+  \only<1>{
+  \begin{block}{\small 3 T Siemens scanner}
+    \begin{itemize}\scriptsize
+      \item T$_2$W-MRI, ADC, DCE-MRI, and MRSI
+      \item GT for CaP, PZ, and CG associated to T$_2$W-MRI modality
+      \item Additional GT of the prostate for DCE-MRI and ADC
+      \item Healthy: $2$ \emph{vs.} CaP: \{ PZ: $12 + 2$, CG: $3 + 2$ \}
+    \end{itemize}
+  \end{block}}
+  \only<2>{
+  \begin{greenblock}{\small 3 T Siemens scanner}
+    \begin{itemize}\scriptsize
+      \item T$_2$W-MRI, ADC, DCE-MRI, and MRSI
+      \item GT for CaP, PZ, and CG associated to T$_2$W-MRI modality
+      \item Additional GT of the prostate for DCE-MRI and ADC
+      \item Healthy: $2$ \emph{vs.} CaP: \{ PZ: $12 + 2$, CG: $3 + 2$ \}
+    \end{itemize}
+  \end{greenblock}}
+\end{frame}
+
 
 \subsection{Overview}
 
@@ -1025,24 +998,12 @@
   \end{columns}
 \end{frame}
 
-\subsection{Prostate dataset}
+\section{Toward a mp-MRI CAD for CaP}
 
-\begin{frame}
-  \frametitle{I2CVB}
-  \framesubtitle{Prostate dataset}
-  \begin{block}{\small Multi-parametric MRI}\footnotesize
-    \begin{itemize}
-    \item Cohort of 20 patients
-    \item T$_2$W MRI, DCE MRI \& ADC
-    \item 3 Tesla whole body MRI without endorectal coil
-    \end{itemize}
-  \end{block}
-  \begin{greenblock}{\small Ground-truth}\footnotesize
-    \begin{itemize}
-    \item Delineations: prostate - zones - CaP
-    \item Healthy: 2 \textit{vs.} CaP: \{PZ: 13, CG: 3, PZ + CG: 2 \}
-    \end{itemize}
-  \end{greenblock}
-\end{frame}
+\subsection{Regularization}
+
+\subsection{CADe-CADx}
+
+\section{Conclusion}
 
 \end{document}
