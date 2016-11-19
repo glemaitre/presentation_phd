@@ -59,6 +59,9 @@
 \usetikzlibrary{snakes,decorations.text,shapes,patterns}
 % \usepackage{scalefnt,lmodern,booktabs}
 
+\usepackage{booktabs}
+\usepackage{multirow}
+
 \newcommand*{\tikzbullet}[2]{%
    \setbox0=\hbox{\strut}%
    \begin{tikzpicture}
@@ -426,7 +429,7 @@
   \end{block}
 \end{frame}
 
-\section{CAD and mp-MRI}
+\section{State-of-the-art}
 
 \begin{frame}
     \tableofcontents[currentsection,currentsubsection,subsectionstyle=show/show/hide]
@@ -670,6 +673,265 @@
     \end{column}
   \end{columns}}
 \end{frame}
+
+\subsection{CAD for CaP}
+
+\begin{frame}
+  \frametitle{State-of-the-art}
+  \framesubtitle{CAD for CaP}
+  \begin{block}{Full CAD for detection and diagnosis of CaP}
+  \input{fig-1-cad-framework.tex}
+  \end{block}
+\end{frame}
+
+\begin{frame}
+  \frametitle{State-of-the-art}
+  \framesubtitle{CAD for CaP}
+  \begin{columns}
+    \begin{column}{0.5\textwidth}
+      \only<1>{
+      \begin{greenblock}{\small Conclusions}
+        \begin{itemize}\scriptsize
+          \item[\tick]<1-> 3 modalities better than 2
+          \item[\tick]<2-> Texture and edge features are predominant
+          \item[\tick]<3-> Feature selection/extraction tends to improve performance
+          \item[\tick]<4-> Pre-eminence of SVM and ensemble classifier (i.e., AdaBoost, RF, etc.)
+        \end{itemize}
+      \end{greenblock}}
+      \only<2>{
+      \begin{greenblock}{\small Conclusions}
+        \begin{itemize}\scriptsize
+          \item[\tick]<1-> 3 modalities better than 2
+          \item[\tick]<2-> Texture and edge features are predominant
+          \item[\tick]<3-> Feature selection/extraction tends to improve performance
+          \item[\tick]<4-> Pre-eminence of SVM and ensemble classifier (i.e., AdaBoost, RF, etc.)
+        \end{itemize}
+      \end{greenblock}}
+      \only<3>{
+      \begin{greenblock}{\small Conclusions}
+        \begin{itemize}\scriptsize
+          \item[\tick]<1-> 3 modalities better than 2
+          \item[\tick]<2-> Texture and edge features are predominant
+          \item[\tick]<3-> Feature selection/extraction tends to improve performance
+          \item[\tick]<4-> Pre-eminence of SVM and ensemble classifier (i.e., AdaBoost, RF, etc.)
+        \end{itemize}
+      \end{greenblock}}
+      \only<4>{
+      \begin{greenblock}{\small Conclusions}
+        \begin{itemize}\scriptsize
+          \item[\tick]<1-> 3 modalities better than 2
+          \item[\tick]<2-> Texture and edge features are predominant
+          \item[\tick]<3-> Feature selection/extraction tends to improve performance
+          \item[\tick]<4-> Pre-eminence of SVM and ensemble classifier (i.e., AdaBoost, RF, etc.)
+        \end{itemize}
+      \end{greenblock}}
+      \only<5>{
+      \begin{greenblock}{\small Conclusions}
+        \begin{itemize}\scriptsize
+          \item[\tick]<1-> 3 modalities better than 2
+          \item[\tick]<2-> Texture and edge features are predominant
+          \item[\tick]<3-> Feature selection/extraction tends to improve performance
+          \item[\tick]<4-> Pre-eminence of SVM and ensemble classifier (i.e., AdaBoost, RF, etc.)
+        \end{itemize}
+      \end{greenblock}}
+      \only<6>{
+          \input{cad_half_6.tex}
+      }
+      \only<7>{
+          \input{cad_half_7.tex}
+      }
+      \only<8>{
+          \input{cad_half_8.tex}
+      }
+      \only<9>{
+          \input{cad_half_9.tex}
+      }
+      \only<10>{
+          \input{cad_half_10.tex}
+      }
+      % \only<11>{
+      %     \input{cad_half_11.tex}
+      % }
+      \only<11>{
+      \begin{greenblock}{\small Conclusions}
+        \begin{itemize}\scriptsize
+          \item[\tick]<1-> 3 modalities better than 2
+          \item[\tick]<2-> Texture and edge features are predominant
+          \item[\tick]<3-> Feature selection/extraction tends to improve performance
+          \item[\tick]<4-> Pre-eminence of SVM and ensemble classifier (i.e., AdaBoost, RF, etc.)
+        \end{itemize}
+      \end{greenblock}}
+      \only<12>{
+      \begin{greenblock}{\small Conclusions}
+        \begin{itemize}\scriptsize
+          \item[\tick]<1-> 3 modalities better than 2
+          \item[\tick]<2-> Texture and edge features are predominant
+          \item[\tick]<3-> Feature selection/extraction tends to improve performance
+          \item[\tick]<4-> Pre-eminence of SVM and ensemble classifier (i.e., AdaBoost, RF, etc.)
+        \end{itemize}
+      \end{greenblock}}
+    \end{column}
+    \begin{column}{0.5\textwidth}
+      \only<1>{
+          \input{cad_half_1.tex}
+      }
+      \only<2>{
+          \input{cad_half_2.tex}
+      }
+      \only<3>{
+          \input{cad_half_3.tex}
+      }
+      \only<4>{
+          \input{cad_half_4.tex}
+      }
+      \only<5>{
+      \begin{redblock}{\small Scientific and technical challenges}
+        \begin{itemize}\scriptsize
+          \item[\cross]<5-> No publicly available mp-MRI dataset
+          \item[\cross]<6-> Only 1 study used 4 MRI modalities
+          \item[\cross]<7-> Limited work on data normalization
+          \item[\cross]<8-> A lot of features are extracted in 2D
+          \item[\cross]<9-> Limited work regarding selection/extraction
+          \item[\cross]<10-> No work regarding data balancing
+          \item[\cross]<11-> No source code available of any CAD
+        \end{itemize}
+      \end{redblock}}
+      \only<6>{
+      \begin{redblock}{\small Scientific and technical challenges}
+        \begin{itemize}\scriptsize
+          \item[\cross]<5-> No publicly available mp-MRI dataset
+          \item[\cross]<6-> Only 1 study used 4 MRI modalities
+          \item[\cross]<7-> Limited work on data normalization
+          \item[\cross]<8-> A lot of features are extracted in 2D
+          \item[\cross]<9-> Limited work regarding selection/extraction
+          \item[\cross]<10-> No work regarding data balancing
+          \item[\cross]<11-> No source code available of any CAD
+        \end{itemize}
+      \end{redblock}}
+      \only<7>{
+      \begin{redblock}{\small Scientific and technical challenges}
+        \begin{itemize}\scriptsize
+          \item[\cross]<5-> No publicly available mp-MRI dataset
+          \item[\cross]<6-> Only 1 study used 4 MRI modalities
+          \item[\cross]<7-> Limited work on data normalization
+          \item[\cross]<8-> A lot of features are extracted in 2D
+          \item[\cross]<9-> Limited work regarding selection/extraction
+          \item[\cross]<10-> No work regarding data balancing
+          \item[\cross]<11-> No source code available of any CAD
+        \end{itemize}
+      \end{redblock}}
+      \only<8>{
+      \begin{redblock}{\small Scientific and technical challenges}
+        \begin{itemize}\scriptsize
+          \item[\cross]<5-> No publicly available mp-MRI dataset
+          \item[\cross]<6-> Only 1 study used 4 MRI modalities
+          \item[\cross]<7-> Limited work on data normalization
+          \item[\cross]<8-> A lot of features are extracted in 2D
+          \item[\cross]<9-> Limited work regarding selection/extraction
+          \item[\cross]<10-> No work regarding data balancing
+          \item[\cross]<11-> No source code available of any CAD
+        \end{itemize}
+      \end{redblock}}
+      \only<9>{
+      \begin{redblock}{\small Scientific and technical challenges}
+        \begin{itemize}\scriptsize
+          \item[\cross]<5-> No publicly available mp-MRI dataset
+          \item[\cross]<6-> Only 1 study used 4 MRI modalities
+          \item[\cross]<7-> Limited work on data normalization
+          \item[\cross]<8-> A lot of features are extracted in 2D
+          \item[\cross]<9-> Limited work regarding selection/extraction
+          \item[\cross]<10-> No work regarding data balancing
+          \item[\cross]<11-> No source code available of any CAD
+        \end{itemize}
+      \end{redblock}}
+      \only<10>{
+      \begin{redblock}{\small Scientific and technical challenges}
+        \begin{itemize}\scriptsize
+          \item[\cross]<5-> No publicly available mp-MRI dataset
+          \item[\cross]<6-> Only 1 study used 4 MRI modalities
+          \item[\cross]<7-> Limited work on data normalization
+          \item[\cross]<8-> A lot of features are extracted in 2D
+          \item[\cross]<9-> Limited work regarding selection/extraction
+          \item[\cross]<10-> No work regarding data balancing
+          \item[\cross]<11-> No source code available of any CAD
+        \end{itemize}
+      \end{redblock}}
+      \only<11>{
+      \begin{redblock}{\small Scientific and technical challenges}
+        \begin{itemize}\scriptsize
+          \item[\cross]<5-> No publicly available mp-MRI dataset
+          \item[\cross]<6-> Only 1 study used 4 MRI modalities
+          \item[\cross]<7-> Limited work on data normalization
+          \item[\cross]<8-> A lot of features are extracted in 2D
+          \item[\cross]<9-> Limited work regarding selection/extraction
+          \item[\cross]<10-> No work regarding data balancing
+          \item[\cross]<11-> No source code available of any CAD
+        \end{itemize}
+      \end{redblock}}
+      \only<12>{
+      \begin{redblock}{\small Scientific and technical challenges}
+        \begin{itemize}\scriptsize
+          \item[\cross]<5-> No publicly available mp-MRI dataset
+          \item[\cross]<6-> Only 1 study used 4 MRI modalities
+          \item[\cross]<7-> Limited work on data normalization
+          \item[\cross]<8-> A lot of features are extracted in 2D
+          \item[\cross]<9-> Limited work regarding selection/extraction
+          \item[\cross]<10-> No work regarding data balancing
+          \item[\cross]<11-> No source code available of any CAD
+        \end{itemize}
+      \end{redblock}}
+    \end{column}
+  \end{columns}
+  \only<12>{
+    \begin{block}{\small Research objectives}
+      \begin{itemize}\scriptsize
+        \item Collect a mp-MRI dataset
+        \item Design a CAD for CaP using all mp-MRI modalities
+        \item Investigate normalization, feature selection/extraction, data balancing
+        \item Implement 3D features
+        \item Release source code and dataset
+      \end{itemize}
+    \end{block}}
+\end{frame}
+
+% \begin{frame}
+%   \frametitle{Introduction}
+%   \framesubtitle{CAD for CaP}
+%   \begin{block}{MR images}
+%     \renewcommand\arraystretch{.5}
+%     \begin{table}
+%       \centering
+%       \tiny
+%       \begin{tabular}{llll}
+%         \toprule
+%         \multicolumn{2}{c}{Voxel-wise detection} & \multicolumn{2}{c}{Region-wise detection} \\
+%         \cmidrule(lr){1-2} \cmidrule(lr){3-4}
+%         & Intensity-based & & \\ \\ \\
+%         \multirow{4}{*}{\textit{Edge-based}} & Prewitt operator & & \\
+%         & Sobel operator & \multirow{2}{*}{\textit{Statistical-based}} & Percentiles \\
+%         & Kirsch operator & & Statistical-moments \\
+%         & Gabor filtering & & \\ \\ \\
+%         \multirow{6}{*}{\textit{Texture-based}} & Haralick features & & \\
+%         & Tamura features & & \\
+%         & Fractal analysis & \multirow{4}{*}{\textit{Histogram-based}} & PDF \\
+%         & DCT & & HOG \\
+%         & Wavelet features & & Shape context \\
+%         & Gaussian filters bank & & LBP \\
+%         & LoG filters bank & & \\ \\ \\
+%         & Position-based & & \\
+%         \bottomrule
+%       \end{tabular}
+%     \end{table}
+%     \begin{columns}
+%       \begin{column}{0.33\textwidth}
+%       \end{column}
+%       \begin{column}{0.33\textwidth}
+%       \end{column}
+%       \begin{column}{0.33\textwidth}
+%       \end{column}
+%     \end{columns}
+%   \end{block}
+% \end{frame}
 
 \subsection{The MedIA evil}
 
