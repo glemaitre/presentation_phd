@@ -52,8 +52,8 @@
       \node[module,above of=det] (roi) {\Large ROIs\\detection/selection};
     \end{scope}
     \node[module,below of=det] (sel) {\Large Data\\balancing};
-    \node[module,below of=sel] (bal) {\Large Features\\selection/extraction};
-    \node[moduleorange,below of=bal] (cla) {\Large Features\\classification/fusion};
+    \node[moduleorange,below of=sel] (bal) {\Large Features\\selection/extraction};
+    \node[module,below of=bal] (cla) {\Large Features\\classification/fusion};
 
     \draw[->] (roi)--(det);
     \draw[->] (det)--(sel);
