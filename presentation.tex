@@ -63,11 +63,11 @@
 \usepackage{multirow}
 
 \newcommand*{\tikzbullet}[2]{%
-   \setbox0=\hbox{\strut}%
-   \begin{tikzpicture}
-     \useasboundingbox (-0.25em,0.25em) rectangle (.25em,\ht0);
-     \filldraw[draw=#1,fill=#2] (0,0.5\ht0) circle[radius=.25em];
-   \end{tikzpicture}%
+  \setbox0=\hbox{\strut}%
+  \begin{tikzpicture}
+    \useasboundingbox (-0.25em,0.25em) rectangle (.25em,\ht0);
+    \filldraw[draw=#1,fill=#2] (0,0.5\ht0) circle[radius=.25em];
+  \end{tikzpicture}%
 }
 
 %% Package for cross and tick symbols
@@ -121,30 +121,30 @@
 
 % `column` replacement to measure height
 \newenvironment{@acolumn}[1]{%
-    \stepcounter{acolumn}%
-    \begin{lrbox}{\@tempboxa}%
+  \stepcounter{acolumn}%
+  \begin{lrbox}{\@tempboxa}%
     \begin{minipage}{#1}%
-}{%
+    }{%
     \end{minipage}
-    \end{lrbox}
-    \@tempdimc=\dimexpr\ht\@tempboxa+\dp\@tempboxa\relax
-    % Save height of this column:
-    \expandafter\xdef\csname acolumn@height@\roman{acolumn}\endcsname{\the\@tempdimc}%
-    % Save maximum height
-    \ifdim\@tempdimc>\acolumnmaxheight
-        \global\acolumnmaxheight=\@tempdimc
-    \fi
+  \end{lrbox}
+  \@tempdimc=\dimexpr\ht\@tempboxa+\dp\@tempboxa\relax
+  % Save height of this column:
+  \expandafter\xdef\csname acolumn@height@\roman{acolumn}\endcsname{\the\@tempdimc}%
+  % Save maximum height
+  \ifdim\@tempdimc>\acolumnmaxheight
+  \global\acolumnmaxheight=\@tempdimc
+  \fi
 }
 
 % `column` wrapper which sets the height beforehand
 \newenvironment{@@acolumn}[1]{%
-    \stepcounter{acolumn}%
-    % The \autoheight macro contains a \vspace macro with the maximum height minus the natural column height
-    \edef\autoheight{\noexpand\vspace*{\dimexpr\acolumnmaxheight-\csname acolumn@height@\roman{acolumn}\endcsname\relax}}%
-    % Call original `column`:
-    \orig@column{#1}%
+  \stepcounter{acolumn}%
+  % The \autoheight macro contains a \vspace macro with the maximum height minus the natural column height
+  \edef\autoheight{\noexpand\vspace*{\dimexpr\acolumnmaxheight-\csname acolumn@height@\roman{acolumn}\endcsname\relax}}%
+  % Call original `column`:
+  \orig@column{#1}%
 }{%
-    \endorig@column
+  \endorig@column
 }
 
 % Save orignal `column` environment away
@@ -153,23 +153,23 @@
 
 % `columns` variant with automatic height adjustment
 \NewEnviron{acolumns}[1][]{%
-    % Init vars:
-    \setcounter{acolumn}{0}%
-    \setlength{\acolumnmaxheight}{0pt}%
-    \def\autoheight{\vspace*{0pt}}%
-    % Set `column` environment to special measuring environment
-    \let\column\@acolumn
-    \let\endcolumn\end@acolumn
-    \BODY% measure heights
-    % Reset counter for second processing round
-    \setcounter{acolumn}{0}%
-    % Set `column` environment to wrapper
-    \let\column\@@acolumn
-    \let\endcolumn\end@@acolumn
-    % Finally process columns now for real
-    \begin{columns}[#1]%
-        \BODY
-    \end{columns}%
+  % Init vars:
+  \setcounter{acolumn}{0}%
+  \setlength{\acolumnmaxheight}{0pt}%
+  \def\autoheight{\vspace*{0pt}}%
+  % Set `column` environment to special measuring environment
+  \let\column\@acolumn
+  \let\endcolumn\end@acolumn
+\BODY% measure heights
+% Reset counter for second processing round
+\setcounter{acolumn}{0}%
+% Set `column` environment to wrapper
+\let\column\@@acolumn
+\let\endcolumn\end@@acolumn
+% Finally process columns now for real
+\begin{columns}[#1]%
+  \BODY
+\end{columns}%
 }
 \makeatother
 
@@ -185,16 +185,20 @@
     \titlepage
   \end{frame}
 }
- 
+
 % Show the table of contents
 \begin{frame}
-  \tableofcontents[sectionstyle=show,subsectionstyle=hide,subsubsectionstyle=hide]
+  \begin{scriptsize}
+    \tableofcontents[sectionstyle=show,subsectionstyle=hide,subsubsectionstyle=hide]
+  \end{scriptsize}
 \end{frame}
 
 \section{Introduction}
 
 \begin{frame}
+  \begin{scriptsize}
     \tableofcontents[currentsection,currentsubsection,subsectionstyle=show/show/hide]
+  \end{scriptsize}
 \end{frame}
 
 \subsection{Motivations}
@@ -328,10 +332,10 @@
       \end{block}
       \begin{block}<1->{\small ``Blind'' transrectal ultrasound biopsy}
         \begin{itemize}\scriptsize
-          \item<4-> Take samples from different locations
-          \item<4-> Grade using Gleason score
-          \item[\cross]<5-> Invasive procedure
-          \item[\cross]<5-> Lead to false positives \& negatives
+        \item<4-> Take samples from different locations
+        \item<4-> Grade using Gleason score
+        \item[\cross]<5-> Invasive procedure
+        \item[\cross]<5-> Lead to false positives \& negatives
         \end{itemize}
       \end{block}
     \end{column}
@@ -339,32 +343,32 @@
       \begin{center}
         \only<1>{
           \begin{figure}
-          \includegraphics[height=.6\textheight]{./images/screening/high_psa.png}
-          \caption{\tiny \tikzbullet{gray}{orangeubfc} free PSA \\ \tikzbullet{gray}{blueubfc} protein-linked PSA}
+            \includegraphics[height=.6\textheight]{./images/screening/high_psa.png}
+            \caption{\tiny \tikzbullet{gray}{orangeubfc} free PSA \\ \tikzbullet{gray}{blueubfc} protein-linked PSA}
           \end{figure}
         }
         \only<2>{
           \begin{figure}
-          \includegraphics[height=.6\textheight]{./images/screening/risk_psa.png}
-          \caption{\tiny \tikzbullet{gray}{orangeubfc} free PSA \\ \tikzbullet{gray}{blueubfc} protein-linked PSA}
+            \includegraphics[height=.6\textheight]{./images/screening/risk_psa.png}
+            \caption{\tiny \tikzbullet{gray}{orangeubfc} free PSA \\ \tikzbullet{gray}{blueubfc} protein-linked PSA}
           \end{figure}
         }
         \only<3>{
           \begin{figure}
-          \includegraphics[height=.6\textheight]{./images/screening/risk_psa.png}
-          \caption{\tiny \tikzbullet{gray}{orangeubfc} free PSA \\ \tikzbullet{gray}{blueubfc} protein-linked PSA}
+            \includegraphics[height=.6\textheight]{./images/screening/risk_psa.png}
+            \caption{\tiny \tikzbullet{gray}{orangeubfc} free PSA \\ \tikzbullet{gray}{blueubfc} protein-linked PSA}
           \end{figure}
         }
         \only<4>{
           \begin{figure}
-          \includegraphics[height=.3\textheight]{./images/screening/gleason.jpg}
-          \caption{\tiny Image source: \texttt{https://goo.gl/fEVQXQ}}
+            \includegraphics[height=.3\textheight]{./images/screening/gleason.jpg}
+            \caption{\tiny Image source: \texttt{https://goo.gl/fEVQXQ}}
           \end{figure}
         }
         \only<5>{
           \begin{figure}
-          \includegraphics[height=.3\textheight]{./images/screening/gleason.jpg}
-          \caption{\tiny Image source: \texttt{https://goo.gl/fEVQXQ}}
+            \includegraphics[height=.3\textheight]{./images/screening/gleason.jpg}
+            \caption{\tiny Image source: \texttt{https://goo.gl/fEVQXQ}}
           \end{figure}
         }
         \only<6>{
@@ -401,15 +405,15 @@
     \item[\cross] Need further investigation of the mp-MRI modalities
     \item[\cross] Low repeatability
       \begin{itemize} \scriptsize
-        \item Observer limitations
-        \item Complexity of clinical cases
+      \item Observer limitations
+      \item Complexity of clinical cases
       \end{itemize}
     \end{itemize}
   \end{redblock}
   \begin{block}{\small Emergence of CAD}
     \begin{itemize}\scriptsize
-      \item CADe $\rightarrow$ detection of potential lesions
-      \item CADx $\rightarrow$ diagnosis regarding those lesions
+    \item CADe $\rightarrow$ detection of potential lesions
+    \item CADx $\rightarrow$ diagnosis regarding those lesions
     \end{itemize}
   \end{block}
 \end{frame}
@@ -421,10 +425,10 @@
   \framesubtitle{Research objectives}
   \begin{block}{\small Propose a mp-MRI CAD for CaP}
     \begin{itemize}\scriptsize
-      \item Study and investigate the state-of-the-art on MRI CAD for CaP
-      \item Identify the scientific barriers
-      \item Design a mp-MRI CAD addressing these issues
-      \item Investigate and analyze the proposed CAD
+    \item Study and investigate the state-of-the-art on MRI CAD for CaP
+    \item Identify the scientific barriers
+    \item Design a mp-MRI CAD addressing these issues
+    \item Investigate and analyze the proposed CAD
     \end{itemize}
   \end{block}
 \end{frame}
@@ -432,7 +436,9 @@
 \section{State-of-the-art}
 
 \begin{frame}
+  \begin{scriptsize}
     \tableofcontents[currentsection,currentsubsection,subsectionstyle=show/show/hide]
+  \end{scriptsize}
 \end{frame}
 
 \subsection{MRI modalities}
@@ -462,44 +468,44 @@
     \end{figure}
   \end{block}
   \only<1>{
-  \begin{columns}
-    \begin{column}{0.5\textwidth}
-      \begin{greenblock}{\small Healthy}\footnotesize
-        \begin{itemize}\scriptsize
-        \item Intermediate to high-signal intensity (SI) in PZ
-        \item Low-SI in CG
-        \end{itemize}
-      \end{greenblock}
-    \end{column}
-    \begin{column}{0.5\textwidth}
-      \begin{redblock}{\small CaP}\footnotesize
-        \begin{itemize}\scriptsize
-        \item Low-SI
-        \item Round and ill-defined mass in PZ
-        \item Homogeneous with ill-defined edges in CG
-        \end{itemize}
-      \end{redblock}
-    \end{column}
-  \end{columns}}
-\only<2>{
-  \begin{columns}
-    \begin{column}{0.5\textwidth}
-      \begin{greenblock}{\small Pros}\footnotesize
-        \begin{itemize}\scriptsize
-        \item Highest spatial resolution
-        \item Anatomy nicely depicted
-        \end{itemize}
-      \end{greenblock}
-    \end{column}
-    \begin{column}{0.5\textwidth}
-      \begin{redblock}{\small Cons}\footnotesize
-        \begin{itemize}\scriptsize
-        \item Low sensitivity in CG
-        \item Lower specificity due to outliers
-        \end{itemize}
-      \end{redblock}
-    \end{column}
-  \end{columns}}
+    \begin{columns}
+      \begin{column}{0.5\textwidth}
+        \begin{greenblock}{\small Healthy}\footnotesize
+          \begin{itemize}\scriptsize
+          \item Intermediate to high-signal intensity (SI) in PZ
+          \item Low-SI in CG
+          \end{itemize}
+        \end{greenblock}
+      \end{column}
+      \begin{column}{0.5\textwidth}
+        \begin{redblock}{\small CaP}\footnotesize
+          \begin{itemize}\scriptsize
+          \item Low-SI
+          \item Round and ill-defined mass in PZ
+          \item Homogeneous with ill-defined edges in CG
+          \end{itemize}
+        \end{redblock}
+      \end{column}
+    \end{columns}}
+  \only<2>{
+    \begin{columns}
+      \begin{column}{0.5\textwidth}
+        \begin{greenblock}{\small Pros}\footnotesize
+          \begin{itemize}\scriptsize
+          \item Highest spatial resolution
+          \item Anatomy nicely depicted
+          \end{itemize}
+        \end{greenblock}
+      \end{column}
+      \begin{column}{0.5\textwidth}
+        \begin{redblock}{\small Cons}\footnotesize
+          \begin{itemize}\scriptsize
+          \item Low sensitivity in CG
+          \item Lower specificity due to outliers
+          \end{itemize}
+        \end{redblock}
+      \end{column}
+    \end{columns}}
 \end{frame}
 
 \setcounter{subfigure}{0}% Reset subfigure counter
@@ -516,43 +522,43 @@
     \end{figure}
   \end{block}
   \only<1>{
-  \begin{columns}
-    \begin{column}{0.5\textwidth}
-      \begin{greenblock}{\small Healthy}
-        \begin{itemize}\scriptsize
-        \item Slower wash-in, wash-out, time-to-peak enhancement
-        \item Lower integral under the curve, max SI
-        \end{itemize}
-      \end{greenblock}
-    \end{column}
-    \begin{column}{0.5\textwidth}
-      \begin{redblock}{\small CaP}
-        \begin{itemize}\scriptsize
-        \item Faster wash-in, wash-out, time-to-peak enhancement
-        \item Higher integral under the curve, max SI
-        \end{itemize}
-      \end{redblock}
-    \end{column}
-  \end{columns}}
-\only<2>{
-  \begin{columns}
-    \begin{column}{0.5\textwidth}
-      \begin{greenblock}{\small Pros}\footnotesize
-        \begin{itemize}\scriptsize
-        \item Information about vascularity
-        \end{itemize}
-      \end{greenblock}
-    \end{column}
-    \begin{column}{0.5\textwidth}
-      \begin{redblock}{\small Cons}\footnotesize
-        \begin{itemize}\scriptsize
-        \item Spatial mis-registration
-        \item Lower spatial resolution than T$_2$W-MRI
-        \item Difficult detection in CG
-        \end{itemize}
-      \end{redblock}
-    \end{column}
-  \end{columns}}
+    \begin{columns}
+      \begin{column}{0.5\textwidth}
+        \begin{greenblock}{\small Healthy}
+          \begin{itemize}\scriptsize
+          \item Slower wash-in, wash-out, time-to-peak enhancement
+          \item Lower integral under the curve, max SI
+          \end{itemize}
+        \end{greenblock}
+      \end{column}
+      \begin{column}{0.5\textwidth}
+        \begin{redblock}{\small CaP}
+          \begin{itemize}\scriptsize
+          \item Faster wash-in, wash-out, time-to-peak enhancement
+          \item Higher integral under the curve, max SI
+          \end{itemize}
+        \end{redblock}
+      \end{column}
+    \end{columns}}
+  \only<2>{
+    \begin{columns}
+      \begin{column}{0.5\textwidth}
+        \begin{greenblock}{\small Pros}\footnotesize
+          \begin{itemize}\scriptsize
+          \item Information about vascularity
+          \end{itemize}
+        \end{greenblock}
+      \end{column}
+      \begin{column}{0.5\textwidth}
+        \begin{redblock}{\small Cons}\footnotesize
+          \begin{itemize}\scriptsize
+          \item Spatial mis-registration
+          \item Lower spatial resolution than T$_2$W-MRI
+          \item Difficult detection in CG
+          \end{itemize}
+        \end{redblock}
+      \end{column}
+    \end{columns}}
 \end{frame}
 
 \setcounter{subfigure}{0}% Reset subfigure counter
@@ -576,43 +582,43 @@
     \end{figure}
   \end{block}
   \only<1>{
-  \begin{columns}
-    \begin{column}{0.5\textwidth}
-      \begin{greenblock}{\small Healthy}
-        \begin{itemize}\scriptsize
-        \item DW-MRI: lower SI
-        \item ADC: higher-SI
-        \end{itemize}
-      \end{greenblock}
-    \end{column}
-    \begin{column}{0.5\textwidth}
-      \begin{redblock}{\small CaP}\scriptsize
-        \begin{itemize}
-        \item DW-MRI: higher SI
-        \item ADC: lower-SI
-        \end{itemize}
-      \end{redblock}
-    \end{column}
-  \end{columns}}
+    \begin{columns}
+      \begin{column}{0.5\textwidth}
+        \begin{greenblock}{\small Healthy}
+          \begin{itemize}\scriptsize
+          \item DW-MRI: lower SI
+          \item ADC: higher-SI
+          \end{itemize}
+        \end{greenblock}
+      \end{column}
+      \begin{column}{0.5\textwidth}
+        \begin{redblock}{\small CaP}\scriptsize
+          \begin{itemize}
+          \item DW-MRI: higher SI
+          \item ADC: lower-SI
+          \end{itemize}
+        \end{redblock}
+      \end{column}
+    \end{columns}}
   \only<2>{
-  \begin{columns}
-    \begin{column}{0.5\textwidth}
-      \begin{greenblock}{\small Pros}
-        \begin{itemize}\scriptsize
-        \item Information about tissue structure
-        \item ADC correlated with Gleason score
-        \end{itemize}
-      \end{greenblock}
-    \end{column}
-    \begin{column}{0.5\textwidth}
-      \begin{redblock}{\small Cons}\scriptsize
-        \begin{itemize}
-        \item Poor spatial resolution
-        \item Variability of the ADC coefficient
-        \end{itemize}
-      \end{redblock}
-    \end{column}
-  \end{columns}}
+    \begin{columns}
+      \begin{column}{0.5\textwidth}
+        \begin{greenblock}{\small Pros}
+          \begin{itemize}\scriptsize
+          \item Information about tissue structure
+          \item ADC correlated with Gleason score
+          \end{itemize}
+        \end{greenblock}
+      \end{column}
+      \begin{column}{0.5\textwidth}
+        \begin{redblock}{\small Cons}\scriptsize
+          \begin{itemize}
+          \item Poor spatial resolution
+          \item Variability of the ADC coefficient
+          \end{itemize}
+        \end{redblock}
+      \end{column}
+    \end{columns}}
 \end{frame}
 
 \setcounter{subfigure}{0}% Reset subfigure counter
@@ -636,42 +642,42 @@
     \end{figure}
   \end{block}
   \only<1>{
-  \begin{columns}
-    \begin{column}{0.5\textwidth}
-      \begin{greenblock}{\small Healthy}
-        \begin{itemize}\scriptsize
-        \item High citrate
-        \item Moderate choline and spermine
-        \end{itemize}
-      \end{greenblock}
-    \end{column}
-    \begin{column}{0.5\textwidth}
-      \begin{redblock}{\small CaP}
-        \begin{itemize}\scriptsize
-        \item Decrease of citrate and spermine
-        \item Increase of choline
-        \end{itemize}
-      \end{redblock}
-    \end{column}
-  \end{columns}}
-\only<2>{
-  \begin{columns}
-    \begin{column}{0.5\textwidth}
-      \begin{greenblock}{\small Pros}\footnotesize
-        \begin{itemize}\scriptsize
-        \item Citrate correlated with Gleason score
-        \end{itemize}
-      \end{greenblock}
-    \end{column}
-    \begin{column}{0.5\textwidth}
-      \begin{redblock}{\small Cons}\footnotesize
-        \begin{itemize}\scriptsize
-        \item Low spatial resolution
-        \item Variation inter-patients
-        \end{itemize}
-      \end{redblock}
-    \end{column}
-  \end{columns}}
+    \begin{columns}
+      \begin{column}{0.5\textwidth}
+        \begin{greenblock}{\small Healthy}
+          \begin{itemize}\scriptsize
+          \item High citrate
+          \item Moderate choline and spermine
+          \end{itemize}
+        \end{greenblock}
+      \end{column}
+      \begin{column}{0.5\textwidth}
+        \begin{redblock}{\small CaP}
+          \begin{itemize}\scriptsize
+          \item Decrease of citrate and spermine
+          \item Increase of choline
+          \end{itemize}
+        \end{redblock}
+      \end{column}
+    \end{columns}}
+  \only<2>{
+    \begin{columns}
+      \begin{column}{0.5\textwidth}
+        \begin{greenblock}{\small Pros}\footnotesize
+          \begin{itemize}\scriptsize
+          \item Citrate correlated with Gleason score
+          \end{itemize}
+        \end{greenblock}
+      \end{column}
+      \begin{column}{0.5\textwidth}
+        \begin{redblock}{\small Cons}\footnotesize
+          \begin{itemize}\scriptsize
+          \item Low spatial resolution
+          \item Variation inter-patients
+          \end{itemize}
+        \end{redblock}
+      \end{column}
+    \end{columns}}
 \end{frame}
 
 \subsection{CAD for CaP}
@@ -680,7 +686,7 @@
   \frametitle{State-of-the-art}
   \framesubtitle{CAD for CaP}
   \begin{block}{Full CAD for detection and diagnosis of CaP}
-  \input{fig-1-cad-framework.tex}
+    \input{fig-1-cad-framework.tex}
   \end{block}
 \end{frame}
 
@@ -690,103 +696,103 @@
   \begin{columns}
     \begin{column}{0.5\textwidth}
       \only<1>{
-      \begin{greenblock}{\small Conclusions}
-        \begin{itemize}\scriptsize
+        \begin{greenblock}{\small Conclusions}
+          \begin{itemize}\scriptsize
           \item[\tick]<1-> 3 modalities better than 2
           \item[\tick]<2-> Texture and edge features are predominant
           \item[\tick]<3-> Features selection/extraction tends to improve performance
           \item[\tick]<4-> Pre-eminence of SVM and ensemble classifier (i.e., AdaBoost, RF, etc.)
-        \end{itemize}
-      \end{greenblock}}
+          \end{itemize}
+        \end{greenblock}}
       \only<2>{
-      \begin{greenblock}{\small Conclusions}
-        \begin{itemize}\scriptsize
+        \begin{greenblock}{\small Conclusions}
+          \begin{itemize}\scriptsize
           \item[\tick]<1-> 3 modalities better than 2
           \item[\tick]<2-> Texture and edge features are predominant
           \item[\tick]<3-> Features selection/extraction tends to improve performance
           \item[\tick]<4-> Pre-eminence of SVM and ensemble classifier (i.e., AdaBoost, RF, etc.)
-        \end{itemize}
-      \end{greenblock}}
+          \end{itemize}
+        \end{greenblock}}
       \only<3>{
-      \begin{greenblock}{\small Conclusions}
-        \begin{itemize}\scriptsize
+        \begin{greenblock}{\small Conclusions}
+          \begin{itemize}\scriptsize
           \item[\tick]<1-> 3 modalities better than 2
           \item[\tick]<2-> Texture and edge features are predominant
           \item[\tick]<3-> Features selection/extraction tends to improve performance
           \item[\tick]<4-> Pre-eminence of SVM and ensemble classifier (i.e., AdaBoost, RF, etc.)
-        \end{itemize}
-      \end{greenblock}}
+          \end{itemize}
+        \end{greenblock}}
       \only<4>{
-      \begin{greenblock}{\small Conclusions}
-        \begin{itemize}\scriptsize
+        \begin{greenblock}{\small Conclusions}
+          \begin{itemize}\scriptsize
           \item[\tick]<1-> 3 modalities better than 2
           \item[\tick]<2-> Texture and edge features are predominant
           \item[\tick]<3-> Features selection/extraction tends to improve performance
           \item[\tick]<4-> Pre-eminence of SVM and ensemble classifier (i.e., AdaBoost, RF, etc.)
-        \end{itemize}
-      \end{greenblock}}
+          \end{itemize}
+        \end{greenblock}}
       \only<5>{
-      \begin{greenblock}{\small Conclusions}
-        \begin{itemize}\scriptsize
+        \begin{greenblock}{\small Conclusions}
+          \begin{itemize}\scriptsize
           \item[\tick]<1-> 3 modalities better than 2
           \item[\tick]<2-> Texture and edge features are predominant
           \item[\tick]<3-> Features selection/extraction tends to improve performance
           \item[\tick]<4-> Pre-eminence of SVM and ensemble classifier (i.e., AdaBoost, RF, etc.)
-        \end{itemize}
-      \end{greenblock}}
+          \end{itemize}
+        \end{greenblock}}
       \only<6>{
-          \input{cad_half_6.tex}
+        \input{cad_half_6.tex}
       }
       \only<7>{
-          \input{cad_half_7.tex}
+        \input{cad_half_7.tex}
       }
       \only<8>{
-          \input{cad_half_8.tex}
+        \input{cad_half_8.tex}
       }
       \only<9>{
-          \input{cad_half_9.tex}
+        \input{cad_half_9.tex}
       }
       \only<10>{
-          \input{cad_half_10.tex}
+        \input{cad_half_10.tex}
       }
       % \only<11>{
-      %     \input{cad_half_11.tex}
+      % \input{cad_half_11.tex}
       % }
       \only<11>{
-      \begin{greenblock}{\small Conclusions}
-        \begin{itemize}\scriptsize
+        \begin{greenblock}{\small Conclusions}
+          \begin{itemize}\scriptsize
           \item[\tick]<1-> 3 modalities better than 2
           \item[\tick]<2-> Texture and edge features are predominant
           \item[\tick]<3-> Features selection/extraction tends to improve performance
           \item[\tick]<4-> Pre-eminence of SVM and ensemble classifier (i.e., AdaBoost, RF, etc.)
-        \end{itemize}
-      \end{greenblock}}
+          \end{itemize}
+        \end{greenblock}}
       \only<12>{
-      \begin{greenblock}{\small Conclusions}
-        \begin{itemize}\scriptsize
+        \begin{greenblock}{\small Conclusions}
+          \begin{itemize}\scriptsize
           \item[\tick]<1-> 3 modalities better than 2
           \item[\tick]<2-> Texture and edge features are predominant
           \item[\tick]<3-> Features selection/extraction tends to improve performance
           \item[\tick]<4-> Pre-eminence of SVM and ensemble classifier (i.e., AdaBoost, RF, etc.)
-        \end{itemize}
-      \end{greenblock}}
+          \end{itemize}
+        \end{greenblock}}
     \end{column}
     \begin{column}{0.5\textwidth}
       \only<1>{
-          \input{cad_half_1.tex}
+        \input{cad_half_1.tex}
       }
       \only<2>{
-          \input{cad_half_2.tex}
+        \input{cad_half_2.tex}
       }
       \only<3>{
-          \input{cad_half_3.tex}
+        \input{cad_half_3.tex}
       }
       \only<4>{
-          \input{cad_half_4.tex}
+        \input{cad_half_4.tex}
       }
       \only<5>{
-      \begin{redblock}{\small Scientific and technical challenges}
-        \begin{itemize}\scriptsize
+        \begin{redblock}{\small Scientific and technical challenges}
+          \begin{itemize}\scriptsize
           \item[\cross]<5-> No publicly available mp-MRI dataset
           \item[\cross]<6-> Only 1 study used 4 MRI modalities
           \item[\cross]<7-> Limited work on data normalization
@@ -794,11 +800,11 @@
           \item[\cross]<9-> Limited work regarding selection/extraction
           \item[\cross]<10-> No work regarding data balancing
           \item[\cross]<11-> No source code available of any CAD
-        \end{itemize}
-      \end{redblock}}
+          \end{itemize}
+        \end{redblock}}
       \only<6>{
-      \begin{redblock}{\small Scientific and technical challenges}
-        \begin{itemize}\scriptsize
+        \begin{redblock}{\small Scientific and technical challenges}
+          \begin{itemize}\scriptsize
           \item[\cross]<5-> No publicly available mp-MRI dataset
           \item[\cross]<6-> Only 1 study used 4 MRI modalities
           \item[\cross]<7-> Limited work on data normalization
@@ -806,11 +812,11 @@
           \item[\cross]<9-> Limited work regarding selection/extraction
           \item[\cross]<10-> No work regarding data balancing
           \item[\cross]<11-> No source code available of any CAD
-        \end{itemize}
-      \end{redblock}}
+          \end{itemize}
+        \end{redblock}}
       \only<7>{
-      \begin{redblock}{\small Scientific and technical challenges}
-        \begin{itemize}\scriptsize
+        \begin{redblock}{\small Scientific and technical challenges}
+          \begin{itemize}\scriptsize
           \item[\cross]<5-> No publicly available mp-MRI dataset
           \item[\cross]<6-> Only 1 study used 4 MRI modalities
           \item[\cross]<7-> Limited work on data normalization
@@ -818,11 +824,11 @@
           \item[\cross]<9-> Limited work regarding selection/extraction
           \item[\cross]<10-> No work regarding data balancing
           \item[\cross]<11-> No source code available of any CAD
-        \end{itemize}
-      \end{redblock}}
+          \end{itemize}
+        \end{redblock}}
       \only<8>{
-      \begin{redblock}{\small Scientific and technical challenges}
-        \begin{itemize}\scriptsize
+        \begin{redblock}{\small Scientific and technical challenges}
+          \begin{itemize}\scriptsize
           \item[\cross]<5-> No publicly available mp-MRI dataset
           \item[\cross]<6-> Only 1 study used 4 MRI modalities
           \item[\cross]<7-> Limited work on data normalization
@@ -830,11 +836,11 @@
           \item[\cross]<9-> Limited work regarding selection/extraction
           \item[\cross]<10-> No work regarding data balancing
           \item[\cross]<11-> No source code available of any CAD
-        \end{itemize}
-      \end{redblock}}
+          \end{itemize}
+        \end{redblock}}
       \only<9>{
-      \begin{redblock}{\small Scientific and technical challenges}
-        \begin{itemize}\scriptsize
+        \begin{redblock}{\small Scientific and technical challenges}
+          \begin{itemize}\scriptsize
           \item[\cross]<5-> No publicly available mp-MRI dataset
           \item[\cross]<6-> Only 1 study used 4 MRI modalities
           \item[\cross]<7-> Limited work on data normalization
@@ -842,11 +848,11 @@
           \item[\cross]<9-> Limited work regarding selection/extraction
           \item[\cross]<10-> No work regarding data balancing
           \item[\cross]<11-> No source code available of any CAD
-        \end{itemize}
-      \end{redblock}}
+          \end{itemize}
+        \end{redblock}}
       \only<10>{
-      \begin{redblock}{\small Scientific and technical challenges}
-        \begin{itemize}\scriptsize
+        \begin{redblock}{\small Scientific and technical challenges}
+          \begin{itemize}\scriptsize
           \item[\cross]<5-> No publicly available mp-MRI dataset
           \item[\cross]<6-> Only 1 study used 4 MRI modalities
           \item[\cross]<7-> Limited work on data normalization
@@ -854,11 +860,11 @@
           \item[\cross]<9-> Limited work regarding selection/extraction
           \item[\cross]<10-> No work regarding data balancing
           \item[\cross]<11-> No source code available of any CAD
-        \end{itemize}
-      \end{redblock}}
+          \end{itemize}
+        \end{redblock}}
       \only<11>{
-      \begin{redblock}{\small Scientific and technical challenges}
-        \begin{itemize}\scriptsize
+        \begin{redblock}{\small Scientific and technical challenges}
+          \begin{itemize}\scriptsize
           \item[\cross]<5-> No publicly available mp-MRI dataset
           \item[\cross]<6-> Only 1 study used 4 MRI modalities
           \item[\cross]<7-> Limited work on data normalization
@@ -866,11 +872,11 @@
           \item[\cross]<9-> Limited work regarding selection/extraction
           \item[\cross]<10-> No work regarding data balancing
           \item[\cross]<11-> No source code available of any CAD
-        \end{itemize}
-      \end{redblock}}
+          \end{itemize}
+        \end{redblock}}
       \only<12>{
-      \begin{redblock}{\small Scientific and technical challenges}
-        \begin{itemize}\scriptsize
+        \begin{redblock}{\small Scientific and technical challenges}
+          \begin{itemize}\scriptsize
           \item[\cross]<5-> No publicly available mp-MRI dataset
           \item[\cross]<6-> Only 1 study used 4 MRI modalities
           \item[\cross]<7-> Limited work on data normalization
@@ -878,18 +884,18 @@
           \item[\cross]<9-> Limited work regarding selection/extraction
           \item[\cross]<10-> No work regarding data balancing
           \item[\cross]<11-> No source code available of any CAD
-        \end{itemize}
-      \end{redblock}}
+          \end{itemize}
+        \end{redblock}}
     \end{column}
   \end{columns}
   \only<12>{
     \begin{block}{\small Research objectives}
       \begin{itemize}\scriptsize
-        \item Collect a mp-MRI dataset
-        \item Design a CAD for CaP using all mp-MRI modalities
-        \item Investigate normalization, feature selection/extraction, data balancing
-        \item Implement 3D features
-        \item Release source code and dataset
+      \item Collect a mp-MRI dataset
+      \item Design a CAD for CaP using all mp-MRI modalities
+      \item Investigate normalization, feature selection/extraction, data balancing
+      \item Implement 3D features
+      \item Release source code and dataset
       \end{itemize}
     \end{block}}
 \end{frame}
@@ -897,7 +903,9 @@
 \section{I2CVB}
 
 \begin{frame}
+  \begin{scriptsize}
     \tableofcontents[currentsection,currentsubsection,subsectionstyle=show/show/hide]
+  \end{scriptsize}
 \end{frame}
 
 \subsection{Mp-MRI prostate datasets}
@@ -907,29 +915,29 @@
   \framesubtitle{Mp-MRI prostate datasets}
   \begin{block}{\small 1.5 T General Electric scanner}
     \begin{itemize}\scriptsize
-      \item T$_2$W-MRI, DW-MRI, DCE-MRI, and MRSI
-      \item Ground-truth (GT) for CaP, PZ, and CG associated to T$_2$W-MRI modality
-      \item Healthy: $4$ \emph{vs.} CaP: \{ PZ: $14 + 3$, CG: $0 + 3$ \}
+    \item T$_2$W-MRI, DW-MRI, DCE-MRI, and MRSI
+    \item Ground-truth (GT) for CaP, PZ, and CG associated to T$_2$W-MRI modality
+    \item Healthy: $4$ \emph{vs.} CaP: \{ PZ: $14 + 3$, CG: $0 + 3$ \}
     \end{itemize}
   \end{block}
   \only<1>{
-  \begin{block}{\small 3 T Siemens scanner}
-    \begin{itemize}\scriptsize
+    \begin{block}{\small 3 T Siemens scanner}
+      \begin{itemize}\scriptsize
       \item T$_2$W-MRI, ADC, DCE-MRI, and MRSI
       \item GT for CaP, PZ, and CG associated to T$_2$W-MRI modality
       \item Additional GT of the prostate for DCE-MRI and ADC
       \item Healthy: $2$ \emph{vs.} CaP: \{ PZ: $12 + 2$, CG: $3 + 2$ \}
-    \end{itemize}
-  \end{block}}
+      \end{itemize}
+    \end{block}}
   \only<2>{
-  \begin{greenblock}{\small 3 T Siemens scanner}
-    \begin{itemize}\scriptsize
+    \begin{greenblock}{\small 3 T Siemens scanner}
+      \begin{itemize}\scriptsize
       \item T$_2$W-MRI, ADC, DCE-MRI, and MRSI
       \item GT for CaP, PZ, and CG associated to T$_2$W-MRI modality
       \item Additional GT of the prostate for DCE-MRI and ADC
       \item Healthy: $2$ \emph{vs.} CaP: \{ PZ: $12 + 2$, CG: $3 + 2$ \}
-    \end{itemize}
-  \end{greenblock}}
+      \end{itemize}
+    \end{greenblock}}
 \end{frame}
 
 \subsection{Open source initiative}
@@ -939,13 +947,13 @@
   \framesubtitle{Open source initiative}
   \begin{block}{\small \texttt{protoclass} toolbox}
     \begin{itemize}\scriptsize
-      \item Data management
-      \item Features detection
+    \item Data management
+    \item Features detection
     \end{itemize}
   \end{block}
   \begin{block}{\small \texttt{imbalanced-learn} toolbox\footnotemark}
     \begin{itemize}\scriptsize
-      \item Part of the \texttt{scikit-learn-contrib} projects
+    \item Part of the \texttt{scikit-learn-contrib} projects
     \end{itemize}
   \end{block}
   \begin{block}{\small Third-party toolboxes}
@@ -970,9 +978,9 @@
   \end{block}
   \begin{block}{\small Hub for our different resources}
     \begin{itemize}\scriptsize
-      \item GitHub for our source codes
-      \item Zenodo for our datasets
-      \item HAL, arXiv, ResearchGate for our publications
+    \item GitHub for our source codes
+    \item Zenodo for our datasets
+    \item HAL, arXiv, ResearchGate for our publications
     \end{itemize}
   \end{block}
 \end{frame}
@@ -1031,7 +1039,9 @@
 \section{Toward a mp-MRI CAD for CaP}
 
 \begin{frame}
-  \tableofcontents[currentsection,currentsubsection,subsectionstyle=show/show/hide,subsubsectionstyle=hide]
+  \begin{scriptsize}
+    \tableofcontents[currentsection,currentsubsection,subsectionstyle=show/show/hide,subsubsectionstyle=hide]
+  \end{scriptsize}
 \end{frame}
 
 \begin{frame}
@@ -1057,6 +1067,112 @@
 \begin{frame}
   \frametitle{Toward a mp-MRI CAD for CaP}
   \framesubtitle{T$_2$W-MRI normalization}
+  \begin{block}{\small Inter-patients intensity variations}
+    \begin{columns}
+      \begin{column}{0.4\textwidth}
+        \centering
+        \hspace*{.8cm}
+        \includegraphics[width=.95\textwidth]{./images/DCE-normalization/t2wImage.pdf}
+      \end{column}
+      \begin{column}{0.63\textwidth}
+        \begin{itemize}\scriptsize
+        \item<2-> Artan et al.\footnotemark and Ozer et al.\footnotemark normalized data based on the \emph{$z$-score}.
+          \vspace*{.4cm}
+        \item<3-> Lv et al.\footnotemark and Viswanath et al.\footnotemark used\\ methods based on piecewise-linear normalization\footnotemark.
+        \end{itemize}
+      \end{column}
+    \end{columns}
+  \end{block}
+  \only<4>{
+    \begin{greenblock}{\small Contributions\footnotemark}
+      \begin{itemize}\scriptsize
+      \item[(i)] a \emph{model-based} approach using Rician \textit{a priori};
+      \item[(ii)] a \emph{non-parametric based} approach based on the SRSF representation.
+      \end{itemize}
+    \end{greenblock}}
+  \addtocounter{footnote}{-5}
+  \only<2>{
+    \stepcounter{footnote} \footcitetext{Artan2010}
+    \stepcounter{footnote} \footcitetext{Ozer2010}}
+  \only<3>{
+    \addtocounter{footnote}{2}
+    \stepcounter{footnote} \footcitetext{Lv2009}
+    \stepcounter{footnote} \footcitetext{Viswanath2012}
+    \stepcounter{footnote} \footcitetext{Nyul2000}}
+  \only<4>{
+    \addtocounter{footnote}{4}
+    \stepcounter{footnote} \footcitetext{lemaitre2016normalization}}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Toward a mp-MRI CAD for CaP}
+  \framesubtitle{T$_2$W-MRI normalization}
+  \only<1>{
+    \begin{block}{\small Gaussian \emph{vs.} Rician}
+      \begin{figure}%
+        \centering
+        \hspace*{\fill}%
+        \subfigure[][]{%
+          \includegraphics[width=.45\textwidth]{./images/T2-normalization/03.png}}%
+        \hfill%
+        \subfigure[][]{%
+          \includegraphics[width=.45\textwidth]{./images/T2-normalization/06.png}}%
+        \hspace*{\fill}%
+        \caption{Example of fitted functions}
+      \end{figure}
+    \end{block}}
+  \only<2>{
+    \begin{block}{\small Gaussian normalization}
+      \begin{equation}\scriptsize
+        I_{s}(x) = \frac{I_{r}(x) - \mu_{G}}{\sigma_{G}} \ .
+      \end{equation}
+    \end{block}
+    \begin{block}{\small Rician normalization}\scriptsize
+      \begin{equation}\scriptsize
+        I_{s}(x) = \frac{I_{r}(x) - \mu_{R}}{\sigma_{R}} \ ,
+      \end{equation}
+      \begin{equation}\scriptsize
+        \mu_{R} = \sigma  \sqrt{\frac{\pi}{2}}\,\,L_{1/2}(-\frac{\nu^2}{2\sigma^2})  \ ,
+      \end{equation}
+      \begin{equation}\scriptsize
+        \sigma_{R} = 2\sigma^2+\nu^2-\frac{\pi\sigma^2}{2}L_{1/2}^2\left(\frac{-\nu^2}{2\sigma^2}\right)  \ .
+      \end{equation}
+    \end{block}}
+\end{frame}
+
+\setcounter{subfigure}{0}% Reset subfigure counter
+
+\begin{frame}
+  \frametitle{Toward a mp-MRI CAD for CaP}
+  \framesubtitle{T$_2$W-MRI normalization}
+  \begin{block}{\small Comparison or warping function}
+    \begin{figure}%
+      \centering
+      \hspace*{\fill}%
+      \subfigure[][\tiny Piecewise-linear warping]{%
+        \includegraphics[width=.3\textwidth]{./images/T2-normalization/piecewise-linear.png}}%
+      \hfill%
+      \subfigure[][\tiny SRSF warping]{%
+        \includegraphics[width=.3\textwidth]{./images/T2-normalization/srsf.png}}%
+      \hspace*{\fill}%
+    \end{figure}
+  \end{block}
+  \begin{columns}
+    \begin{column}{.45\textwidth}
+      \begin{block}{\small Piecewise-linear normalization}
+        % Piecewise-linear normalization
+        \scriptsize
+        Minimize the distance between some standardized landmarks $\mu_i$ and some non-normalized landmarks $\lambda_i$
+      \end{block}
+    \end{column}
+    \begin{column}{.45\textwidth}
+      \begin{block}{\small SRSF-based normalization}
+        % Rician normalization
+        \scriptsize
+        Minimize the distance between a mean PDF $\mu_f$ (i.e., the Karcher mean) and a given patient PDF $f_i$
+      \end{block}
+    \end{column}
+  \end{columns}
 \end{frame}
 
 \subsubsection{DCE-MRI normalization}
@@ -1064,6 +1180,32 @@
 \begin{frame}
   \frametitle{Toward a mp-MRI CAD for CaP}
   \framesubtitle{DCE-MRI normalization}
+  \begin{block}{\small Heatmap representation\footnotemark}
+    \begin{figure}%
+        \includegraphics[width=.7\textwidth]{./images/DCE-normalization/heatmaprep.pdf}
+    \end{figure}
+  \end{block}
+  \footcitetext{lemaitre2017automatic}
+\end{frame}
+
+\setcounter{subfigure}{0}% Reset subfigure counter
+
+\begin{frame}
+  \frametitle{Toward a mp-MRI CAD for CaP}
+  \framesubtitle{DCE-MRI normalization}
+  \begin{block}{\small Inter-patients variations}
+      \begin{figure}%
+        \centering
+        \hspace*{\fill}%
+        \subfigure[][]{%
+          \includegraphics[width=.45\textwidth]{./images/DCE-normalization/pat1_annotated.pdf}}%
+        \hfill%
+        \subfigure[][]{%
+          \includegraphics[width=.45\textwidth]{./images/DCE-normalization/pat2_annotated.pdf}}%
+        \hspace*{\fill}%
+        \caption{Variations driven with $\Delta_i$, $\Delta_t$, and $\sigma_i$}
+      \end{figure}
+  \end{block}
 \end{frame}
 
 \subsubsection{ADC normalization}
@@ -1169,14 +1311,16 @@
 
 \begin{frame}
   \frametitle{Experiments}
-  \framesubtitle{T$_2$W-MRI normalization}
+  \framesubtitle{T$_2$W-MRI normalization\footnotemark}
+  \footcitetext{lemaitre2016normalization}
 \end{frame}
 
 \subsection{DCE-MRI normalization}
 
 \begin{frame}
   \frametitle{Experiments}
-  \framesubtitle{DCE-MRI normalization}
+  \framesubtitle{DCE-MRI normalization\footnotemark}
+  \footcitetext{lemaitre2017automatic}
 \end{frame}
 
 \subsection{Standalone modalities}
@@ -1224,7 +1368,9 @@
 \section{Conclusions}
 
 \begin{frame}
-  \tableofcontents[currentsection,currentsubsection,subsectionstyle=show/show/hide,subsubsectionstyle=hide]
+  \begin{scriptsize}
+    \tableofcontents[currentsection,currentsubsection,subsectionstyle=show/show/hide,subsubsectionstyle=hide]
+  \end{scriptsize}
 \end{frame}
 
 \subsection{Contributions}
@@ -1252,7 +1398,7 @@
 
 % \begin{frame}[allowframebreaks]
 %   \frametitle{References}
-%   %\bibliographystyle{apalike}
+%   %   \bibliographystyle{apalike}
 %   \printbibliography
 % \end{frame}
 
