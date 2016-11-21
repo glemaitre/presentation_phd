@@ -20,7 +20,7 @@
   \def\blockdist{1.5}
   \def\edgedist{2.5}
 
-  \begin{tikzpicture}[node distance=3cm,thick,scale=0.3, every node/.style={scale=0.3},path image/.style={
+  \begin{tikzpicture}[node distance=3cm,thick,scale=0.38, every node/.style={scale=0.38},path image/.style={
       path picture={
         \node at (path picture bounding box.center) {
           \includegraphics[width=1cm]{#1}
@@ -52,13 +52,13 @@
       \node[module,above of=det] (roi) {\Large ROIs\\detection/selection};
     \end{scope}
     \node[moduleorange,below of=det] (sel) {\Large Data\\balancing};
-    \node[module,below of=sel] (bal) {\Large Features\\selection/extraction};
-    \node[module,below of=bal] (cla) {\Large Features\\classification/fusion};
+    %\node[module,below of=sel] (bal) {\Large Features\\selection/extraction};
+    \node[module,below of=sel] (cla) {\Large Features\\classification/fusion};
 
     \draw[->] (roi)--(det);
     \draw[->] (det)--(sel);
-    \draw[->] (sel)--(bal);
-    \draw[->] (bal)--(cla);
+    %\draw[->] (sel)--(bal);
+    \draw[->] (sel)--(cla);
 
     \begin{pgfonlayer}{background}
       \path (roi.west |- roi.north)+(-0.25,0.8) node (c) {};

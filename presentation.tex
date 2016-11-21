@@ -207,6 +207,8 @@
 
 \subsection{Motivations}
 
+\setcounter{subfigure}{0}% Reset subfigure counter
+
 \begin{frame}
   \frametitle{Introduction}
   \framesubtitle{Motivations}
@@ -258,6 +260,8 @@
   \footcitetext{Geckomedia2011}
 \end{frame}
 
+\setcounter{subfigure}{0}% Reset subfigure counter
+
 \begin{frame}
   \frametitle{Introduction}
   \framesubtitle{The prostate organ}
@@ -308,7 +312,7 @@
       \end{block}
     \end{column}
   \end{columns}
-  \begin{greenblock}{\small Goals}
+  \begin{greenblock}{\small What clinicians need?}
     \begin{itemize}\scriptsize
     \item Detect CaP
     \item Distinguish slow- from fast-growing CaP
@@ -465,7 +469,7 @@
 
 \subsection{MRI modalities}
 
-\setcounter{subfigure}{0}% Reset subfigure counter
+\setcounter{subfigure}{0}% Reset subfigure counterw
 
 \begin{frame}
   \frametitle{Introduction}
@@ -509,6 +513,7 @@
         \end{redblock}
       \end{column}
     \end{columns}}
+  \setcounter{subfigure}{0}% Reset subfigure counter
   \only<2>{
     \begin{columns}
       \begin{column}{0.5\textwidth}
@@ -668,16 +673,16 @@
       \begin{column}{0.5\textwidth}
         \begin{greenblock}{\small Healthy}
           \begin{itemize}\scriptsize
-          \item High citrate
-          \item Moderate choline and spermine
+          \item High citrate concentration
+          \item Moderate choline and spermine concentrations
           \end{itemize}
         \end{greenblock}
       \end{column}
       \begin{column}{0.5\textwidth}
         \begin{redblock}{\small CaP}
           \begin{itemize}\scriptsize
-          \item Decrease of citrate and spermine
-          \item Increase of choline
+          \item Decrease of citrate and spermine concentrations
+          \item Increase of choline concentration
           \end{itemize}
         \end{redblock}
       \end{column}
@@ -1058,7 +1063,7 @@
 %   \end{columns}
 % \end{frame}
 
-\section{Toward a mp-MRI CAD for CaP}
+\section{DCE normalization}
 
 \begin{frame}
   \begin{scriptsize}
@@ -1067,137 +1072,20 @@
 \end{frame}
 
 \begin{frame}
-  \frametitle{Toward a mp-MRI CAD for CaP}
-  \framesubtitle{Toward a mp-MRI CAD for CaP}
+  \frametitle{Normalization}
+  \framesubtitle{DCE-MRI normalization}
   \begin{block}{\small Mp-MRI CAD for CaP}
     \input{./images/cad/cad_1.tex}
   \end{block}
 \end{frame}
 
-\subsection{Image regularization}
-
 \begin{frame}
   \frametitle{Toward a mp-MRI CAD for CaP}
-  \framesubtitle{Image regularization}
+  \framesubtitle{DCE-MRI normalization}
   \begin{block}{\small Pre-processing}
     \input{./images/cad/cad_2.tex}
   \end{block}
 \end{frame}
-
-\subsubsection{T$_2$W-MRI normalization}
-
-\begin{frame}
-  \frametitle{Toward a mp-MRI CAD for CaP}
-  \framesubtitle{T$_2$W-MRI normalization}
-  \begin{block}{\small Inter-patients intensity variations}
-    \begin{columns}
-      \begin{column}{0.4\textwidth}
-        \centering
-        \hspace*{.8cm}
-        \includegraphics[width=.95\textwidth]{./images/DCE-normalization/t2wImage.pdf}
-      \end{column}
-      \begin{column}{0.63\textwidth}
-        \begin{itemize}\scriptsize
-        \item<2-> Artan et al.\footnotemark and Ozer et al.\footnotemark normalized data based on the \emph{$z$-score}.
-          \vspace*{.4cm}
-        \item<3-> Lv et al.\footnotemark and Viswanath et al.\footnotemark used\\ methods based on piecewise-linear normalization\footnotemark.
-        \end{itemize}
-      \end{column}
-    \end{columns}
-  \end{block}
-  \only<4>{
-    \begin{greenblock}{\small Contributions\footnotemark}
-      \begin{itemize}\scriptsize
-      \item[(i)] a \emph{model-based} approach using Rician \textit{a priori}
-      \item[(ii)] a \emph{non-parametric based} approach based on the SRSF representation
-      \end{itemize}
-    \end{greenblock}}
-  \addtocounter{footnote}{-5}
-  \only<2>{
-    \stepcounter{footnote} \footcitetext{Artan2010}
-    \stepcounter{footnote} \footcitetext{Ozer2010}}
-  \only<3>{
-    \addtocounter{footnote}{2}
-    \stepcounter{footnote} \footcitetext{Lv2009}
-    \stepcounter{footnote} \footcitetext{Viswanath2012}
-    \stepcounter{footnote} \footcitetext{Nyul2000}}
-  \only<4>{
-    \addtocounter{footnote}{4}
-    \stepcounter{footnote} \footcitetext{lemaitre2016normalization}}
-\end{frame}
-
-\begin{frame}
-  \frametitle{Toward a mp-MRI CAD for CaP}
-  \framesubtitle{T$_2$W-MRI normalization}
-  \only<1>{
-    \begin{block}{\small Gaussian \emph{vs.} Rician}
-      \begin{figure}%
-        \centering
-        \hspace*{\fill}%
-        \subfigure[][\tiny Patient \#1]{%
-          \includegraphics[width=.45\textwidth]{./images/T2-normalization/03.png}}%
-        \hfill%
-        \subfigure[][\tiny Patient \#2]{%
-          \includegraphics[width=.45\textwidth]{./images/T2-normalization/06.png}}%
-        \hspace*{\fill}%
-        \caption{Example of fitted functions}
-      \end{figure}
-    \end{block}}
-  \only<2>{
-    \begin{block}{\small Gaussian normalization}
-      \begin{equation}\scriptsize
-        I_{s}(x) = \frac{I_{r}(x) - \mu_{G}}{\sigma_{G}} \ .
-      \end{equation}
-    \end{block}
-    \begin{block}{\small Rician normalization}\scriptsize
-      \begin{equation}\scriptsize
-        I_{s}(x) = \frac{I_{r}(x) - \mu_{R}}{\sigma_{R}} \ ,
-      \end{equation}
-      \begin{equation}\scriptsize
-        \mu_{R} = \sigma  \sqrt{\frac{\pi}{2}}\,\,L_{1/2}(-\frac{\nu^2}{2\sigma^2})  \ ,
-      \end{equation}
-      \begin{equation}\scriptsize
-        \sigma_{R} = 2\sigma^2+\nu^2-\frac{\pi\sigma^2}{2}L_{1/2}^2\left(\frac{-\nu^2}{2\sigma^2}\right)  \ .
-      \end{equation}
-    \end{block}}
-\end{frame}
-
-\setcounter{subfigure}{0}% Reset subfigure counter
-
-\begin{frame}
-  \frametitle{Toward a mp-MRI CAD for CaP}
-  \framesubtitle{T$_2$W-MRI normalization}
-  \begin{block}{\small Comparison or warping function}
-    \begin{figure}%
-      \centering
-      \hspace*{\fill}%
-      \subfigure[][\tiny Piecewise-linear warping]{%
-        \includegraphics[width=.3\textwidth]{./images/T2-normalization/piecewise-linear.png}}%
-      \hfill%
-      \subfigure[][\tiny SRSF warping]{%
-        \includegraphics[width=.3\textwidth]{./images/T2-normalization/srsf.png}}%
-      \hspace*{\fill}%
-    \end{figure}
-  \end{block}
-  \begin{columns}
-    \begin{column}{.45\textwidth}
-      \begin{block}{\small Piecewise-linear normalization}
-        % Piecewise-linear normalization
-        \scriptsize
-        Minimize the distance between some standardized landmarks $\mu_i$ and some non-normalized landmarks $\lambda_i$
-      \end{block}
-    \end{column}
-    \begin{column}{.45\textwidth}
-      \begin{block}{\small SRSF-based normalization}
-        % Rician normalization
-        \scriptsize
-        Minimize the distance between a mean PDF $\mu_f$ (i.e., the Karcher mean) and a given patient PDF $f_i$
-      \end{block}
-    \end{column}
-  \end{columns}
-\end{frame}
-
-\subsubsection{DCE-MRI normalization}
 
 \begin{frame}
   \frametitle{Toward a mp-MRI CAD for CaP}
@@ -1290,56 +1178,87 @@
   \end{block}
 \end{frame}
 
-\subsubsection{ADC normalization and}
-
 \setcounter{subfigure}{0}% Reset subfigure counter
 
 \begin{frame}
-  \frametitle{Toward a mp-MRI CAD for CaP}
-  \framesubtitle{ADC normalization}
-  \begin{block}{\small Variability of PDF in ADC data}\scriptsize
-    \begin{figure}%
+  \frametitle{Experiments}
+  \framesubtitle{DCE modality}
+  \begin{block}{\small Quantitative and semi-quantitative models}
+    \begin{figure}
       \centering
-      \hspace*{\fill}%
-      \subfigure[][\tiny Patient \#1]{%
-        \includegraphics[width=.3\textwidth]{./images/adc_416.pdf}}%
-      \hfill%
-      \subfigure[][\tiny Patient \#2]{%
-        \includegraphics[width=.3\textwidth]{./images/adc_430.pdf}}%
-      \hfill%
-      \subfigure[][\tiny Patient \#3]{%
-        \includegraphics[width=.3\textwidth]{./images/adc_513.pdf}}%
-      \hspace*{\fill}%
+      \hspace*{\fill}
+      \subfigure[\tiny Without normalization]{\includegraphics[width=.45\textwidth]{images/DCE-normalization/unormalized_methods_0.pdf}}\hfill
+      \subfigure[\tiny With normalization]{\includegraphics[width=.45\textwidth]{images/DCE-normalization/normalized_methods_0.pdf}}
+      \hspace*{\fill}
     \end{figure}
-    \vspace*{-.5cm}
-    \begin{itemize}\scriptsize
-    \item Piecewise-linear normalization
-    \end{itemize}
   \end{block}
 \end{frame}
 
-\subsubsection{MRSI pre-processing}
+\begin{frame}
+  \frametitle{Experiments}
+  \framesubtitle{DCE modality}
+  \begin{block}{\small Entire signal}
+    \begin{figure}
+      \centering
+      \includegraphics[width=.7\textwidth]{images/DCE-normalization/full_signal_0.pdf}
+    \end{figure}
+  \end{block}
+\end{frame}
+
+\section{Toward a mp-MRI CAD for CaP}
 
 \begin{frame}
   \frametitle{Toward a mp-MRI CAD for CaP}
-  \framesubtitle{MRSI pre-processing}
-  \begin{block}{\small MRSI pre-processing}\scriptsize
-    \begin{columns}
-      \begin{column}{0.4\textwidth}
+  \framesubtitle{DCE Normalization}
+  \begin{block}{\small Mp-MRI CAD for CaP}
+    \input{./images/cad/cad_1.tex}
+  \end{block}
+\end{frame}
+
+\subsection{Pre-processing}
+
+\begin{frame}
+  \frametitle{Toward a mp-MRI CAD for CaP}
+  \framesubtitle{Image regularization}
+  \begin{block}{\small Pre-processing}
+    \input{./images/cad/cad_2.tex}
+  \end{block}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Toward a mp-MRI CAD for CaP}
+  \framesubtitle{Pre-processing}
+  \begin{columns}
+    \begin{column}{.5\textwidth}
+      \begin{block}{\small T$_2$W-MRI normalization}
+        \begin{itemize}\scriptsize
+        \item Rician normalization\footnotemark
+        \end{itemize}
+      \end{block}
+      \begin{block}{\small ADC normalization}
+        \begin{itemize}\scriptsize
+        \item Piecewise-linear normalization
+        \end{itemize}
+      \end{block}
+    \end{column}
+    \begin{column}{.5\textwidth}
+      \begin{block}{\small DCE-MRI normalization}
+        \begin{itemize}\scriptsize
+        \item Graph and deviation based normalization\footnotemark
+        \end{itemize}
+      \end{block}
+      \begin{block}{\small MRSI normalization}
         \begin{itemize}\scriptsize
         \item Phase correction\footnotemark
         \item Frequency alignment
         \item Baseline correction\footnotemark
         \end{itemize}
-      \end{column}
-      \begin{column}{0.6\textwidth}
-        \begin{figure}
-          \includegraphics[width=.8\textwidth]{./images/baseline_mrsi.pdf}
-        \end{figure}
-      \end{column}
-    \end{columns}
-  \end{block}
-  \addtocounter{footnote}{-2}
+      \end{block}
+    \end{column}
+  \end{columns}
+  \addtocounter{footnote}{-3}
+  \stepcounter{footnote} \footcitetext{lemaitre2016normalization}
+  \stepcounter{footnote} \footcitetext{lemaitre2017automatic}
   \stepcounter{footnote} \footcitetext{Chen2002}
   \stepcounter{footnote} \footcitetext{xi2008baseline}
 \end{frame}
@@ -1391,192 +1310,214 @@
 
 \begin{frame}
   \frametitle{Toward a mp-MRI CAD for CaP}
-  \framesubtitle{T$_2$W-MRI and ADC map}
-  \begin{block}{\small Image features}
-    \begin{table}
-      \centering
-      \tiny
-      \begin{tabularx}{\textwidth}{lXc}
-        \toprule
-        \textbf{Features} & \textbf{Parameters} & \textbf{\# dimensions} \\
-        \midrule
-        Intensity &  & 1 \\
-        DCT decomposition & window: \SI[product-units=repeat]{9x9x3}{\px} & 243 \\
-        Kirsch filter &  & 2 \\
-        Laplacian filter &  & 1 \\
-        Prewitt filter &  & 3 \\
-        Scharr filter &  & 3 \\
-        Sobel filter &  & 3 \\
-        Gabor filters & 4 frequencies $f \in [0.05, 0.25]$; 4 azimuth angles $\alpha \in [0, \pi]$; 8 elevation angles $\alpha \in [0, 2\pi]$ & 256 \\
-        Phase congruency filter & 5 orientations; 6 scales & 3 \\
-        Haralick filter & window: \SI[product-units=repeat]{9x9x3}{\px}; \# grey levels: 8; distance: \SI{1}{\px}; 13 directions & 169 \\
-        LBP filter & 2 radii $r=\{1, 2\}$; 2 neighborhood sizes $N = \{8, 16\}$ & 6 \\
-        \bottomrule
-      \end{tabularx}
-    \end{table}
+  \framesubtitle{Feature detection}
+  \begin{block}{\small T$_2$W-MRI and ADC features}
+    \begin{columns}
+      \begin{column}{0.45\textwidth}
+        \begin{itemize}\scriptsize
+        \item Intensity
+        \item Kirsch filter
+        \item Laplacian filter
+        \item Prewitt filter
+        \item Scharr filter
+        \item Sobel filter
+        \end{itemize}
+      \end{column}
+      \begin{column}{0.45\textwidth}
+        \begin{itemize}\scriptsize
+        \item DCT decomposition
+        \item Gabor filters
+        \item Phase congruency filter
+        \item Haralick filter
+        \item LBP filter
+        \end{itemize}
+      \end{column}
+    \end{columns}
   \end{block}
+  \begin{columns}
+    \begin{column}{0.5\textwidth}
+      \begin{block}{\small DCE-MRI features}
+        \begin{itemize}\scriptsize
+        \item Brix's and Hoffmann's model
+        \item Tofts' model
+        \item PUN model
+        \item Semi-quantitative model
+        \item Entire enhanced signal
+        \end{itemize}
+      \end{block}
+    \end{column}
+    \begin{column}{0.5\textwidth}
+      \begin{block}{\small MRSI features}
+        \begin{itemize}\scriptsize
+        \item Quantification with fixed bounds
+        \item Quantification by fitting some modeled signal
+        \item Entire spectra
+        \end{itemize}
+      \end{block}
+    \end{column}
+  \end{columns}
 \end{frame}
 
-\setcounter{subfigure}{0}% Reset subfigure counter
+% \setcounter{subfigure}{0}% Reset subfigure counter
 
-\begin{frame}
-  \frametitle{Toward a mp-MRI CAD for CaP}
-  \framesubtitle{DCE-MRI}
-  \begin{block}{\small Quantitative and semi-quantitative models}
-    \begin{itemize}\scriptsize
-    \item Brix's model
-    \item Hoffmann's model
-    \item Tofts' model
-    \item PUN model
-    \item Semi-quantitative model
-    \item Entire enhanced signal
-    \end{itemize}
-  \end{block}
-  \begin{block}{\small Segmentation of arterial input function (AIF)}
-    \begin{figure}%
-      \centering
-      \hspace*{\fill}%
-      \subfigure[][\tiny Original]{%
-        \includegraphics[width=.3\textwidth]{./images/DCE-normalization/original.pdf}}%
-      \hfill%
-      \subfigure[][\tiny Candidate]{%
-        \includegraphics[width=.3\textwidth]{./images/DCE-normalization/candidate.pdf}}%
-      \hfill%
-      \subfigure[][\tiny AIF]{%
-        \includegraphics[width=.3\textwidth]{./images/DCE-normalization/aif.pdf}}%
-      \hspace*{\fill}%
-    \end{figure}
-    \vspace*{-.7cm}
-    \begin{itemize}\scriptsize
-    \item[(i)] K-means clustering with $k=6$
-    \item[(ii)] Select the cluster with the highest $90^{\text{th}}$ percentile
-    \item[(iii)] Select regions with an eccentricity $\mathcal{E} < 0.5$ and an area $\mathcal{A} \in [100, 400]$
-    \end{itemize}
-  \end{block}
-\end{frame}
+% \begin{frame}
+%   \frametitle{Toward a mp-MRI CAD for CaP}
+%   \framesubtitle{DCE-MRI}
+%   \begin{block}{\small Quantitative and semi-quantitative models}
+%     \begin{itemize}\scriptsize
+%     \item Brix's model
+%     \item Hoffmann's model
+%     \item Tofts' model
+%     \item PUN model
+%     \item Semi-quantitative model
+%     \item Entire enhanced signal
+%     \end{itemize}
+%   \end{block}
+%   \begin{block}{\small Segmentation of arterial input function (AIF)}
+%     \begin{figure}%
+%       \centering
+%       \hspace*{\fill}%
+%       \subfigure[][\tiny Original]{%
+%         \includegraphics[width=.3\textwidth]{./images/DCE-normalization/original.pdf}}%
+%       \hfill%
+%       \subfigure[][\tiny Candidate]{%
+%         \includegraphics[width=.3\textwidth]{./images/DCE-normalization/candidate.pdf}}%
+%       \hfill%
+%       \subfigure[][\tiny AIF]{%
+%         \includegraphics[width=.3\textwidth]{./images/DCE-normalization/aif.pdf}}%
+%       \hspace*{\fill}%
+%     \end{figure}
+%     \vspace*{-.7cm}
+%     \begin{itemize}\scriptsize
+%     \item[(i)] K-means clustering with $k=6$
+%     \item[(ii)] Select the cluster with the highest $90^{\text{th}}$ percentile
+%     \item[(iii)] Select regions with an eccentricity $\mathcal{E} < 0.5$ and an area $\mathcal{A} \in [100, 400]$
+%     \end{itemize}
+%   \end{block}
+% \end{frame}
 
-\begin{frame}
-  \frametitle{Toward a mp-MRI CAD for CaP}
-  \framesubtitle{MRSI}
-  \only<1>{
-    \begin{block}{\small Quantification strategies}
-      \begin{columns}
-        \begin{column}{.5\textwidth}
-          \begin{itemize}\scriptsize
-          \item<1-> Quantification with fixed bounds
-          \item<2-> Quantification by fitting some modeled signal
-          \item<4-> Entire spectra
-          \end{itemize}
-        \end{column}
-        \begin{column}{.5\textwidth}
-          \only<1>{
-            \begin{figure}%
-              \hspace*{-1.cm}
-              \includegraphics[width=1.\textwidth]{./images/mrsi/mrsi_healthy.eps}
-            \end{figure}}
-          \only<2>{
-            \begin{figure}%
-              \hspace*{-1.cm}
-              \includegraphics[width=1.\textwidth]{./images/meta_fitting.pdf}
-            \end{figure}}
-        \end{column}
-      \end{columns}
-    \end{block}}
-  \only<2>{
-    \begin{block}{\small Quantification strategies}
-      \begin{columns}
-        \begin{column}{.5\textwidth}
-          \begin{itemize}\scriptsize
-          \item<1-> Quantification with fixed bounds
-          \item<2-> Quantification by fitting some modeled signal
-          \item<4-> Entire spectra
-          \end{itemize}
-        \end{column}
-        \begin{column}{.5\textwidth}
-          \only<1>{
-            \begin{figure}%
-              \hspace*{-1.cm}
-              \includegraphics[width=1.\textwidth]{./images/mrsi/mrsi_healthy.eps}
-            \end{figure}}
-          \only<2>{
-            \begin{figure}%
-              \hspace*{-1.cm}
-              \includegraphics[width=1.\textwidth]{./images/meta_fitting.pdf}
-            \end{figure}}
-        \end{column}
-      \end{columns}
-    \end{block}}
-  \only<4>{
-    \begin{block}{\small Quantification strategies}
-      \begin{columns}
-        \begin{column}{.5\textwidth}
-          \begin{itemize}\scriptsize
-          \item<1-> Quantification with fixed bounds
-          \item<2-> Quantification by fitting some modeled signal
-          \item<4-> Entire spectra
-          \end{itemize}
-        \end{column}
-        \begin{column}{.5\textwidth}
-          \only<1>{
-            \begin{figure}%
-              \hspace*{-1.cm}
-              \includegraphics[width=1.\textwidth]{./images/mrsi/mrsi_healthy.eps}
-            \end{figure}}
-          \only<2>{
-            \begin{figure}%
-              \hspace*{-1.cm}
-              \includegraphics[width=1.\textwidth]{./images/meta_fitting.pdf}
-            \end{figure}}
-          \only<4>{
-            \begin{figure}%
-              \hspace*{-1.cm}
-              \includegraphics[width=1.\textwidth]{./images/meta_fitting.pdf}
-            \end{figure}}
-        \end{column}
-      \end{columns}
-    \end{block}}
-  \only<1>{
-    \begin{block}{\small Assumptions}
-      \begin{itemize}\scriptsize
-      \item Integrate citrate from \SIrange{2.46}{2.82}{\ppm}
-      \item Integrate choline from \SIrange{3.19}{3.23}{\ppm}
-      \end{itemize}
-    \end{block}}
-  \only<3>{
-    \begin{block}{\small Citrate quantification}
-      \begin{equation}\tiny
-        \begin{aligned}
-          & \argmin_{\mathbf{w}} 
-          & & | S(x) - M_1(x; \mathbf{w}) |^{2} \ , \label{eq:mincostcit} \\
-          & \text{subject to}
-          & & 2.54 < \mu < 2.68 \ , \\
-          &&& 0.06 < \delta_1, \delta_2 < 0.16 \ , \\
-          &&& 0.01 < \sigma_1, \sigma_2, \sigma_3 < 0.1 \ , \\
-          &&& \alpha_1, \alpha_2, \alpha_3 > 0 \ .
-        \end{aligned}
-      \end{equation}
-      \begin{equation}\tiny
-        M_1(x; \mathbf{w}) = \alpha_1 \mathcal{N}(x; \mu, \sigma_1) + \alpha_2 \mathcal{N}(x; \mu + \delta_2, \sigma_2) + \alpha_3 \mathcal{N}(x; \mu - \delta_3, \sigma_3) \ .
-        \label{eq:costcit}
-      \end{equation}
-    \end{block}
-    \begin{block}{\small Choline quantification}
-      \begin{equation}\tiny
-        \begin{aligned}
-          & \argmin_{\mathbf{\mu, \sigma}} 
-          & & | S(x) - M_2(x; \mu, \sigma) |^{2} \ , \label{eq:mincostcho} \\
-          & \text{subject to}
-          & & 3.17 < \mu < 3.21 \ , \\
-          &&& 0.001 < \sigma < 0.02 \ , \\
-          &&& \alpha > 0 \ .
-        \end{aligned}
-      \end{equation}
-      \begin{equation}\tiny
-        M_2(x; \mu, \sigma) = \alpha \mathcal{N}(x; \mu, \sigma) \ .
-        \label{eq:costcho}
-      \end{equation}
-    \end{block}}
-\end{frame}
+% \begin{frame}
+%   \frametitle{Toward a mp-MRI CAD for CaP}
+%   \framesubtitle{MRSI}
+%   \only<1>{
+%     \begin{block}{\small Quantification strategies}
+%       \begin{columns}
+%         \begin{column}{.5\textwidth}
+%           \begin{itemize}\scriptsize
+%           \item<1-> Quantification with fixed bounds
+%           \item<2-> Quantification by fitting some modeled signal
+%           \item<4-> Entire spectra
+%           \end{itemize}
+%         \end{column}
+%         \begin{column}{.5\textwidth}
+%           \only<1>{
+%             \begin{figure}%
+%               \hspace*{-1.cm}
+%               \includegraphics[width=1.\textwidth]{./images/mrsi/mrsi_healthy.eps}
+%             \end{figure}}
+%           \only<2>{
+%             \begin{figure}%
+%               \hspace*{-1.cm}
+%               \includegraphics[width=1.\textwidth]{./images/meta_fitting.pdf}
+%             \end{figure}}
+%         \end{column}
+%       \end{columns}
+%     \end{block}}
+%   \only<2>{
+%     \begin{block}{\small Quantification strategies}
+%       \begin{columns}
+%         \begin{column}{.5\textwidth}
+%           \begin{itemize}\scriptsize
+%           \item<1-> Quantification with fixed bounds
+%           \item<2-> Quantification by fitting some modeled signal
+%           \item<4-> Entire spectra
+%           \end{itemize}
+%         \end{column}
+%         \begin{column}{.5\textwidth}
+%           \only<1>{
+%             \begin{figure}%
+%               \hspace*{-1.cm}
+%               \includegraphics[width=1.\textwidth]{./images/mrsi/mrsi_healthy.eps}
+%             \end{figure}}
+%           \only<2>{
+%             \begin{figure}%
+%               \hspace*{-1.cm}
+%               \includegraphics[width=1.\textwidth]{./images/meta_fitting.pdf}
+%             \end{figure}}
+%         \end{column}
+%       \end{columns}
+%     \end{block}}
+%   \only<4>{
+%     \begin{block}{\small Quantification strategies}
+%       \begin{columns}
+%         \begin{column}{.5\textwidth}
+%           \begin{itemize}\scriptsize
+%           \item<1-> Quantification with fixed bounds
+%           \item<2-> Quantification by fitting some modeled signal
+%           \item<4-> Entire spectra
+%           \end{itemize}
+%         \end{column}
+%         \begin{column}{.5\textwidth}
+%           \only<1>{
+%             \begin{figure}%
+%               \hspace*{-1.cm}
+%               \includegraphics[width=1.\textwidth]{./images/mrsi/mrsi_healthy.eps}
+%             \end{figure}}
+%           \only<2>{
+%             \begin{figure}%
+%               \hspace*{-1.cm}
+%               \includegraphics[width=1.\textwidth]{./images/meta_fitting.pdf}
+%             \end{figure}}
+%           \only<4>{
+%             \begin{figure}%
+%               \hspace*{-1.cm}
+%               \includegraphics[width=1.\textwidth]{./images/meta_fitting.pdf}
+%             \end{figure}}
+%         \end{column}
+%       \end{columns}
+%     \end{block}}
+%   \only<1>{
+%     \begin{block}{\small Assumptions}
+%       \begin{itemize}\scriptsize
+%       \item Integrate citrate from \SIrange{2.46}{2.82}{\ppm}
+%       \item Integrate choline from \SIrange{3.19}{3.23}{\ppm}
+%       \end{itemize}
+%     \end{block}}
+%   \only<3>{
+%     \begin{block}{\small Citrate quantification}
+%       \begin{equation}\tiny
+%         \begin{aligned}
+%           & \argmin_{\mathbf{w}} 
+%           & & | S(x) - M_1(x; \mathbf{w}) |^{2} \ , \label{eq:mincostcit} \\
+%           & \text{subject to}
+%           & & 2.54 < \mu < 2.68 \ , \\
+%           &&& 0.06 < \delta_1, \delta_2 < 0.16 \ , \\
+%           &&& 0.01 < \sigma_1, \sigma_2, \sigma_3 < 0.1 \ , \\
+%           &&& \alpha_1, \alpha_2, \alpha_3 > 0 \ .
+%         \end{aligned}
+%       \end{equation}
+%       \begin{equation}\tiny
+%         M_1(x; \mathbf{w}) = \alpha_1 \mathcal{N}(x; \mu, \sigma_1) + \alpha_2 \mathcal{N}(x; \mu + \delta_2, \sigma_2) + \alpha_3 \mathcal{N}(x; \mu - \delta_3, \sigma_3) \ .
+%         \label{eq:costcit}
+%       \end{equation}
+%     \end{block}
+%     \begin{block}{\small Choline quantification}
+%       \begin{equation}\tiny
+%         \begin{aligned}
+%           & \argmin_{\mathbf{\mu, \sigma}} 
+%           & & | S(x) - M_2(x; \mu, \sigma) |^{2} \ , \label{eq:mincostcho} \\
+%           & \text{subject to}
+%           & & 3.17 < \mu < 3.21 \ , \\
+%           &&& 0.001 < \sigma < 0.02 \ , \\
+%           &&& \alpha > 0 \ .
+%         \end{aligned}
+%       \end{equation}
+%       \begin{equation}\tiny
+%         M_2(x; \mu, \sigma) = \alpha \mathcal{N}(x; \mu, \sigma) \ .
+%         \label{eq:costcho}
+%       \end{equation}
+%     \end{block}}
+% \end{frame}
 
 \begin{frame}
   \frametitle{Toward a mp-MRI CAD for CaP}
@@ -1594,104 +1535,15 @@
   \stepcounter{footnote} \footcitetext{Litjens2014}
 \end{frame}
 
-\subsubsection{Data balancing}
+% \subsubsection{Features classification}
 
-\begin{frame}
-  \frametitle{Toward a mp-MRI CAD for CaP}
-  \framesubtitle{CADe-CADx}
-  \begin{block}{\small Data balancing}
-    \input{./images/cad/cad_5.tex}
-  \end{block}
-\end{frame}
-
-\begin{frame}
-  \frametitle{Toward a mp-MRI CAD for CaP}
-  \framesubtitle{Data balancing}
-  \begin{block}{\small Toy example}
-    \begin{figure}%
-      \centering
-      \includegraphics[width=.8\textwidth]{./images/balancing/original.pdf}
-    \end{figure}    
-  \end{block}
-\end{frame}
-
-\setcounter{subfigure}{0}% Reset subfigure counter
-
-\begin{frame}
-  \frametitle{Toward a mp-MRI CAD for CaP}
-  \framesubtitle{Data balancing}
-  \begin{block}{\small Under-sampling}
-    \begin{figure}%
-      \centering
-      \hspace*{\fill}%
-      \subfigure[][\tiny NM1]{%
-        \includegraphics[width=.2\textwidth]{./images/balancing/nm1.pdf}}%
-      \hfill%
-      \subfigure[][\tiny NM2]{%
-        \includegraphics[width=.2\textwidth]{./images/balancing/nm2.pdf}}%
-      \hfill%
-      \subfigure[][\tiny NM3]{%
-        \includegraphics[width=.2\textwidth]{./images/balancing/nm3.pdf}}%
-      \hfill%
-      \subfigure[][\tiny NM3]{%
-        \includegraphics[width=.2\textwidth]{./images/balancing/iht.pdf}}%
-      \hspace*{\fill}%
-    \end{figure}
-  \end{block}
-  \begin{block}{\small Over-sampling}
-    \begin{figure}%
-      \centering
-      \hspace*{\fill}%
-      \subfigure[][\tiny SMOTE]{%
-        \includegraphics[width=.2\textwidth]{./images/balancing/smote.pdf}}%
-      \hfill%
-      \subfigure[][\tiny SMOTE-b1]{%
-        \includegraphics[width=.2\textwidth]{./images/balancing/smoteb1.pdf}}%
-      \hfill%
-      \subfigure[][\tiny SMOTE-b2]{%
-        \includegraphics[width=.2\textwidth]{./images/balancing/smoteb2.pdf}}%
-      \hspace*{\fill}%
-    \end{figure}
-  \end{block}
-\end{frame}
-
-\subsubsection{Features selection/extraction}
-
-\begin{frame}
-  \frametitle{Toward a mp-MRI CAD for CaP}
-  \framesubtitle{CADe-CADx}
-  \begin{block}{\small Features selection/extraction}
-    \input{./images/cad/cad_6.tex}
-  \end{block}
-\end{frame}
-
-\begin{frame}
-  \frametitle{Toward a mp-MRI CAD for CaP}
-  \framesubtitle{Features selection/extraction}
-  \begin{block}{\small Features extraction}
-    \begin{itemize}\scriptsize
-    \item Independent components analysis (ICA)
-    \item Principal components analysis (PCA)
-    \item Sparse-PCA
-    \end{itemize}
-  \end{block}
-  \begin{block}{\small Features selection}
-    \begin{itemize}\scriptsize
-    \item One-way analysis of variance (ANOVA)
-    \item Gini importance
-    \end{itemize}
-  \end{block}
-\end{frame}
-
-\subsubsection{Features classification}
-
-\begin{frame}
-  \frametitle{Toward a mp-MRI CAD for CaP}
-  \framesubtitle{CADe-CADx}
-  \begin{block}{\small Features classification}
-    \input{./images/cad/cad_7.tex}
-  \end{block}
-\end{frame}
+% \begin{frame}
+%   \frametitle{Toward a mp-MRI CAD for CaP}
+%   \framesubtitle{CADe-CADx}
+%   \begin{block}{\small Features classification}
+%     \input{./images/cad/cad_7.tex}
+%   \end{block}
+% \end{frame}
 
 \begin{frame}
   \frametitle{Toward a mp-MRI CAD for CaP}
@@ -1707,96 +1559,6 @@
     \end{figure}
   \end{block}
 \end{frame}
-
-\section{Experiments}
-
-\begin{frame}
-  \begin{scriptsize}
-    \tableofcontents[currentsection,currentsubsection,subsectionstyle=show/show/hide,subsubsectionstyle=hide]
-  \end{scriptsize}
-\end{frame}
-
-\subsection{T$_2$W-MRI normalization}
-
-\setcounter{subfigure}{0}% Reset subfigure counter
-
-\begin{frame}
-  \frametitle{Experiments}
-  \framesubtitle{T$_2$W-MRI normalization\footnotemark}
-  \begin{block}{\small Metric}
-    \begin{itemize}\scriptsize
-    \item Variability of the mean intensity of a given tissue across patients
-      \begin{itemize}\scriptsize
-      \item[\cross] Statistically, the mean correspond a single point of the PDF
-      \item[\cross] This point can be closely related to a landmark for the piecewise-linear normalization
-      \end{itemize}
-    \item[$\rightarrow$] Make a PCA of the different PDFs
-      \begin{itemize}\scriptsize
-      \item[\tick] Comparison of the alignment of the entire PDF instead of a single point
-      \end{itemize}
-    \end{itemize}
-  \end{block}
-\end{frame}
-
-\begin{frame}
-  \frametitle{Experiments}
-  \framesubtitle{T$_2$W-MRI normalization\footnotemark}
-  \begin{block}{Prostate data}
-    \begin{figure}
-      \centering
-      \hspace*{\fill}
-      \subfigure[\tiny Raw - AUC: 99.08]{
-        \label{subfig:raw}\includegraphics[width=.25\linewidth]{images/T2-normalization/raw.pdf}}
-      \hfill
-      \subfigure[\tiny Gaussian - AUC: 99.58]{
-        \label{subfig:gaussian}\includegraphics[width=.25\linewidth]{images/T2-normalization/gaussian.pdf}}
-      \hspace*{\fill}
-      \\
-      \hspace*{\fill}
-      \subfigure[\tiny Rician - AUC: 99.74]{
-        \label{subfig:rician}\includegraphics[width=.23\linewidth]{images/T2-normalization/rician.pdf}}
-      \hfill
-      \subfigure[\tiny Linear - AUC: 99.45]{
-        \label{subfig:piecewise}\includegraphics[width=.23\linewidth]{images/T2-normalization/piecewise.pdf}}
-      \hfill
-      \subfigure[\tiny SRSF - AUC: 99.12]{
-        \label{subfig:srsf}\includegraphics[width=.23\linewidth]{images/T2-normalization/srsf.pdf}}
-      \hspace*{\fill}
-    \end{figure}
-  \end{block}
-\end{frame}
-
-\setcounter{subfigure}{0}% Reset subfigure counter
-
-\begin{frame}
-  \frametitle{Experiments}
-  \framesubtitle{T$_2$W-MRI normalization\footnotemark}
-  \begin{block}{CaP data}
-    \begin{figure}
-      \centering
-      \hspace*{\fill}
-      \subfigure[\tiny Raw - AUC: 98.19]{
-        \label{subfig:raw}\includegraphics[width=.25\linewidth]{images/T2-normalization/raw_cap.pdf}}
-      \hfill
-      \subfigure[\tiny Gaussian - AUC: 98.22]{
-        \label{subfig:gaussian}\includegraphics[width=.25\linewidth]{images/T2-normalization/gaussian_cap.pdf}}
-      \hspace*{\fill}
-      \\
-      \hspace*{\fill}
-      \subfigure[\tiny Rician - AUC: 98.25]{
-        \label{subfig:rician}\includegraphics[width=.23\linewidth]{images/T2-normalization/rician_cap.pdf}}
-      \hfill
-      \subfigure[\tiny Linear - AUC: 98.09]{
-        \label{subfig:piecewise}\includegraphics[width=.23\linewidth]{images/T2-normalization/piecewise_cap.pdf}}
-      \hfill
-      \subfigure[\tiny SRSF - AUC: 98.30]{
-        \label{subfig:srsf}\includegraphics[width=.23\linewidth]{images/T2-normalization/srsf_cap.pdf}}
-      \hspace*{\fill}
-    \end{figure}
-  \end{block}
-\end{frame}
-
-\subsection{Standalone modalities}
 
 \setcounter{subfigure}{0}% Reset subfigure counter
 
@@ -1816,7 +1578,7 @@
 
 \begin{frame}
   \frametitle{Experiments}
-  \framesubtitle{DCE Modality}
+  \framesubtitle{DCE modality}
   \begin{block}{\small Entire signal}
     \begin{figure}
       \centering
@@ -1862,7 +1624,7 @@
   \end{greenblock}
 \end{frame}
 
-\subsection{Coarse combination}
+\subsubsection{Coarse combination}
 
 \begin{frame}
   \frametitle{Experiments}
@@ -1881,7 +1643,66 @@
   \end{greenblock}
 \end{frame}
 
-\subsection{Data balancing}
+\subsubsection{Data balancing}
+
+\begin{frame}
+  \frametitle{Toward a mp-MRI CAD for CaP}
+  \framesubtitle{CADe-CADx}
+  \begin{block}{\small Data balancing}
+    \input{./images/cad/cad_5.tex}
+  \end{block}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Toward a mp-MRI CAD for CaP}
+  \framesubtitle{Data balancing}
+  \begin{block}{\small Toy example}
+    \begin{figure}%
+      \centering
+      \includegraphics[width=.8\textwidth]{./images/balancing/original.pdf}
+    \end{figure}    
+  \end{block}
+\end{frame}
+
+\setcounter{subfigure}{0}% Reset subfigure counter
+
+\begin{frame}
+  \frametitle{Toward a mp-MRI CAD for CaP}
+  \framesubtitle{Data balancing}
+  \begin{block}{\small Under-sampling}
+    \begin{figure}%
+      \centering
+      \hspace*{\fill}%
+      \subfigure[][\tiny NM1]{%
+        \includegraphics[width=.2\textwidth]{./images/balancing/nm1.pdf}}%
+      \hfill%
+      \subfigure[][\tiny NM2]{%
+        \includegraphics[width=.2\textwidth]{./images/balancing/nm2.pdf}}%
+      \hfill%
+      \subfigure[][\tiny NM3]{%
+        \includegraphics[width=.2\textwidth]{./images/balancing/nm3.pdf}}%
+      \hfill%
+      \subfigure[][\tiny IHT]{%
+        \includegraphics[width=.2\textwidth]{./images/balancing/iht.pdf}}%
+      \hspace*{\fill}%
+    \end{figure}
+  \end{block}
+  \begin{block}{\small Over-sampling}
+    \begin{figure}%
+      \centering
+      \hspace*{\fill}%
+      \subfigure[][\tiny SMOTE]{%
+        \includegraphics[width=.2\textwidth]{./images/balancing/smote.pdf}}%
+      \hfill%
+      \subfigure[][\tiny SMOTE-b1]{%
+        \includegraphics[width=.2\textwidth]{./images/balancing/smoteb1.pdf}}%
+      \hfill%
+      \subfigure[][\tiny SMOTE-b2]{%
+        \includegraphics[width=.2\textwidth]{./images/balancing/smoteb2.pdf}}%
+      \hspace*{\fill}%
+    \end{figure}
+  \end{block}
+\end{frame}
 
 \setcounter{subfigure}{0}% Reset subfigure counter
 
@@ -1936,7 +1757,43 @@
     \end{greenblock}}
 \end{frame}
 
-\subsection{Features selection/extraction}
+\subsubsection{Features selection/extraction}
+
+\begin{frame}
+  \frametitle{Toward a mp-MRI CAD for CaP}
+  \framesubtitle{CADe-CADx}
+  \begin{block}{\small Features selection/extraction}
+    \input{./images/cad/cad_6.tex}
+  \end{block}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Toward a mp-MRI CAD for CaP}
+  \framesubtitle{Features selection/extraction}
+  \begin{block}{\small Features extraction}
+    \begin{itemize}\scriptsize
+    \item Independent components analysis (ICA)
+    \item Principal components analysis (PCA)
+    \item Sparse-PCA
+    \end{itemize}
+  \end{block}
+  \begin{block}{\small Features selection}
+    \begin{itemize}\scriptsize
+    \item One-way analysis of variance (ANOVA)
+    \item Gini importance
+    \end{itemize}
+  \end{block}
+\end{frame}
+
+% \section{Experiments}
+
+% \begin{frame}
+%   \begin{scriptsize}
+%     \tableofcontents[currentsection,currentsubsection,subsectionstyle=show/show/hide,subsubsectionstyle=hide]
+%   \end{scriptsize}
+% \end{frame}
+
+%\subsection{Features selection/extraction}
 
 \begin{frame}
   \frametitle{Experiments}
@@ -2247,5 +2104,247 @@
 %   \printbibliography
 % \end{frame}
 
+% \begin{frame}
+%   \frametitle{Toward a mp-MRI CAD for CaP}
+%   \framesubtitle{T$_2$W-MRI normalization}
+%   \begin{block}{\small Inter-patients intensity variations}
+%     \begin{columns}
+%       \begin{column}{0.4\textwidth}
+%         \centering
+%         \hspace*{.8cm}
+%         \includegraphics[width=.95\textwidth]{./images/DCE-normalization/t2wImage.pdf}
+%       \end{column}
+%       \begin{column}{0.63\textwidth}
+%         \begin{itemize}\scriptsize
+%         \item<2-> Artan et al.\footnotemark and Ozer et al.\footnotemark normalized data based on the \emph{$z$-score}.
+%           \vspace*{.4cm}
+%         \item<3-> Lv et al.\footnotemark and Viswanath et al.\footnotemark used\\ methods based on piecewise-linear normalization\footnotemark.
+%         \end{itemize}
+%       \end{column}
+%     \end{columns}
+%   \end{block}
+%   \only<4>{
+%     \begin{greenblock}{\small Contributions\footnotemark}
+%       \begin{itemize}\scriptsize
+%       \item[(i)] a \emph{model-based} approach using Rician \textit{a priori}
+%       \item[(ii)] a \emph{non-parametric based} approach based on the SRSF representation
+%       \end{itemize}
+%     \end{greenblock}}
+%   \addtocounter{footnote}{-5}
+%   \only<2>{
+%     \stepcounter{footnote} \footcitetext{Artan2010}
+%     \stepcounter{footnote} \footcitetext{Ozer2010}}
+%   \only<3>{
+%     \addtocounter{footnote}{2}
+%     \stepcounter{footnote} \footcitetext{Lv2009}
+%     \stepcounter{footnote} \footcitetext{Viswanath2012}
+%     \stepcounter{footnote} \footcitetext{Nyul2000}}
+%   \only<4>{
+%     \addtocounter{footnote}{4}
+%     \stepcounter{footnote} \footcitetext{lemaitre2016normalization}}
+% \end{frame}
+
+% \begin{frame}
+%   \frametitle{Toward a mp-MRI CAD for CaP}
+%   \framesubtitle{T$_2$W-MRI normalization}
+%   \only<1>{
+%     \begin{block}{\small Gaussian \emph{vs.} Rician}
+%       \begin{figure}%
+%         \centering
+%         \hspace*{\fill}%
+%         \subfigure[][\tiny Patient \#1]{%
+%           \includegraphics[width=.45\textwidth]{./images/T2-normalization/03.png}}%
+%         \hfill%
+%         \subfigure[][\tiny Patient \#2]{%
+%           \includegraphics[width=.45\textwidth]{./images/T2-normalization/06.png}}%
+%         \hspace*{\fill}%
+%         \caption{Example of fitted functions}
+%       \end{figure}
+%     \end{block}}
+%   \only<2>{
+%     \begin{block}{\small Gaussian normalization}
+%       \begin{equation}\scriptsize
+%         I_{s}(x) = \frac{I_{r}(x) - \mu_{G}}{\sigma_{G}} \ .
+%       \end{equation}
+%     \end{block}
+%     \begin{block}{\small Rician normalization}\scriptsize
+%       \begin{equation}\scriptsize
+%         I_{s}(x) = \frac{I_{r}(x) - \mu_{R}}{\sigma_{R}} \ ,
+%       \end{equation}
+%       \begin{equation}\scriptsize
+%         \mu_{R} = \sigma  \sqrt{\frac{\pi}{2}}\,\,L_{1/2}(-\frac{\nu^2}{2\sigma^2})  \ ,
+%       \end{equation}
+%       \begin{equation}\scriptsize
+%         \sigma_{R} = 2\sigma^2+\nu^2-\frac{\pi\sigma^2}{2}L_{1/2}^2\left(\frac{-\nu^2}{2\sigma^2}\right)  \ .
+%       \end{equation}
+%     \end{block}}
+% \end{frame}
+
+% \setcounter{subfigure}{0}% Reset subfigure counter
+
+% \begin{frame}
+%   \frametitle{Toward a mp-MRI CAD for CaP}
+%   \framesubtitle{T$_2$W-MRI normalization}
+%   \begin{block}{\small Comparison or warping function}
+%     \begin{figure}%
+%       \centering
+%       \hspace*{\fill}%
+%       \subfigure[][\tiny Piecewise-linear warping]{%
+%         \includegraphics[width=.3\textwidth]{./images/T2-normalization/piecewise-linear.png}}%
+%       \hfill%
+%       \subfigure[][\tiny SRSF warping]{%
+%         \includegraphics[width=.3\textwidth]{./images/T2-normalization/srsf.png}}%
+%       \hspace*{\fill}%
+%     \end{figure}
+%   \end{block}
+%   \begin{columns}
+%     \begin{column}{.45\textwidth}
+%       \begin{block}{\small Piecewise-linear normalization}
+%         % Piecewise-linear normalization
+%         \scriptsize
+%         Minimize the distance between some standardized landmarks $\mu_i$ and some non-normalized landmarks $\lambda_i$
+%       \end{block}
+%     \end{column}
+%     \begin{column}{.45\textwidth}
+%       \begin{block}{\small SRSF-based normalization}
+%         % Rician normalization
+%         \scriptsize
+%         Minimize the distance between a mean PDF $\mu_f$ (i.e., the Karcher mean) and a given patient PDF $f_i$
+%       \end{block}
+%     \end{column}
+%   \end{columns}
+% \end{frame}
+
+% \setcounter{subfigure}{0}% Reset subfigure counter
+
+% \begin{frame}
+%   \frametitle{Experiments}
+%   \framesubtitle{T$_2$W-MRI normalization\footnotemark}
+%   \begin{block}{\small Metric}
+%     \begin{itemize}\scriptsize
+%     \item Variability of the mean intensity of a given tissue across patients
+%       \begin{itemize}\scriptsize
+%       \item[\cross] Statistically, the mean correspond a single point of the PDF
+%       \item[\cross] This point can be closely related to a landmark for the piecewise-linear normalization
+%       \end{itemize}
+%     \item[$\rightarrow$] Make a PCA of the different PDFs
+%       \begin{itemize}\scriptsize
+%       \item[\tick] Comparison of the alignment of the entire PDF instead of a single point
+%       \end{itemize}
+%     \end{itemize}
+%   \end{block}
+% \end{frame}
+
+% \begin{frame}
+%   \frametitle{Experiments}
+%   \framesubtitle{T$_2$W-MRI normalization\footnotemark}
+%   \begin{block}{Prostate data}
+%     \begin{figure}
+%       \centering
+%       \hspace*{\fill}
+%       \subfigure[\tiny Raw - AUC: 99.08]{
+%         \label{subfig:raw}\includegraphics[width=.25\linewidth]{images/T2-normalization/raw.pdf}}
+%       \hfill
+%       \subfigure[\tiny Gaussian - AUC: 99.58]{
+%         \label{subfig:gaussian}\includegraphics[width=.25\linewidth]{images/T2-normalization/gaussian.pdf}}
+%       \hspace*{\fill}
+%       \\
+%       \hspace*{\fill}
+%       \subfigure[\tiny Rician - AUC: 99.74]{
+%         \label{subfig:rician}\includegraphics[width=.23\linewidth]{images/T2-normalization/rician.pdf}}
+%       \hfill
+%       \subfigure[\tiny Linear - AUC: 99.45]{
+%         \label{subfig:piecewise}\includegraphics[width=.23\linewidth]{images/T2-normalization/piecewise.pdf}}
+%       \hfill
+%       \subfigure[\tiny SRSF - AUC: 99.12]{
+%         \label{subfig:srsf}\includegraphics[width=.23\linewidth]{images/T2-normalization/srsf.pdf}}
+%       \hspace*{\fill}
+%     \end{figure}
+%   \end{block}
+% \end{frame}
+
+% \setcounter{subfigure}{0}% Reset subfigure counter
+
+% \begin{frame}
+%   \frametitle{Experiments}
+%   \framesubtitle{T$_2$W-MRI normalization\footnotemark}
+%   \begin{block}{CaP data}
+%     \begin{figure}
+%       \centering
+%       \hspace*{\fill}
+%       \subfigure[\tiny Raw - AUC: 98.19]{
+%         \label{subfig:raw}\includegraphics[width=.25\linewidth]{images/T2-normalization/raw_cap.pdf}}
+%       \hfill
+%       \subfigure[\tiny Gaussian - AUC: 98.22]{
+%         \label{subfig:gaussian}\includegraphics[width=.25\linewidth]{images/T2-normalization/gaussian_cap.pdf}}
+%       \hspace*{\fill}
+%       \\
+%       \hspace*{\fill}
+%       \subfigure[\tiny Rician - AUC: 98.25]{
+%         \label{subfig:rician}\includegraphics[width=.23\linewidth]{images/T2-normalization/rician_cap.pdf}}
+%       \hfill
+%       \subfigure[\tiny Linear - AUC: 98.09]{
+%         \label{subfig:piecewise}\includegraphics[width=.23\linewidth]{images/T2-normalization/piecewise_cap.pdf}}
+%       \hfill
+%       \subfigure[\tiny SRSF - AUC: 98.30]{
+%         \label{subfig:srsf}\includegraphics[width=.23\linewidth]{images/T2-normalization/srsf_cap.pdf}}
+%       \hspace*{\fill}
+%     \end{figure}
+%   \end{block}
+% \end{frame}
+
+% \subsubsection{ADC normalization}
+
+% \setcounter{subfigure}{0}% Reset subfigure counter
+
+% \begin{frame}
+%   \frametitle{Toward a mp-MRI CAD for CaP}
+%   \framesubtitle{ADC normalization}
+%   \begin{block}{\small Variability of PDF in ADC data}\scriptsize
+%     \begin{figure}%
+%       \centering
+%       \hspace*{\fill}%
+%       \subfigure[][\tiny Patient \#1]{%
+%         \includegraphics[width=.3\textwidth]{./images/adc_416.pdf}}%
+%       \hfill%
+%       \subfigure[][\tiny Patient \#2]{%
+%         \includegraphics[width=.3\textwidth]{./images/adc_430.pdf}}%
+%       \hfill%
+%       \subfigure[][\tiny Patient \#3]{%
+%         \includegraphics[width=.3\textwidth]{./images/adc_513.pdf}}%
+%       \hspace*{\fill}%
+%     \end{figure}
+%     \vspace*{-.5cm}
+%     \begin{itemize}\scriptsize
+%     \item Piecewise-linear normalization
+%     \end{itemize}
+%   \end{block}
+% \end{frame}
+
+% \subsubsection{MRSI pre-processing}
+
+% \begin{frame}
+%   \frametitle{Toward a mp-MRI CAD for CaP}
+%   \framesubtitle{MRSI pre-processing}
+%   \begin{block}{\small MRSI pre-processing}\scriptsize
+%     \begin{columns}
+%       \begin{column}{0.4\textwidth}
+%         \begin{itemize}\scriptsize
+%         \item Phase correction\footnotemark
+%         \item Frequency alignment
+%         \item Baseline correction\footnotemark
+%         \end{itemize}
+%       \end{column}
+%       \begin{column}{0.6\textwidth}
+%         \begin{figure}
+%           \includegraphics[width=.8\textwidth]{./images/baseline_mrsi.pdf}
+%         \end{figure}
+%       \end{column}
+%     \end{columns}
+%   \end{block}
+%   \addtocounter{footnote}{-2}
+%   \stepcounter{footnote} \footcitetext{Chen2002}
+%   \stepcounter{footnote} \footcitetext{xi2008baseline}
+% \end{frame}
 
 \end{document}
