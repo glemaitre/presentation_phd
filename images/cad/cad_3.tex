@@ -3,10 +3,10 @@
 
   % Define block styles used later
 
-  \tikzstyle{module}=[draw, draw=azulunam!80, text width=10em, 
+  \tikzstyle{module}=[draw, draw=azulunam!80, text width=15em, 
   text centered, minimum height=5em, minimum width = 15em, drop shadow, rounded corners,
   fill=azulunam!30]
-  \tikzstyle{moduleorange}=[draw, draw=orangeubfc!80, text width=10em, 
+  \tikzstyle{moduleorange}=[draw, draw=orangeubfc!80, text width=15em, 
   text centered, minimum height=5em, minimum width = 15em, drop shadow, rounded corners,
   fill=orangeubfc!30]
   
@@ -26,9 +26,9 @@
           \includegraphics[width=1cm]{#1}
         };}}]
     \tikzstyle{conefill} = [path image=,fill opacity=0.8]
-    \node[module=above:pre] (pre) at (4.5,-2.6) {\Large Pre-processing};
-    \node[moduleorange,below of=pre] (seg) {\Large Segmentation};
-    \node[moduleorange,below of=seg] (reg) {\Large Registration};
+    \node[module=above:pre] (pre) at (4.5,-2.6) {\Large \textbf{Pre-processing}};
+    \node[moduleorange,below of=pre] (seg) {\Large \textbf{Segmentation}};
+    \node[moduleorange,below of=seg] (reg) {\Large \textbf{Registration}};
 
     \path[->,dashed] (seg.west) edge [bend right=70] node {} (reg.west);
     \path[->,dashed] (reg.east) edge [bend right=70] node {} (seg.east);
@@ -43,17 +43,17 @@
       \path[fill=azulunam!10,rounded corners, draw=azulunam!20, dashed] (a) rectangle (b);
     \end{pgfonlayer}
     
-    \path (pre.north) +(0,+\blockdist) node (bgreg) {\Large Image regularization};
+    \path (pre.north) +(0,+\blockdist) node (bgreg) {\Large \textbf{Image regularization}};
 
     \begin{scope}[node distance=10cm]
-      \node[module] (det) [below right=0cm and 2cm of pre] {\Large Features detection};
+      \node[module] (det) [below right=0cm and 2cm of pre] {\Large \textbf{Features detection}};
     \end{scope}
     \begin{scope}[node distance=3.5cm]
-      \node[module,above of=det] (roi) {\Large ROIs\\detection/selection};
+      \node[module,above of=det] (roi) {\Large \textbf{ROIs\\detection/selection}};
     \end{scope}
-    \node[module,below of=det] (sel) {\Large Data\\balancing};
-    \node[module,below of=sel] (bal) {\Large Features\\selection/extraction};
-    \node[module,below of=bal] (cla) {\Large Features\\classification/fusion};
+    \node[module,below of=det] (sel) {\Large \textbf{Data\\balancing}};
+    \node[module,below of=sel] (bal) {\Large \textbf{Features\\selection/extraction}};
+    \node[module,below of=bal] (cla) {\Large \textbf{Features\\classification}};
 
     \draw[->] (roi)--(det);
     \draw[->] (det)--(sel);
@@ -86,7 +86,7 @@
     \path (seg.east |- seg.north)+(+1.15,0) node (e) {};
     \path (sel.west |- seg.north)+(-1.0,0) node (f) {};
 
-    \draw[double distance =3pt,preaction={-triangle 90,thin,draw,shorten >=-1mm}] (e) -- (f) node[midway,above,above=.3em] {\large Regularized data};
+    \draw[double distance =3pt,preaction={-triangle 90,thin,draw,shorten >=-1mm}] (e) -- (f) node[midway,above,above=.3em] {\large \textbf{Regularized data}};
 
     \begin{scope}[yshift=-33,xshift=-86]
       \transparent{0.6}\draw[path image=images/tikzimage/t2.eps] (0,0) rectangle (1.0,1.0);
@@ -98,7 +98,7 @@
 
     \begin{scope}[yshift=-39,xshift=-80]
       \transparent{0.8}\draw[path image=images/tikzimage/t2.eps] (0,0) rectangle (1.0,1.0);
-      \path (0,0)+(-1.35,0.3) node {\Large T$_2$W-MRI};
+      \path (0,0)+(-1.65,0.3) node {\Large \textbf{T$_2$W-MRI}};
     \end{scope}
 
     \begin{scope}[yshift=-100,xshift=-86]
@@ -111,7 +111,7 @@
 
     \begin{scope}[yshift=-106,xshift=-80]
       \transparent{0.8}\draw[path image=images/tikzimage/dce.eps] (0,0) rectangle (1.0,1.0);
-      \path (0,0)+(-1.65,0.3) node {\Large DCE-MRI};
+      \path (0,0)+(-1.65,0.3) node {\Large \textbf{DCE-MRI}};
     \end{scope}
 
     \begin{scope}[yshift=-167,xshift=-86]
@@ -124,7 +124,7 @@
 
     \begin{scope}[yshift=-173,xshift=-80]
       \transparent{0.8}\draw[path image=images/tikzimage/dwi1.eps] (0,0) rectangle (1.0,1.0);
-      \path (0,0)+(-1.65,0.3) node {\Large ADC};
+      \path (0,0)+(-1.65,0.3) node {\Large \textbf{ADC}};
     \end{scope}
 
     \begin{scope}[yshift=-234,xshift=-86]
@@ -137,7 +137,7 @@
 
     \begin{scope}[yshift=-240,xshift=-80]
       \transparent{0.8}\draw[path image=images/tikzimage/mrsi.eps] (0,0) rectangle (1.0,1.0);
-      \path (0,0)+(-1.5,0.3) node {\Large MRSI};
+      \path (0,0)+(-1.5,0.3) node {\Large \textbf{MRSI}};
     \end{scope}
 
     \path (pre.west |- roi.north)+(-2.5,-1.+\blockdist) node (g) {};

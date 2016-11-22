@@ -5,8 +5,8 @@
 
 \documentclass{beamer}
 
-%\usepackage[utf8]{inputenc}
-%\usepackage[T1]{fontenc} 
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc} 
 \usefonttheme[onlymath]{serif}
 \usetheme{le2i} 
 
@@ -369,13 +369,13 @@
         }
         \only<4>{
           \begin{figure}
-            \includegraphics[height=.3\textheight]{./images/screening/gleason.jpg}
+            \includegraphics[height=.4\textheight]{./images/screening/gleason.jpg}
             \caption{\tiny Image source: \texttt{https://goo.gl/fEVQXQ}}
           \end{figure}
         }
         \only<5>{
           \begin{figure}
-            \includegraphics[height=.3\textheight]{./images/screening/gleason.jpg}
+            \includegraphics[height=.4\textheight]{./images/screening/gleason.jpg}
             \caption{\tiny Image source: \texttt{https://goo.gl/fEVQXQ}}
           \end{figure}
         }
@@ -403,7 +403,7 @@
   \framesubtitle{Screening}
   \begin{greenblock}{\small Pros}
     \begin{itemize}\scriptsize
-    \item[\tick] Reduce CaP-related mortality from \SIrange{21}{44}{\percent}\footnotemark
+    \item[\tick] Reduce CaP-related mortality between \SI{21}{\percent} to \SI{44}{\percent}\footnotemark
     \end{itemize}
   \end{greenblock}
   \begin{redblock}{\small Cons}
@@ -545,7 +545,7 @@
       \centering
       \includegraphics[width=.7\textwidth]{./images/mri/dce/dce_cancer_healthy_information.eps}
       \label{fig:dce}%
-      \caption{{\color{green}Green}: healthy - {\color{red}Red}: CaP}
+      \caption{\tiny {\color{green}Green}: healthy - {\color{red}Red}: CaP}
     \end{figure}
   \end{block}
   \only<1>{
@@ -1063,7 +1063,7 @@
 %   \end{columns}
 % \end{frame}
 
-\section{DCE normalization}
+\section{Toward a mp-MRI CAD for CaP}
 
 \begin{frame}
   \begin{scriptsize}
@@ -1071,9 +1071,13 @@
   \end{scriptsize}
 \end{frame}
 
+\subsection{Image regularization}
+
+\subsubsection{Pre-processing}
+
 \begin{frame}
-  \frametitle{Normalization}
-  \framesubtitle{DCE-MRI normalization}
+  \frametitle{Toward a mp-MRI CAD for CaP}
+  \framesubtitle{Toward a mp-MRI CAD for CaP}
   \begin{block}{\small Mp-MRI CAD for CaP}
     \input{./images/cad/cad_1.tex}
   \end{block}
@@ -1081,10 +1085,48 @@
 
 \begin{frame}
   \frametitle{Toward a mp-MRI CAD for CaP}
-  \framesubtitle{DCE-MRI normalization}
+  \framesubtitle{Image regularization}
   \begin{block}{\small Pre-processing}
     \input{./images/cad/cad_2.tex}
   \end{block}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Toward a mp-MRI CAD for CaP}
+  \framesubtitle{Pre-processing}
+  \begin{columns}
+    \begin{column}{.5\textwidth}
+      \begin{block}{\small T$_2$W-MRI normalization}
+        \begin{itemize}\scriptsize
+        \item Rician normalization\footnotemark
+        \end{itemize}
+      \end{block}
+      \begin{block}{\small DCE-MRI normalization}
+        \begin{itemize}\scriptsize
+        \item Graph and deviation based normalization\footnotemark
+        \end{itemize}
+      \end{block}
+    \end{column}
+    \begin{column}{.5\textwidth}
+      \begin{block}{\small ADC normalization}
+        \begin{itemize}\scriptsize
+        \item Piecewise-linear normalization
+        \end{itemize}
+      \end{block}
+      \begin{block}{\small MRSI normalization}
+        \begin{itemize}\scriptsize
+        \item Phase correction\footnotemark
+        \item Frequency alignment
+        \item Baseline correction\footnotemark
+        \end{itemize}
+      \end{block}
+    \end{column}
+  \end{columns}
+  \addtocounter{footnote}{-3}
+  \stepcounter{footnote} \footcitetext{lemaitre2017automatic}
+  \stepcounter{footnote} \footcitetext{lemaitre2016normalization}
+  \stepcounter{footnote} \footcitetext{Chen2002}
+  \stepcounter{footnote} \footcitetext{xi2008baseline}
 \end{frame}
 
 \begin{frame}
@@ -1097,7 +1139,7 @@
   \end{greenblock}
   \begin{block}{\small Heatmap representation}
     \begin{figure}%
-      \includegraphics[width=.55\textwidth]{./images/DCE-normalization/heatmaprep.pdf}
+      \includegraphics[width=.7\textwidth]{./images/DCE-normalization/heatmaprep.pdf}
     \end{figure}
   \end{block}
   \vspace*{-.2cm}
@@ -1119,7 +1161,7 @@
       \subfigure[][\tiny Patient \#2]{%
         \includegraphics[width=.45\textwidth]{./images/DCE-normalization/pat2_annotated.pdf}}%
       \hspace*{\fill}%
-      \caption{Variations driven by $\Delta_i$, $\Delta_t$, and $\sigma_i$}
+      \caption{\tiny Variations driven by $\Delta_i$, $\Delta_t$, and $\alpha_i$}
     \end{figure}
   \end{block}
 \end{frame}
@@ -1148,7 +1190,7 @@
 \begin{frame}
   \frametitle{Toward a mp-MRI CAD for CaP}
   \framesubtitle{DCE-MRI normalization}
-  \begin{block}{\small Correction of $\Delta_t$ and $\sigma_i$}\scriptsize
+  \begin{block}{\small Correction of $\Delta_t$ and $\alpha_i$}\scriptsize
     Register all RMSD to a mean model such that:
     \vspace*{-.2cm}
     \begin{equation}\tiny
@@ -1178,11 +1220,38 @@
   \end{block}
 \end{frame}
 
+\begin{frame}
+  \frametitle{Toward a mp-MRI CAD for CaP}
+  \framesubtitle{DCE-MRI normalization}
+  \begin{block}{\small Evaluation through pharmacokinetic models}
+    \begin{itemize}\scriptsize
+    \item Brix's model
+    \item Hoffmann's model
+    \item Tofts' model
+    \item PUN model
+    \end{itemize}
+  \end{block}
+  \begin{block}{\small Classification}
+    \begin{itemize}\scriptsize
+    \item Semi-quantitative model
+    \item Entire enhanced signal
+    \end{itemize}
+  \end{block}
+  \begin{block}{\small Classification}
+    \begin{itemize}\scriptsize
+    \item Classification with random forest (RF)
+    \item Leave-one-patient-out cross-validation (LOPO)
+    \item Receiver operating characteristic (ROC) analysis
+    \item Area under the ROC curve (AUC)
+    \end{itemize}
+  \end{block}
+\end{frame}
+
 \setcounter{subfigure}{0}% Reset subfigure counter
 
 \begin{frame}
   \frametitle{Experiments}
-  \framesubtitle{DCE modality}
+  \framesubtitle{DCE-MRI normalization}
   \begin{block}{\small Quantitative and semi-quantitative models}
     \begin{figure}
       \centering
@@ -1190,78 +1259,40 @@
       \subfigure[\tiny Without normalization]{\includegraphics[width=.45\textwidth]{images/DCE-normalization/unormalized_methods_0.pdf}}\hfill
       \subfigure[\tiny With normalization]{\includegraphics[width=.45\textwidth]{images/DCE-normalization/normalized_methods_0.pdf}}
       \hspace*{\fill}
+      \caption{\tiny ROC analysis for pharmarcokinetic model}
     \end{figure}
   \end{block}
 \end{frame}
 
 \begin{frame}
   \frametitle{Experiments}
-  \framesubtitle{DCE modality}
+  \framesubtitle{DCE-MRI normalization}
   \begin{block}{\small Entire signal}
     \begin{figure}
       \centering
       \includegraphics[width=.7\textwidth]{images/DCE-normalization/full_signal_0.pdf}
+      \caption{\tiny ROC analysis with entire enhanced signal}
     \end{figure}
   \end{block}
 \end{frame}
 
-\section{Toward a mp-MRI CAD for CaP}
+% \begin{frame}
+%   \frametitle{Toward a mp-MRI CAD for CaP}
+%   \framesubtitle{DCE Normalization}
+%   \begin{block}{\small Mp-MRI CAD for CaP}
+%     \input{./images/cad/cad_1.tex}
+%   \end{block}
+% \end{frame}
 
-\begin{frame}
-  \frametitle{Toward a mp-MRI CAD for CaP}
-  \framesubtitle{DCE Normalization}
-  \begin{block}{\small Mp-MRI CAD for CaP}
-    \input{./images/cad/cad_1.tex}
-  \end{block}
-\end{frame}
+% \subsection{Pre-processing}
 
-\subsection{Pre-processing}
-
-\begin{frame}
-  \frametitle{Toward a mp-MRI CAD for CaP}
-  \framesubtitle{Image regularization}
-  \begin{block}{\small Pre-processing}
-    \input{./images/cad/cad_2.tex}
-  \end{block}
-\end{frame}
-
-\begin{frame}
-  \frametitle{Toward a mp-MRI CAD for CaP}
-  \framesubtitle{Pre-processing}
-  \begin{columns}
-    \begin{column}{.5\textwidth}
-      \begin{block}{\small T$_2$W-MRI normalization}
-        \begin{itemize}\scriptsize
-        \item Rician normalization\footnotemark
-        \end{itemize}
-      \end{block}
-      \begin{block}{\small ADC normalization}
-        \begin{itemize}\scriptsize
-        \item Piecewise-linear normalization
-        \end{itemize}
-      \end{block}
-    \end{column}
-    \begin{column}{.5\textwidth}
-      \begin{block}{\small DCE-MRI normalization}
-        \begin{itemize}\scriptsize
-        \item Graph and deviation based normalization\footnotemark
-        \end{itemize}
-      \end{block}
-      \begin{block}{\small MRSI normalization}
-        \begin{itemize}\scriptsize
-        \item Phase correction\footnotemark
-        \item Frequency alignment
-        \item Baseline correction\footnotemark
-        \end{itemize}
-      \end{block}
-    \end{column}
-  \end{columns}
-  \addtocounter{footnote}{-3}
-  \stepcounter{footnote} \footcitetext{lemaitre2016normalization}
-  \stepcounter{footnote} \footcitetext{lemaitre2017automatic}
-  \stepcounter{footnote} \footcitetext{Chen2002}
-  \stepcounter{footnote} \footcitetext{xi2008baseline}
-\end{frame}
+% \begin{frame}
+%   \frametitle{Toward a mp-MRI CAD for CaP}
+%   \framesubtitle{Image regularization}
+%   \begin{block}{\small Pre-processing}
+%     \input{./images/cad/cad_2.tex}
+%   \end{block}
+% \end{frame}
 
 \subsubsection{Segmentation \& registration}
 
@@ -1311,34 +1342,37 @@
 \begin{frame}
   \frametitle{Toward a mp-MRI CAD for CaP}
   \framesubtitle{Feature detection}
-  \begin{block}{\small T$_2$W-MRI and ADC features}
-    \begin{columns}
-      \begin{column}{0.45\textwidth}
-        \begin{itemize}\scriptsize
-        \item Intensity
-        \item Kirsch filter
-        \item Laplacian filter
-        \item Prewitt filter
-        \item Scharr filter
-        \item Sobel filter
-        \end{itemize}
-      \end{column}
-      \begin{column}{0.45\textwidth}
-        \begin{itemize}\scriptsize
-        \item DCT decomposition
-        \item Gabor filters
-        \item Phase congruency filter
-        \item Haralick filter
-        \item LBP filter
-        \end{itemize}
-      \end{column}
-    \end{columns}
-  \end{block}
   \begin{columns}
-    \begin{column}{0.5\textwidth}
+    \begin{column}{0.65\textwidth}
+      \begin{block}{\small T$_2$W-MRI and ADC features}
+        \begin{columns}
+          \begin{column}{0.45\textwidth}
+            \begin{itemize}\scriptsize
+            \item Intensity
+            \item Kirsch filter
+            \item Laplacian filter
+            \item Prewitt filter
+            \item Scharr filter
+            \item Sobel filter
+            \end{itemize}
+          \end{column}
+          \begin{column}{0.45\textwidth}
+            \begin{itemize}\scriptsize
+            \item DCT decomposition
+            \item Gabor filters
+            \item Phase congruency filter
+            \item Haralick filter
+            \item LBP filter
+            \end{itemize}
+          \end{column}
+        \end{columns}
+      \end{block}
+    \end{column}
+    \begin{column}{0.35\textwidth}
       \begin{block}{\small DCE-MRI features}
         \begin{itemize}\scriptsize
-        \item Brix's and Hoffmann's model
+        \item Brix's model
+        \item Hoffmann's model
         \item Tofts' model
         \item PUN model
         \item Semi-quantitative model
@@ -1346,7 +1380,9 @@
         \end{itemize}
       \end{block}
     \end{column}
-    \begin{column}{0.5\textwidth}
+  \end{columns}
+  \begin{columns}
+    \begin{column}{0.65\textwidth}
       \begin{block}{\small MRSI features}
         \begin{itemize}\scriptsize
         \item Quantification with fixed bounds
@@ -1355,8 +1391,34 @@
         \end{itemize}
       \end{block}
     \end{column}
+    \begin{column}{0.35\textwidth}
+      \begin{block}{\small Spatial information}
+        \begin{itemize}\scriptsize
+        \item Relative distance
+        \item Relative position
+        \item Prostate zone
+        \end{itemize}
+      \end{block}
+    \end{column}
   \end{columns}
 \end{frame}
+
+% \begin{frame}
+%   \frametitle{Toward a mp-MRI CAD for CaP}
+%   \framesubtitle{Anatomical features}
+%   \begin{block}{\small Metrics\footnotemark,\footnotemark}
+%     \begin{itemize}\scriptsize
+%     \item Relative distance to the \emph{prostate boundary}
+%     \item Relative distance to the \emph{prostate center}
+%     \item Relative position in the \emph{Euclidean} coordinate systems
+%     \item Relative position in the \emph{cylindrical} coordinate systems
+%     \end{itemize}
+%   \end{block}
+%   \addtocounter{footnote}{-2}
+%   \stepcounter{footnote} \footcitetext{Chen2008}
+%   \stepcounter{footnote} \footcitetext{Litjens2014}
+% \end{frame}
+
 
 % \setcounter{subfigure}{0}% Reset subfigure counter
 
@@ -1519,44 +1581,36 @@
 %     \end{block}}
 % \end{frame}
 
-\begin{frame}
-  \frametitle{Toward a mp-MRI CAD for CaP}
-  \framesubtitle{Anatomical features}
-  \begin{block}{\small Metrics\footnotemark,\footnotemark}
-    \begin{itemize}\scriptsize
-    \item Relative distance to the \emph{prostate boundary}
-    \item Relative distance to the \emph{prostate center}
-    \item Relative position in the \emph{Euclidean} coordinate systems
-    \item Relative position in the \emph{cylindrical} coordinate systems
-    \end{itemize}
-  \end{block}
-  \addtocounter{footnote}{-2}
-  \stepcounter{footnote} \footcitetext{Chen2008}
-  \stepcounter{footnote} \footcitetext{Litjens2014}
-\end{frame}
-
 % \subsubsection{Features classification}
 
-% \begin{frame}
-%   \frametitle{Toward a mp-MRI CAD for CaP}
-%   \framesubtitle{CADe-CADx}
-%   \begin{block}{\small Features classification}
-%     \input{./images/cad/cad_7.tex}
-%   \end{block}
-% \end{frame}
+\begin{frame}
+  \frametitle{Toward a mp-MRI CAD for CaP}
+  \framesubtitle{CADe-CADx}
+  \begin{block}{\small Features classification}
+    \input{./images/cad/cad_7.tex}
+  \end{block}
+\end{frame}
 
 \begin{frame}
   \frametitle{Toward a mp-MRI CAD for CaP}
   \framesubtitle{Features classification}
-  \begin{block}{\small Classifier}
+  \begin{block}{\small Classification as fusion}
     \begin{itemize}\scriptsize
-    \item Random forest (RF)
+    \item RF used as classifier for each modality and aggregation of features
     \item Stacking of RF with an adaboost and gradient-boosting meta-classifier
     \end{itemize}
+    \vspace*{-.3cm}
     \begin{figure}%
       \centering
-      \includegraphics[height=.5\textheight]{./images/stacking_gb.png}
+      \includegraphics[height=.35\textheight]{./images/stacking_gb.png}
     \end{figure}
+  \end{block}
+  \begin{block}{\small Validation}
+    \begin{itemize}\scriptsize
+    \item LOPO CV
+    \item ROC analysis
+    \item AUC
+    \end{itemize}
   \end{block}
 \end{frame}
 
@@ -1569,9 +1623,10 @@
     \begin{figure}
       \centering
       \hspace*{\fill}
-      \subfigure[\tiny Without normalization]{\includegraphics[width=.45\textwidth]{images/DCE-normalization/unormalized_methods_0.pdf}}\hfill
-      \subfigure[\tiny With normalization]{\includegraphics[width=.45\textwidth]{images/DCE-normalization/normalized_methods_0.pdf}}
+      \subfigure[\tiny Without normalization]{\includegraphics[width=.48\textwidth]{images/DCE-normalization/unormalized_methods_0.pdf}}\hfill
+      \subfigure[\tiny With normalization]{\includegraphics[width=.48\textwidth]{images/DCE-normalization/normalized_methods_0.pdf}}
       \hspace*{\fill}
+      \caption{\tiny ROC analysis for pharmarcokinetic model}
     \end{figure}
   \end{block}
 \end{frame}
@@ -1583,6 +1638,7 @@
     \begin{figure}
       \centering
       \includegraphics[width=.7\textwidth]{images/DCE-normalization/full_signal_0.pdf}
+      \caption{\tiny ROC analysis for the entire enhanced signal}
     \end{figure}
   \end{block}
 \end{frame}
@@ -1596,35 +1652,13 @@
     \begin{figure}
       \centering
       \hspace*{\fill}
-      \subfigure[\tiny T$_2$W-MRI and ADC]{\includegraphics[width=.45\textwidth]{images/exp-1/t2w_adc.pdf}}\hfill
-      \subfigure[\tiny MRSI]{\includegraphics[width=.45\textwidth]{images/exp-1/mrsi_all.pdf}}
+      \subfigure[\tiny T$_2$W-MRI and ADC]{\includegraphics[width=.48\textwidth]{images/exp-1/t2w_adc.pdf}}\hfill
+      \subfigure[\tiny MRSI]{\includegraphics[width=.48\textwidth]{images/exp-1/mrsi_all.pdf}}
       \hspace*{\fill}
+      \caption{\tiny ROC analysis for T$_2$W-MRI, ADC, and MRSI modalities}
     \end{figure}
   \end{block}
 \end{frame}
-
-\begin{frame}
-  \frametitle{Experiments}
-  \framesubtitle{T$_2$W-MRI, ADC, and MRSI modalities}
-  \begin{block}{\small Discussions}
-    \begin{itemize}\scriptsize
-    \item DCE-MRI: normalized data $\rightarrow$ best performance
-    \item DCE-MRI: entire signal better than models
-    \item MRSI: fitting better than bounds approach
-    \item MRSI: entire spectra better than others
-    \item T$_2$W-MRI $<$ ADC $=$ MRSI $<$ DCE
-    \item Performance at an ``acceptable'' level of discrimination - $\text{AUC} \in [0.7,0.8]$
-    \end{itemize}
-  \end{block}
-  \begin{greenblock}{\small Conclusions}
-    \begin{itemize}\scriptsize
-    \item[\tick] DCE-MRI: Use the normalized enhanced signal
-    \item[\tick] MRSI: Use the entire spectra
-    \end{itemize}
-  \end{greenblock}
-\end{frame}
-
-\subsubsection{Coarse combination}
 
 \begin{frame}
   \frametitle{Experiments}
@@ -1632,15 +1666,40 @@
   \begin{block}{\small Aggregation \emph{vs.} stacking}
     \begin{figure}
       \centering
-      \includegraphics[width=.6\textwidth]{images/exp-2/comb_all.pdf}
+      \includegraphics[width=.75\textwidth]{images/exp-2/comb_all.pdf}
+      \caption{\tiny ROC analysis for the fusion strategies}
     \end{figure}
   \end{block}
-  \begin{greenblock}{\small Conclusions}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Experiments}
+  \framesubtitle{T$_2$W-MRI, ADC, and MRSI modalities}
+  \begin{block}{\small Overall best performance}
+    \begin{table}
+      \centering
+      \tiny
+      \begin{tabular}{lccccc}
+        \toprule
+        \textbf{AUC} & \textbf{T$_2$W-MRI} & \textbf{DCE-MRI} & \textbf{ADC} & \textbf{MRSI} & \textbf{Aggregation} \\
+        \cmidrule(lr){1-1} \cmidrule(lr){2-5} \cmidrule(lr){6-6}
+        Mean & 0.720 & 0.666 & 0.697 & 0.697 & 0.802\\
+        Std & 0.122 & 0.154 & 0.128 & 0.165 & 0.130 \\
+        \bottomrule
+      \end{tabular}
+    \end{table}
+  \end{block}
+  \begin{block}{\small Conclusions}
     \begin{itemize}\scriptsize
-    \item Aggregation leads to best performance
-    \item[\tick] Gradient boosting is preferable to adaboost 
+    \item DCE-MRI: normalized data $\rightarrow$ best performance
+    \item DCE-MRI: entire signal better than models
+    \item MRSI: fitting better than bounds approach
+    \item MRSI: entire spectra better than others
+    \item T$_2$W-MRI $>$ ADC $=$ MRSI $>$ DCE
+    \item Performance at an ``acceptable'' level of discrimination - $\text{AUC} \in [0.7,0.8]$
+    \item Aggregation better than stacking
     \end{itemize}
-  \end{greenblock}
+  \end{block}
 \end{frame}
 
 \subsubsection{Data balancing}
@@ -1653,16 +1712,16 @@
   \end{block}
 \end{frame}
 
-\begin{frame}
-  \frametitle{Toward a mp-MRI CAD for CaP}
-  \framesubtitle{Data balancing}
-  \begin{block}{\small Toy example}
-    \begin{figure}%
-      \centering
-      \includegraphics[width=.8\textwidth]{./images/balancing/original.pdf}
-    \end{figure}    
-  \end{block}
-\end{frame}
+% \begin{frame}
+%   \frametitle{Toward a mp-MRI CAD for CaP}
+%   \framesubtitle{Data balancing}
+%   \begin{block}{\small Toy example}
+%     \begin{figure}%
+%       \centering
+%       \includegraphics[width=.8\textwidth]{./images/balancing/original.pdf}
+%     \end{figure}    
+%   \end{block}
+% \end{frame}
 
 \setcounter{subfigure}{0}% Reset subfigure counter
 
@@ -1714,47 +1773,75 @@
       \begin{figure}
         \centering
         \hspace*{\fill}
-        \subfigure[\tiny T$_2$W-MRI]{\includegraphics[width=.45\textwidth]{images/exp-3/t2w.pdf}}\hfill
-        \subfigure[\tiny ADC]{\includegraphics[width=.45\textwidth]{images/exp-3/adc.pdf}}
+        \subfigure[\tiny T$_2$W-MRI]{\includegraphics[width=.48\textwidth]{images/exp-3/t2w.pdf}}\hfill
+        \subfigure[\tiny ADC]{\includegraphics[width=.48\textwidth]{images/exp-3/adc.pdf}}
         \hspace*{\fill}
+        \caption{\tiny ROC analysis for T$_2$W-MRI and ADC}
       \end{figure}
-    \end{block}
-    \begin{greenblock}{\small Conclusions}
-      \begin{itemize} \scriptsize
-      \item[\tick] IHT $\rightarrow$ ADC
-      \item[\tick] SMOTE $\rightarrow$ T$_2$W-MRI
-      \end{itemize}
-    \end{greenblock}}
+    \end{block}}
   \only<2>{
     \begin{block}{\small DCE-MRI and MRSI}
       \begin{figure}
         \centering
         \hspace*{\fill}
-        \subfigure[\tiny DCE-MRI]{\includegraphics[width=.45\textwidth]{images/exp-3/dce.pdf}}\hfill
-        \subfigure[\tiny MRSI]{\includegraphics[width=.45\textwidth]{images/exp-3/mrsi.pdf}}
+        \subfigure[\tiny DCE-MRI]{\includegraphics[width=.48\textwidth]{images/exp-3/dce.pdf}}\hfill
+        \subfigure[\tiny MRSI]{\includegraphics[width=.48\textwidth]{images/exp-3/mrsi.pdf}}
         \hspace*{\fill}
+        \caption{\tiny ROC analysis for DCE-MRI and MRSI modalities}
       \end{figure}
-    \end{block}
-    \begin{greenblock}{\small Conclusions}
-      \begin{itemize} \scriptsize
-      \item[\tick] IHT $\rightarrow$ ADC and DCE-MRI
-      \item[\tick] SMOTE $\rightarrow$ T$_2$W-MRI and MRSI
-      \end{itemize}
-    \end{greenblock}}
+    \end{block}}
   \only<3>{
     \begin{block}{\small Aggregation}
       \begin{figure}
         \centering
-        \includegraphics[width=.45\textwidth]{images/exp-3/all.pdf}
+        \includegraphics[width=.75\textwidth]{images/exp-3/all.pdf}
+        \caption{\tiny ROC analysis while aggregating the features}
       \end{figure}
-    \end{block}
-    \begin{greenblock}{\small Conclusions}
-      \begin{itemize}\scriptsize
-      \item[\tick] IHT $\rightarrow$ ADC and DCE-MRI
-      \item[\tick] SMOTE $\rightarrow$ T$_2$W-MRI and MRSI
-      \item[\tick] NM3 $\rightarrow$ aggregate feature
-      \end{itemize}
-    \end{greenblock}}
+    \end{block}}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Experiments}
+  \framesubtitle{Data balancing}
+  \begin{greenblock}{\small Conclusions}
+    \begin{itemize}\scriptsize
+    \item[\tick] IHT $\rightarrow$ ADC and DCE-MRI
+    \item[\tick] SMOTE $\rightarrow$ T$_2$W-MRI and MRSI
+    \item[\tick] NM3 $\rightarrow$ aggregate feature
+    \end{itemize}
+  \end{greenblock}
+  \begin{block}{\small Before data balancing}
+    \begin{table}
+      \centering
+      \tiny
+      \begin{tabular}{lccccc}
+        \toprule
+        \textbf{AUC} & \textbf{T$_2$W-MRI} & \textbf{DCE-MRI} & \textbf{ADC} & \textbf{MRSI} & \textbf{Aggregation} \\
+        \cmidrule(lr){1-1} \cmidrule(lr){2-5} \cmidrule(lr){6-6}
+        Mean & 0.720 & 0.666 & 0.697 & 0.697 & 0.802 \\
+        Std & 0.122 & 0.154 & 0.128 & 0.165 & 0.130 \\
+        \bottomrule
+      \end{tabular}
+    \end{table}
+    \vspace*{-.3cm}
+  \end{block}
+  \begin{block}{\small After data balancing}
+    \begin{table}
+      \centering
+      \tiny
+      \begin{tabular}{lccccc}
+        \toprule
+        \textbf{AUC} & \textbf{T$_2$W-MRI} & \textbf{DCE-MRI} & \textbf{ADC} & \textbf{MRSI} & \textbf{Aggregation} \\
+        \cmidrule(lr){1-1} \cmidrule(lr){2-5} \cmidrule(lr){6-6}
+        Mean & 0.762 & 0.685 & 0.715 & 0.685 & 0.824 \\
+        Std & 0.081 & 0.145 & 0.142 & 0.156 & 0.076 \\
+        \cmidrule(lr){1-1} \cmidrule(lr){2-2} \cmidrule(lr){3-3} \cmidrule(lr){4-4} \cmidrule(lr){5-5} \cmidrule(lr){6-6}
+        Tendency & \tick & \tick & \tick & \tick & \tick \\
+        \bottomrule
+      \end{tabular}
+    \end{table}
+    \vspace*{-.3cm}
+  \end{block}
 \end{frame}
 
 \subsubsection{Features selection/extraction}
@@ -1783,145 +1870,6 @@
     \item Gini importance
     \end{itemize}
   \end{block}
-\end{frame}
-
-% \section{Experiments}
-
-% \begin{frame}
-%   \begin{scriptsize}
-%     \tableofcontents[currentsection,currentsubsection,subsectionstyle=show/show/hide,subsubsectionstyle=hide]
-%   \end{scriptsize}
-% \end{frame}
-
-%\subsection{Features selection/extraction}
-
-\begin{frame}
-  \frametitle{Experiments}
-  \framesubtitle{Features selection/extraction}
-  \only<1>{
-    \begin{block}{\small T$_2$W-MRI}
-      \begin{table}
-        \centering
-        \tiny
-        \begin{tabularx}{\linewidth}{@{}l >{\centering\arraybackslash}X >{\centering\arraybackslash}X >{\centering\arraybackslash}X >{\centering\arraybackslash}X >{\centering\arraybackslash}X >{\centering\arraybackslash}X >{\centering\arraybackslash}X @{}}
-          \toprule
-          \multirow{2}{*}{\textbf{Methods}} & \multicolumn{7}{c}{\textbf{Percentiles}} \\
-          \cmidrule{2-8}
-          & 15 & 17.5 & 20 & 22.5 & 25 & 27.5 & 30 \\
-          \midrule
-          ANOVA F-score & $0.755 \pm 0.049$ & $0.770 \pm 0.058$ & $0.777 \pm 0.064$ & $0.782 \pm 0.066$ & $\mathbf{0.784} \pm \mathbf{0.067}$ & $0.783 \pm 0.072$ & $0.782 \pm 0.070$ \\
-          \bottomrule
-        \end{tabularx}
-      \end{table}
-      \begin{table}
-        \centering
-        \tiny
-        \begin{tabularx}{\linewidth}{@{}l >{\centering\arraybackslash}X >{\centering\arraybackslash}X >{\centering\arraybackslash}X >{\centering\arraybackslash}X >{\centering\arraybackslash}X >{\centering\arraybackslash}X >{\centering\arraybackslash}X @{}}
-          \toprule
-          \multirow{2}{*}{\textbf{Methods}} & \multicolumn{7}{c}{\textbf{Percentiles}} \\
-          \cmidrule{2-8}
-          & 1 & 2 & 5 & 10 & 15 & 20 & 30 \\
-          \midrule
-          Gini importance & $0.726 \pm 0.064$ & $0.731 \pm 0.055$ & $0.751 \pm 0.065$ & $0.758 \pm 0.076$ & $0.752 \pm 0.087$ & $0.761 \pm 0.077$ & $\mathbf{0.764} \pm \mathbf{0.079}$ \\
-          \bottomrule
-        \end{tabularx}
-      \end{table}
-    \end{block}}
-  \only<2>{
-    \begin{block}{\small ADC}
-      \begin{table}
-        \centering
-        \tiny
-        \begin{tabularx}{\linewidth}{@{}l >{\centering\arraybackslash}X >{\centering\arraybackslash}X >{\centering\arraybackslash}X >{\centering\arraybackslash}X >{\centering\arraybackslash}X >{\centering\arraybackslash}X >{\centering\arraybackslash}X @{}}
-          \toprule
-          \multirow{2}{*}{\textbf{Methods}} & \multicolumn{7}{c}{\textbf{Percentiles}} \\
-          \cmidrule{2-8}
-          & 10 & 12.5 & 15 & 17.5 & 20 & 22.5 & 25 \\
-          \midrule
-          ANOVA F-score & $0.684 \pm 0.123$ & $0.713 \pm 0.125$ & $0.712 \pm 0.134$ & $0.710 \pm 0.144$ & $\mathbf{0.714} \pm \mathbf{0.142}$ & $0.708 \pm 0.150$ & $0.708 \pm 0.150$ \\
-          \bottomrule
-        \end{tabularx}
-      \end{table}
-      \begin{table}
-        \centering
-        \tiny
-        \begin{tabularx}{\linewidth}{@{}l >{\centering\arraybackslash}X >{\centering\arraybackslash}X >{\centering\arraybackslash}X >{\centering\arraybackslash}X >{\centering\arraybackslash}X >{\centering\arraybackslash}X >{\centering\arraybackslash}X @{}}
-          \toprule
-          \multirow{2}{*}{\textbf{Methods}} & \multicolumn{7}{c}{\textbf{Percentiles}} \\
-          \cmidrule{2-8}
-          & 1 & 2 & 5 & 10 & 15 & 20 & 30 \\
-          \midrule
-          Gini importance & $0.672 \pm 0.132$ & $0.690 \pm 0.138$ & $\mathbf{0.743} \pm \mathbf{0.139}$ & $0.730 \pm 0.136$ & $0.730 \pm 0.142$ & $0.724 \pm 0.141$ & $0.722 \pm 0.142$ \\
-          \bottomrule
-        \end{tabularx}
-      \end{table}
-    \end{block}}
-  \only<3>{
-    \begin{block}{\small DCE-MRI}
-      \begin{table}
-        \centering
-        \tiny
-        \begin{tabularx}{\linewidth}{@{}l >{\centering\arraybackslash}X >{\centering\arraybackslash}X >{\centering\arraybackslash}X >{\centering\arraybackslash}X >{\centering\arraybackslash}X >{\centering\arraybackslash}X >{\centering\arraybackslash}X @{}}
-          \toprule
-          \multirow{2}{*}{\textbf{Methods}} & \multicolumn{7}{c}{\textbf{Number of components or sparsity level}} \\
-          \cmidrule{2-8}
-          & 2 & 4 & 8 & 16 & 24 & 32 & 36 \\
-          \midrule
-          PCA & $0.656 \pm 0.133$ & $0.634 \pm 0.121$ & $0.668 \pm 0.149$ & $0.680 \pm 0.145$ & $0.682 \pm 0.146$ & $0.679 \pm 0.151$ & $0.683 \pm 0.149$ \\
-          Sparse-PCA & $0.578 \pm 0.117$ & $0.546 \pm 0.121$ & $0.554 \pm 0.097$ & --- & --- & --- & --- \\
-          ICA & $0.657 \pm 0.132$ & $0.629 \pm 0.117$ & $0.671 \pm 0.157$ & $0.686 \pm 0.158$ & $\mathbf{0.691} \pm \mathbf{0.158}$ & $0.681 \pm 0.161$ & $0.679 \pm 0.166$ \\
-          \bottomrule
-        \end{tabularx}
-      \end{table}
-    \end{block}}
-  \only<4>{
-    \begin{block}{\small MRSI}
-      \begin{table}
-        \centering
-        \tiny
-        \begin{tabularx}{\linewidth}{@{}l >{\centering\arraybackslash}X >{\centering\arraybackslash}X >{\centering\arraybackslash}X >{\centering\arraybackslash}X >{\centering\arraybackslash}X >{\centering\arraybackslash}X >{\centering\arraybackslash}X @{}}
-          \toprule
-          \multirow{2}{*}{\textbf{Methods}} & \multicolumn{7}{c}{\textbf{Number of components or sparsity level}} \\
-          \cmidrule{2-8}
-          & 2 & 4 & 8 & 16 & 24 & 32 & 36 \\
-          \midrule
-          PCA & $0.566 \pm 0.120$ & $0.575 \pm 0.141$ & $0.648 \pm 0.162$ & $0.662 \pm 0.177$ & $0.659 \pm 0.184$ & $0.671 \pm 0.179$ & $0.672 \pm 0.182$ \\
-          Sparse-PCA & $0.502 \pm 0.050$ & $0.571 \pm 0.158$ & $0.585 \pm 0.111$ & --- & --- & --- & --- \\
-          ICA & $0.567 \pm 0.119$ & $0.578 \pm 0.140$ & $0.654 \pm 0.145$ & $0.656 \pm 0.167$ & $0.650 \pm 0.187$ & $0.663 \pm 0.174$ & $\mathbf{0.677} \pm \mathbf{0.171}$ \\
-          \bottomrule
-        \end{tabularx}
-      \end{table}
-    \end{block}}
-  \only<5>{
-    \begin{block}{\small Aggregation}
-      \begin{table}
-        \centering
-        \tiny
-        \begin{tabularx}{\linewidth}{@{}l >{\centering\arraybackslash}X >{\centering\arraybackslash}X >{\centering\arraybackslash}X >{\centering\arraybackslash}X >{\centering\arraybackslash}X >{\centering\arraybackslash}X >{\centering\arraybackslash}X @{}}
-          \toprule
-          \multirow{2}{*}{\textbf{Methods}} & \multicolumn{7}{c}{\textbf{Percentiles}} \\
-          \cmidrule{2-8}
-          & 10 & 12.5 & 15 & 17.5 & 20 & 22.5 & 25 \\
-          \midrule
-          ANOVA F-score & $0.764 \pm 0.095$ & $0.765 \pm 0.079$ & $0.800 \pm 0.083$ & $0.817 \pm 0.089$ & $\mathbf{0.828} \pm \mathbf{0.084}$ & $0.822 \pm 0.0.084$ & $0.815 \pm 0.086$ \\
-          \bottomrule
-        \end{tabularx}
-      \end{table}
-      \begin{table}
-        \centering
-        \tiny
-        \begin{tabularx}{\linewidth}{@{}l >{\centering\arraybackslash}X >{\centering\arraybackslash}X >{\centering\arraybackslash}X >{\centering\arraybackslash}X >{\centering\arraybackslash}X >{\centering\arraybackslash}X >{\centering\arraybackslash}X @{}}
-          \toprule
-          \multirow{2}{*}{\textbf{Methods}} & \multicolumn{7}{c}{\textbf{Percentiles}} \\
-          \cmidrule{2-8}
-          & 10 & 12.5 & 15 & 17.5 & 20 & 22.5 & 25 \\
-          \midrule
-          Gini importance & $0.834 \pm 0.085$ & $0.834 \pm 0.088$ & $0.834 \pm 0.084$ & $\mathbf{0.836} \pm \mathbf{0.083}$ & $0.834 \pm 0.079$ & $0.828 \pm 0.086$ & $0.830 \pm 0.077$ \\
-          \bottomrule
-        \end{tabularx}
-      \end{table}
-    \end{block}}
-  \only<6>{
   \begin{greenblock}{\small Conclusions}
     \begin{itemize}\scriptsize
     \item[\tick] T$_2$W-MRI: ANOVA-based selection with \SI{25}{\percent} of the data
@@ -1931,8 +1879,48 @@
     \item[\tick] Aggregation: Gini importance with \SI{17.5}{\percent} of the data
     \end{itemize}
   \end{greenblock}
-}
-\only<7>{
+\end{frame}
+
+\begin{frame}
+  \frametitle{Experiments}
+  \framesubtitle{Data balancing}
+  \begin{block}{\small Before features selection/extraction}
+    \begin{table}
+      \centering
+      \tiny
+      \begin{tabular}{lccccc}
+        \toprule
+        \textbf{AUC} & \textbf{T$_2$W-MRI} & \textbf{DCE-MRI} & \textbf{ADC} & \textbf{MRSI} & \textbf{Aggregation} \\
+        \cmidrule(lr){1-1} \cmidrule(lr){2-5} \cmidrule(lr){6-6}
+        Mean & 0.762 & 0.685 & 0.715 & 0.685 & 0.824 \\
+        Std & 0.081 & 0.145 & 0.142 & 0.156 & 0.076 \\
+        \bottomrule
+      \end{tabular}
+    \end{table}
+    \vspace*{-.3cm}
+  \end{block}
+  \begin{block}{\small After features selection/extraction}
+    \begin{table}
+      \centering
+      \tiny
+      \begin{tabular}{lccccc}
+        \toprule
+        \textbf{AUC} & \textbf{T$_2$W-MRI} & \textbf{DCE-MRI} & \textbf{ADC} & \textbf{MRSI} & \textbf{Aggregation} \\
+        \cmidrule(lr){1-1} \cmidrule(lr){2-5} \cmidrule(lr){6-6}
+        Mean & 0.784 & 0.691 & 0.743 & 0.677 & 0.836 \\
+        Std & 0.067 & 0.158 & 0.139 & 0.171 & 0.083 \\
+        \cmidrule(lr){1-1} \cmidrule(lr){2-2} \cmidrule(lr){3-3} \cmidrule(lr){4-4} \cmidrule(lr){5-5} \cmidrule(lr){6-6}
+        Tendency & \tick & \tick & \tick & \cross & \tick \\
+        \bottomrule
+      \end{tabular}
+    \end{table}
+    \vspace*{-.3cm}
+  \end{block}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Toward a mp-MRI CAD for CaP}
+  \framesubtitle{Features selection}
   \begin{block}{\small Selected features in T$_2$W-MRI and ADC}
     \begin{table}
       \centering
@@ -1974,32 +1962,223 @@
       \end{tabular}
     \end{table}
     \vspace*{-.3cm}
-  \end{block}}
+  \end{block}
 \end{frame}
+
+
+% \section{Experiments}
+
+% \begin{frame}
+%   \begin{scriptsize}
+%     \tableofcontents[currentsection,currentsubsection,subsectionstyle=show/show/hide,subsubsectionstyle=hide]
+%   \end{scriptsize}
+% \end{frame}
+
+%\subsection{Features selection/extraction}
+
+% \begin{frame}
+%   \frametitle{Experiments}
+%   \framesubtitle{Features selection/extraction}
+%   \only<1>{
+%     \begin{block}{\small T$_2$W-MRI}
+%       \begin{table}
+%         \centering
+%         \tiny
+%         \begin{tabularx}{\linewidth}{@{}l >{\centering\arraybackslash}X >{\centering\arraybackslash}X >{\centering\arraybackslash}X >{\centering\arraybackslash}X >{\centering\arraybackslash}X >{\centering\arraybackslash}X >{\centering\arraybackslash}X @{}}
+%           \toprule
+%           \multirow{2}{*}{\textbf{Methods}} & \multicolumn{7}{c}{\textbf{Percentiles}} \\
+%           \cmidrule{2-8}
+%           & 15 & 17.5 & 20 & 22.5 & 25 & 27.5 & 30 \\
+%           \midrule
+%           ANOVA F-score & $0.755 \pm 0.049$ & $0.770 \pm 0.058$ & $0.777 \pm 0.064$ & $0.782 \pm 0.066$ & $\mathbf{0.784} \pm \mathbf{0.067}$ & $0.783 \pm 0.072$ & $0.782 \pm 0.070$ \\
+%           \bottomrule
+%         \end{tabularx}
+%       \end{table}
+%       \begin{table}
+%         \centering
+%         \tiny
+%         \begin{tabularx}{\linewidth}{@{}l >{\centering\arraybackslash}X >{\centering\arraybackslash}X >{\centering\arraybackslash}X >{\centering\arraybackslash}X >{\centering\arraybackslash}X >{\centering\arraybackslash}X >{\centering\arraybackslash}X @{}}
+%           \toprule
+%           \multirow{2}{*}{\textbf{Methods}} & \multicolumn{7}{c}{\textbf{Percentiles}} \\
+%           \cmidrule{2-8}
+%           & 1 & 2 & 5 & 10 & 15 & 20 & 30 \\
+%           \midrule
+%           Gini importance & $0.726 \pm 0.064$ & $0.731 \pm 0.055$ & $0.751 \pm 0.065$ & $0.758 \pm 0.076$ & $0.752 \pm 0.087$ & $0.761 \pm 0.077$ & $\mathbf{0.764} \pm \mathbf{0.079}$ \\
+%           \bottomrule
+%         \end{tabularx}
+%       \end{table}
+%     \end{block}}
+%   \only<2>{
+%     \begin{block}{\small ADC}
+%       \begin{table}
+%         \centering
+%         \tiny
+%         \begin{tabularx}{\linewidth}{@{}l >{\centering\arraybackslash}X >{\centering\arraybackslash}X >{\centering\arraybackslash}X >{\centering\arraybackslash}X >{\centering\arraybackslash}X >{\centering\arraybackslash}X >{\centering\arraybackslash}X @{}}
+%           \toprule
+%           \multirow{2}{*}{\textbf{Methods}} & \multicolumn{7}{c}{\textbf{Percentiles}} \\
+%           \cmidrule{2-8}
+%           & 10 & 12.5 & 15 & 17.5 & 20 & 22.5 & 25 \\
+%           \midrule
+%           ANOVA F-score & $0.684 \pm 0.123$ & $0.713 \pm 0.125$ & $0.712 \pm 0.134$ & $0.710 \pm 0.144$ & $\mathbf{0.714} \pm \mathbf{0.142}$ & $0.708 \pm 0.150$ & $0.708 \pm 0.150$ \\
+%           \bottomrule
+%         \end{tabularx}
+%       \end{table}
+%       \begin{table}
+%         \centering
+%         \tiny
+%         \begin{tabularx}{\linewidth}{@{}l >{\centering\arraybackslash}X >{\centering\arraybackslash}X >{\centering\arraybackslash}X >{\centering\arraybackslash}X >{\centering\arraybackslash}X >{\centering\arraybackslash}X >{\centering\arraybackslash}X @{}}
+%           \toprule
+%           \multirow{2}{*}{\textbf{Methods}} & \multicolumn{7}{c}{\textbf{Percentiles}} \\
+%           \cmidrule{2-8}
+%           & 1 & 2 & 5 & 10 & 15 & 20 & 30 \\
+%           \midrule
+%           Gini importance & $0.672 \pm 0.132$ & $0.690 \pm 0.138$ & $\mathbf{0.743} \pm \mathbf{0.139}$ & $0.730 \pm 0.136$ & $0.730 \pm 0.142$ & $0.724 \pm 0.141$ & $0.722 \pm 0.142$ \\
+%           \bottomrule
+%         \end{tabularx}
+%       \end{table}
+%     \end{block}}
+%   \only<3>{
+%     \begin{block}{\small DCE-MRI}
+%       \begin{table}
+%         \centering
+%         \tiny
+%         \begin{tabularx}{\linewidth}{@{}l >{\centering\arraybackslash}X >{\centering\arraybackslash}X >{\centering\arraybackslash}X >{\centering\arraybackslash}X >{\centering\arraybackslash}X >{\centering\arraybackslash}X >{\centering\arraybackslash}X @{}}
+%           \toprule
+%           \multirow{2}{*}{\textbf{Methods}} & \multicolumn{7}{c}{\textbf{Number of components or sparsity level}} \\
+%           \cmidrule{2-8}
+%           & 2 & 4 & 8 & 16 & 24 & 32 & 36 \\
+%           \midrule
+%           PCA & $0.656 \pm 0.133$ & $0.634 \pm 0.121$ & $0.668 \pm 0.149$ & $0.680 \pm 0.145$ & $0.682 \pm 0.146$ & $0.679 \pm 0.151$ & $0.683 \pm 0.149$ \\
+%           Sparse-PCA & $0.578 \pm 0.117$ & $0.546 \pm 0.121$ & $0.554 \pm 0.097$ & --- & --- & --- & --- \\
+%           ICA & $0.657 \pm 0.132$ & $0.629 \pm 0.117$ & $0.671 \pm 0.157$ & $0.686 \pm 0.158$ & $\mathbf{0.691} \pm \mathbf{0.158}$ & $0.681 \pm 0.161$ & $0.679 \pm 0.166$ \\
+%           \bottomrule
+%         \end{tabularx}
+%       \end{table}
+%     \end{block}}
+%   \only<4>{
+%     \begin{block}{\small MRSI}
+%       \begin{table}
+%         \centering
+%         \tiny
+%         \begin{tabularx}{\linewidth}{@{}l >{\centering\arraybackslash}X >{\centering\arraybackslash}X >{\centering\arraybackslash}X >{\centering\arraybackslash}X >{\centering\arraybackslash}X >{\centering\arraybackslash}X >{\centering\arraybackslash}X @{}}
+%           \toprule
+%           \multirow{2}{*}{\textbf{Methods}} & \multicolumn{7}{c}{\textbf{Number of components or sparsity level}} \\
+%           \cmidrule{2-8}
+%           & 2 & 4 & 8 & 16 & 24 & 32 & 36 \\
+%           \midrule
+%           PCA & $0.566 \pm 0.120$ & $0.575 \pm 0.141$ & $0.648 \pm 0.162$ & $0.662 \pm 0.177$ & $0.659 \pm 0.184$ & $0.671 \pm 0.179$ & $0.672 \pm 0.182$ \\
+%           Sparse-PCA & $0.502 \pm 0.050$ & $0.571 \pm 0.158$ & $0.585 \pm 0.111$ & --- & --- & --- & --- \\
+%           ICA & $0.567 \pm 0.119$ & $0.578 \pm 0.140$ & $0.654 \pm 0.145$ & $0.656 \pm 0.167$ & $0.650 \pm 0.187$ & $0.663 \pm 0.174$ & $\mathbf{0.677} \pm \mathbf{0.171}$ \\
+%           \bottomrule
+%         \end{tabularx}
+%       \end{table}
+%     \end{block}}
+%   \only<5>{
+%     \begin{block}{\small Aggregation}
+%       \begin{table}
+%         \centering
+%         \tiny
+%         \begin{tabularx}{\linewidth}{@{}l >{\centering\arraybackslash}X >{\centering\arraybackslash}X >{\centering\arraybackslash}X >{\centering\arraybackslash}X >{\centering\arraybackslash}X >{\centering\arraybackslash}X >{\centering\arraybackslash}X @{}}
+%           \toprule
+%           \multirow{2}{*}{\textbf{Methods}} & \multicolumn{7}{c}{\textbf{Percentiles}} \\
+%           \cmidrule{2-8}
+%           & 10 & 12.5 & 15 & 17.5 & 20 & 22.5 & 25 \\
+%           \midrule
+%           ANOVA F-score & $0.764 \pm 0.095$ & $0.765 \pm 0.079$ & $0.800 \pm 0.083$ & $0.817 \pm 0.089$ & $\mathbf{0.828} \pm \mathbf{0.084}$ & $0.822 \pm 0.0.084$ & $0.815 \pm 0.086$ \\
+%           \bottomrule
+%         \end{tabularx}
+%       \end{table}
+%       \begin{table}
+%         \centering
+%         \tiny
+%         \begin{tabularx}{\linewidth}{@{}l >{\centering\arraybackslash}X >{\centering\arraybackslash}X >{\centering\arraybackslash}X >{\centering\arraybackslash}X >{\centering\arraybackslash}X >{\centering\arraybackslash}X >{\centering\arraybackslash}X @{}}
+%           \toprule
+%           \multirow{2}{*}{\textbf{Methods}} & \multicolumn{7}{c}{\textbf{Percentiles}} \\
+%           \cmidrule{2-8}
+%           & 10 & 12.5 & 15 & 17.5 & 20 & 22.5 & 25 \\
+%           \midrule
+%           Gini importance & $0.834 \pm 0.085$ & $0.834 \pm 0.088$ & $0.834 \pm 0.084$ & $\mathbf{0.836} \pm \mathbf{0.083}$ & $0.834 \pm 0.079$ & $0.828 \pm 0.086$ & $0.830 \pm 0.077$ \\
+%           \bottomrule
+%         \end{tabularx}
+%       \end{table}
+%     \end{block}}
+%   \only<6>{
+%   \begin{greenblock}{\small Conclusions}
+%     \begin{itemize}\scriptsize
+%     \item[\tick] T$_2$W-MRI: ANOVA-based selection with \SI{25}{\percent} of the data
+%     \item[\tick] ADC: Gini importance-based selection with \SI{5}{\percent} of the data
+%     \item[\tick] DCE-MRI: ICA with 24 components
+%     \item[\tick] MRSI: ICA with 36 components
+%     \item[\tick] Aggregation: Gini importance with \SI{17.5}{\percent} of the data
+%     \end{itemize}
+%   \end{greenblock}
+% }
+% \only<7>{
+%   \begin{block}{\small Selected features in T$_2$W-MRI and ADC}
+%     \begin{table}
+%       \centering
+%       \tiny
+%       \begin{tabular}{ll}
+%         \toprule
+%         \multicolumn{1}{c}{\textbf{T$_2$W-MRI}} & \multicolumn{1}{c}{\textbf{ADC}} \\
+%         \cmidrule(lr){1-1} \cmidrule(lr){2-2}
+%         8 edges & 1 DCT \\
+%         155 Gabor filters & 32 Gabor filters \\ 
+%         2 Haralick features & 1 phase congruency \\
+%         1 intensity & \\
+%         4 LBP & \\
+%         2 phase congruency & \\
+%         \cmidrule(lr){1-1} \cmidrule(lr){2-2}
+%         \multicolumn{1}{c}{\textbf{172 features}} & \multicolumn{1}{c}{\textbf{34 features}} \\
+%         \bottomrule
+%       \end{tabular}
+%     \end{table}
+%     \vspace*{-.3cm}
+%   \end{block}
+%   \begin{block}{\small Selected features with aggregation}
+%     \begin{table}
+%       \centering
+%       \tiny
+%       \begin{tabular}{llll}
+%         \toprule
+%         \multicolumn{1}{c}{\textbf{T$_2$W-MRI}} & \multicolumn{1}{c}{\textbf{ADC}} & \multicolumn{1}{c}{\textbf{DCE-MRI}} & \multicolumn{1}{c}{\textbf{MRSI}} \\
+%         \cmidrule(lr){1-4}
+%         113 Gabor filters & 53 Gabor filters & 14 samples  & 78 samples \\
+%         1 phase congruency & 2 phase congruency & & \\ 
+%         4 edges & & & \\
+%         1 intensity & & & \\
+%         & & & \\
+%         & & & \\
+%         \cmidrule(lr){1-4}
+%         \multicolumn{4}{c}{\textbf{267 features}} \\
+%         \bottomrule
+%       \end{tabular}
+%     \end{table}
+%     \vspace*{-.3cm}
+%   \end{block}}
+% \end{frame}
 
 \subsection{Fine-tuned combination}
 
 \begin{frame}
   \frametitle{Experiments}
   \framesubtitle{Fine-tuned combination}
-  \begin{columns}
-    \begin{column}{0.5\textwidth}
-      \begin{block}{\small Aggregation \emph{vs.} stacking}
-        \begin{figure}
-          \centering
-          \includegraphics[width=.8\textwidth]{images/exp-5/combine_all.pdf}
-        \end{figure}
-      \end{block}
-    \end{column}
-    \begin{column}{0.5\textwidth}
-      \begin{block}{\small ROC for each patient}
-        \begin{figure}
-          \centering
-          \includegraphics[width=.8\textwidth]{images/exp-5/plot_all_patients.pdf}
-        \end{figure}
-      \end{block}
-    \end{column}
-  \end{columns}
+  \only<1>{
+    \begin{block}{\small Aggregation \emph{vs.} stacking}
+      \begin{figure}
+        \centering
+        \includegraphics[width=.75\textwidth]{images/exp-5/combine_all.pdf}
+        \caption{\tiny ROC analysis with the different fusion strategies}
+      \end{figure}
+    \end{block}}
+  \only<2>{
+    \begin{block}{\small ROC for each patient}
+      \begin{figure}
+        \centering
+        \includegraphics[width=.75\textwidth]{images/exp-5/plot_all_patients.pdf}
+        \caption{\tiny ROC analysis for each patient}
+      \end{figure}
+    \end{block}}
 \end{frame}
 
 \begin{frame}
@@ -2032,17 +2211,18 @@
 \begin{frame}
   \frametitle{Experiments}
   \framesubtitle{MRSI benefit}
+    \begin{greenblock}{\small Importance of MRSI in aggregation}
+      \begin{itemize}\scriptsize
+      \item Features from MRSI are the most selected features
+      \end{itemize}
+    \end{greenblock}
     \begin{block}{\small Stacking with/without MRSI}
       \begin{figure}
         \centering
-        \includegraphics[width=.45\textwidth]{images/exp-6/stacking_wt_mrsi.pdf}
+        \includegraphics[width=.6\textwidth]{images/exp-6/stacking_wt_mrsi.pdf}
+        \caption{\tiny ROC analysis with/without MRSI}
       \end{figure}
     \end{block}
-    \begin{greenblock}{\small MRSI in aggregation}
-      \begin{itemize}\scriptsize
-      \item[\tick] Features from MRSI are the most selected features
-      \end{itemize}
-    \end{greenblock}
 \end{frame}
 
 \section{Conclusions}
@@ -2079,11 +2259,20 @@
     \end{itemize}
   \end{greenblock}}
   \only<3>{
+  \begin{greenblock}{\small Contributions}
+    \begin{itemize}\scriptsize
+    \item[\tick] Collect a mp-MRI dataset
+    \item[\tick] Design a CAD for CaP using all mp-MRI modalities
+    \item[\tick] Investigate normalization, feature selection/extraction, data balancing
+    \item[\tick] Implement 3D features
+    \item[\tick] Release source code and dataset
+    \end{itemize}
+  \end{greenblock}
   \begin{redblock}{\small Avenue for future research}
     \begin{itemize}\scriptsize
-    \item[\cross] Incorporate spatial information in classification using super-voxels
+    \item[\cross] Incorporate spatial connectivity in classification using super-voxels
     \item[\cross] Dissociate classifiers for the PZ and CG regions
-    \item[\cross] Explore the \emph{radiomics} features from PI-RADS v.2
+    \item[\cross] Explore the features from PI-RADS v.2
     \item[\cross] Investigate the benefit of deep-learning
     \end{itemize}
   \end{redblock}}
