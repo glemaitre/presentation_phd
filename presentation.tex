@@ -190,20 +190,20 @@
   \end{frame}
 }
 
-% Show the table of contents
-\begin{frame}
-  \begin{scriptsize}
-    \tableofcontents[sectionstyle=show,subsectionstyle=hide,subsubsectionstyle=hide]
-  \end{scriptsize}
-\end{frame}
+% % Show the table of contents
+% \begin{frame}
+%   \begin{scriptsize}
+%     \tableofcontents[sectionstyle=show,subsectionstyle=hide,subsubsectionstyle=hide]
+%   \end{scriptsize}
+% \end{frame}
 
 \section{Introduction}
 
-\begin{frame}
-  \begin{scriptsize}
-    \tableofcontents[currentsection,currentsubsection,subsectionstyle=show/show/hide]
-  \end{scriptsize}
-\end{frame}
+% \begin{frame}
+%   \begin{scriptsize}
+%     \tableofcontents[currentsection,currentsubsection,subsectionstyle=show/show/hide]
+%   \end{scriptsize}
+% \end{frame}
 
 \subsection{Motivations}
 
@@ -307,7 +307,7 @@
         \begin{itemize}\scriptsize
         \item PZ $\rightarrow$ \SIrange{70}{80}{\percent}
         \item TZ $\rightarrow$ \SIrange{10}{20}{\percent}
-        \item CG $\rightarrow$ \SI{5}{\percent}
+        \item CZ $\rightarrow$ \SI{5}{\percent}
         \end{itemize}
       \end{block}
     \end{column}
@@ -340,8 +340,8 @@
       \end{block}
       \begin{block}<1->{\small ``Blind'' transrectal ultrasound biopsy}
         \begin{itemize}\scriptsize
-        \item<4-> Take samples from different locations
-        \item<4-> Grade using Gleason score
+        \item<3-> Take samples from different locations
+        \item<3-> Grade using Gleason score
         %\item[\cross]<5-> Invasive procedure
         %\item[\cross]<5-> Lead to false positives \& negatives
         \end{itemize}
@@ -361,24 +361,24 @@
             \caption{\tiny \tikzbullet{gray}{orangeubfc} free PSA \\ \tikzbullet{gray}{blueubfc} protein-linked PSA}
           \end{figure}
         }
+        % \only<3>{
+        %   \begin{figure}
+        %     \includegraphics[height=.6\textheight]{./images/screening/risk_psa.png}
+        %     \caption{\tiny \tikzbullet{gray}{orangeubfc} free PSA \\ \tikzbullet{gray}{blueubfc} protein-linked PSA}
+        %   \end{figure}
+        % }
         \only<3>{
           \begin{figure}
-            \includegraphics[height=.6\textheight]{./images/screening/risk_psa.png}
-            \caption{\tiny \tikzbullet{gray}{orangeubfc} free PSA \\ \tikzbullet{gray}{blueubfc} protein-linked PSA}
-          \end{figure}
-        }
-        \only<4>{
-          \begin{figure}
             \includegraphics[height=.4\textheight]{./images/screening/gleason.jpg}
             \caption{\tiny Image source: \texttt{https://goo.gl/fEVQXQ}}
           \end{figure}
         }
-        \only<5>{
-          \begin{figure}
-            \includegraphics[height=.4\textheight]{./images/screening/gleason.jpg}
-            \caption{\tiny Image source: \texttt{https://goo.gl/fEVQXQ}}
-          \end{figure}
-        }
+        % \only<4>{
+        %   \begin{figure}
+        %     \includegraphics[height=.4\textheight]{./images/screening/gleason.jpg}
+        %     \caption{\tiny Image source: \texttt{https://goo.gl/fEVQXQ}}
+        %   \end{figure}
+        % }
         % \only<6>{
         %   \begin{greenblock}{\small Pros}
         %     \begin{itemize}\scriptsize
@@ -403,7 +403,7 @@
   \framesubtitle{Screening}
   \begin{greenblock}{\small Pros}
     \begin{itemize}\scriptsize
-    \item[\tick] Reduce CaP-related mortality between \SI{21}{\percent} to \SI{44}{\percent}\footnotemark
+    \item[\tick] Reduce CaP-related mortality between \SI{21}{\percent} and \SI{44}{\percent}\footnotemark
     \end{itemize}
   \end{greenblock}
   \begin{redblock}{\small Cons}
@@ -451,7 +451,7 @@
   \framesubtitle{Research objectives}
   \begin{block}{\small Propose a mp-MRI CAD for CaP}
     \begin{itemize}\scriptsize
-    \item Study and investigate the state-of-the-art on MRI CAD for CaP
+    \item Study and investigate the state-of-the-art on mp-MRI CAD for CaP
     \item Identify the scientific barriers
     \item Design a mp-MRI CAD addressing these issues
     \item Investigate and analyze the proposed CAD
@@ -567,6 +567,7 @@
         \end{redblock}
       \end{column}
     \end{columns}}
+\setcounter{subfigure}{0}% Reset subfigure counter
   \only<2>{
     \begin{columns}
       \begin{column}{0.5\textwidth}
@@ -627,6 +628,7 @@
         \end{redblock}
       \end{column}
     \end{columns}}
+\setcounter{subfigure}{0}% Reset subfigure counter
   \only<2>{
     \begin{columns}
       \begin{column}{0.5\textwidth}
@@ -687,6 +689,7 @@
         \end{redblock}
       \end{column}
     \end{columns}}
+\setcounter{subfigure}{0}% Reset subfigure counter
   \only<2>{
     \begin{columns}
       \begin{column}{0.5\textwidth}
@@ -1231,7 +1234,7 @@
     \item PUN model
     \end{itemize}
   \end{block}
-  \begin{block}{\small Classification}
+  \begin{block}{\small Other approaches}
     \begin{itemize}\scriptsize
     \item Semi-quantitative model
     \item Entire enhanced signal
@@ -1252,16 +1255,20 @@
 \begin{frame}
   \frametitle{Experiments}
   \framesubtitle{DCE-MRI normalization}
+  \only<1>{
   \begin{block}{\small Quantitative and semi-quantitative models}
     \begin{figure}
-      \centering
-      \hspace*{\fill}
-      \subfigure[\tiny Without normalization]{\includegraphics[width=.45\textwidth]{images/DCE-normalization/unormalized_methods_0.pdf}}\hfill
-      \subfigure[\tiny With normalization]{\includegraphics[width=.45\textwidth]{images/DCE-normalization/normalized_methods_0.pdf}}
-      \hspace*{\fill}
-      \caption{\tiny ROC analysis for pharmarcokinetic model}
+      \includegraphics[width=.75\textwidth]{images/DCE-normalization/unormalized_methods_0.pdf}
+      \caption{\tiny ROC analysis without normalization}
     \end{figure}
-  \end{block}
+  \end{block}}
+  \only<2>{
+  \begin{block}{\small Quantitative and semi-quantitative models}
+    \begin{figure}
+      \includegraphics[width=.75\textwidth]{images/DCE-normalization/normalized_methods_0.pdf}
+      \caption{\tiny ROC analysis with normalization}
+    \end{figure}
+  \end{block}}
 \end{frame}
 
 \begin{frame}
@@ -1270,7 +1277,7 @@
   \begin{block}{\small Entire signal}
     \begin{figure}
       \centering
-      \includegraphics[width=.7\textwidth]{images/DCE-normalization/full_signal_0.pdf}
+      \includegraphics[width=.75\textwidth]{images/DCE-normalization/full_signal_0.pdf}
       \caption{\tiny ROC analysis with entire enhanced signal}
     \end{figure}
   \end{block}
@@ -1307,15 +1314,15 @@
 \begin{frame}
   \frametitle{Toward a mp-MRI CAD for CaP}
   \framesubtitle{Segmentation \& registration}
-  \begin{block}{\small Interpolation}
+  \begin{block}{\small Resampling}
     \begin{itemize}\scriptsize
-    \item ADC and DCE-MRI are interpolated to the T$_2$W-MRI resolution
+    \item ADC and DCE-MRI are resampled to the T$_2$W-MRI resolution
     \end{itemize}
   \end{block}
   \begin{block}{\small Segmentation}
     \begin{itemize}\scriptsize
     \item Manual prostate segmentation available for T$_2$W-MRI, DCE-MRI, and ADC
-    \item Cap, PZ, and CG manual segmentation available for T$_2$W-MRI
+    \item CaP, PZ, and CG manual segmentation available for T$_2$W-MRI
     \end{itemize}
   \end{block}
   \begin{block}{\small Registration}
@@ -1594,17 +1601,34 @@
 \begin{frame}
   \frametitle{Toward a mp-MRI CAD for CaP}
   \framesubtitle{Features classification}
-  \begin{block}{\small Classification as fusion}
-    \begin{itemize}\scriptsize
-    \item RF used as classifier for each modality and aggregation of features
-    \item Stacking of RF with an adaboost and gradient-boosting meta-classifier
-    \end{itemize}
-    \vspace*{-.3cm}
-    \begin{figure}%
-      \centering
-      \includegraphics[height=.35\textheight]{./images/stacking_gb.png}
-    \end{figure}
-  \end{block}
+  \begin{columns}
+    \begin{column}{.5\textwidth}
+      \begin{block}{\small Classification as fusion}
+        \begin{itemize}\scriptsize
+        \item<1-> Single RF $\rightarrow$ features of one modality
+        \item<2-> Single RF $\rightarrow$ aggregated features of modalities
+        \item<3-> Stack of RF with an adaboost and gradient-boosting meta-classifier
+        \end{itemize}
+      \end{block}
+    \end{column}
+    \begin{column}{.5\textwidth}
+      \only<1>{
+        \begin{figure}%
+          \centering
+          \includegraphics[height=.5\textheight]{./images/singlemodality.png}
+        \end{figure}}
+      \only<2>{
+        \begin{figure}%
+          \centering
+          \includegraphics[height=.5\textheight]{./images/featueAgg.png}
+        \end{figure}}
+      \only<3>{
+        \begin{figure}%
+          \centering
+          \includegraphics[height=.5\textheight]{./images/stacking_gb.png}
+        \end{figure}}
+    \end{column}
+  \end{columns}
   \begin{block}{\small Validation}
     \begin{itemize}\scriptsize
     \item LOPO CV
@@ -1616,20 +1640,24 @@
 
 \setcounter{subfigure}{0}% Reset subfigure counter
 
-\begin{frame}
-  \frametitle{Experiments}
-  \framesubtitle{DCE modality}
-  \begin{block}{\small Quantitative and semi-quantitative models}
-    \begin{figure}
-      \centering
-      \hspace*{\fill}
-      \subfigure[\tiny Without normalization]{\includegraphics[width=.48\textwidth]{images/DCE-normalization/unormalized_methods_0.pdf}}\hfill
-      \subfigure[\tiny With normalization]{\includegraphics[width=.48\textwidth]{images/DCE-normalization/normalized_methods_0.pdf}}
-      \hspace*{\fill}
-      \caption{\tiny ROC analysis for pharmarcokinetic model}
-    \end{figure}
-  \end{block}
-\end{frame}
+% \begin{frame}
+%   \frametitle{Experiments}
+%   \framesubtitle{DCE modality}
+%   \only<1>{
+%   \begin{block}{\small Quantitative and semi-quantitative models}
+%     \begin{figure}
+%       \includegraphics[width=.75\textwidth]{images/DCE-normalization/unormalized_methods_0.pdf}
+%       \caption{\tiny ROC analysis without normalization}
+%     \end{figure}
+%   \end{block}}
+%   \only<2>{
+%   \begin{block}{\small Quantitative and semi-quantitative models}
+%     \begin{figure}
+%       \includegraphics[width=.75\textwidth]{images/DCE-normalization/normalized_methods_0.pdf}
+%       \caption{\tiny ROC analysis with normalization}
+%     \end{figure}
+%   \end{block}}
+% \end{frame}
 
 \begin{frame}
   \frametitle{Experiments}
@@ -1637,8 +1665,21 @@
   \begin{block}{\small Entire signal}
     \begin{figure}
       \centering
-      \includegraphics[width=.7\textwidth]{images/DCE-normalization/full_signal_0.pdf}
+      \includegraphics[width=.75\textwidth]{images/DCE-normalization/full_signal_0.pdf}
       \caption{\tiny ROC analysis for the entire enhanced signal}
+    \end{figure}
+  \end{block}
+\end{frame}
+
+\setcounter{subfigure}{0}% Reset subfigure counter
+
+\begin{frame}
+  \frametitle{Experiments}
+  \framesubtitle{MRSI modalities}
+  \begin{block}{\small ROC analysis}
+    \begin{figure}
+      \includegraphics[width=.75\textwidth]{images/exp-1/mrsi_all.pdf}
+      \caption{\tiny ROC analysis for the MRSI modality}
     \end{figure}
   \end{block}
 \end{frame}
@@ -1651,11 +1692,8 @@
   \begin{block}{\small ROC analysis}
     \begin{figure}
       \centering
-      \hspace*{\fill}
-      \subfigure[\tiny T$_2$W-MRI and ADC]{\includegraphics[width=.48\textwidth]{images/exp-1/t2w_adc.pdf}}\hfill
-      \subfigure[\tiny MRSI]{\includegraphics[width=.48\textwidth]{images/exp-1/mrsi_all.pdf}}
-      \hspace*{\fill}
-      \caption{\tiny ROC analysis for T$_2$W-MRI, ADC, and MRSI modalities}
+      \includegraphics[width=.75\textwidth]{images/exp-1/t2w_adc.pdf}
+      \caption{\tiny ROC analysis for T$_2$W-MRI and ADC modalities}
     \end{figure}
   \end{block}
 \end{frame}
@@ -1836,7 +1874,7 @@
         Mean & 0.762 & 0.685 & 0.715 & 0.685 & 0.824 \\
         Std & 0.081 & 0.145 & 0.142 & 0.156 & 0.076 \\
         \cmidrule(lr){1-1} \cmidrule(lr){2-2} \cmidrule(lr){3-3} \cmidrule(lr){4-4} \cmidrule(lr){5-5} \cmidrule(lr){6-6}
-        Tendency & \tick & \tick & \tick & \tick & \tick \\
+        Tendency & \tick & \tick & \tick & $=$ & \tick \\
         \bottomrule
       \end{tabular}
     \end{table}
@@ -1872,11 +1910,11 @@
   \end{block}
   \begin{greenblock}{\small Conclusions}
     \begin{itemize}\scriptsize
-    \item[\tick] T$_2$W-MRI: ANOVA-based selection with \SI{25}{\percent} of the data
-    \item[\tick] ADC: Gini importance-based selection with \SI{5}{\percent} of the data
+    \item[\tick] T$_2$W-MRI: ANOVA-based selection with \SI{25}{\percent} of features
+    \item[\tick] ADC: Gini importance-based selection with \SI{5}{\percent} of features
     \item[\tick] DCE-MRI: ICA with 24 components
     \item[\tick] MRSI: ICA with 36 components
-    \item[\tick] Aggregation: Gini importance with \SI{17.5}{\percent} of the data
+    \item[\tick] Aggregation: Gini importance with \SI{17.5}{\percent} of features
     \end{itemize}
   \end{greenblock}
 \end{frame}
@@ -1965,6 +2003,24 @@
   \end{block}
 \end{frame}
 
+\subsection{MRSI benefit}
+
+\begin{frame}
+  \frametitle{Experiments}
+  \framesubtitle{MRSI benefit}
+    \begin{greenblock}{\small Importance of MRSI in aggregation}
+      \begin{itemize}\scriptsize
+      \item Features from MRSI are the most selected features
+      \end{itemize}
+    \end{greenblock}
+    \begin{block}{\small Stacking with/without MRSI}
+      \begin{figure}
+        \centering
+        \includegraphics[width=.6\textwidth]{images/exp-6/stacking_wt_mrsi.pdf}
+        \caption{\tiny ROC analysis with/without MRSI}
+      \end{figure}
+    \end{block}
+\end{frame}
 
 % \section{Experiments}
 
@@ -2204,25 +2260,6 @@
         \hspace*{\fill}
       \end{figure}
     \end{block}}
-\end{frame}
-
-\subsection{MRSI benefit}
-
-\begin{frame}
-  \frametitle{Experiments}
-  \framesubtitle{MRSI benefit}
-    \begin{greenblock}{\small Importance of MRSI in aggregation}
-      \begin{itemize}\scriptsize
-      \item Features from MRSI are the most selected features
-      \end{itemize}
-    \end{greenblock}
-    \begin{block}{\small Stacking with/without MRSI}
-      \begin{figure}
-        \centering
-        \includegraphics[width=.6\textwidth]{images/exp-6/stacking_wt_mrsi.pdf}
-        \caption{\tiny ROC analysis with/without MRSI}
-      \end{figure}
-    \end{block}
 \end{frame}
 
 \section{Conclusions}
