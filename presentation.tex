@@ -58,7 +58,7 @@
 \usetikzlibrary{backgrounds}
 \usetikzlibrary{shapes,arrows,shadows}
 \usetikzlibrary{calc,decorations.pathreplacing,decorations.markings,positioning}
-\usetikzlibrary{snakes,decorations.text,shapes,patterns}
+\usetikzlibrary{snakes,decorations.text,shapes,patterns,fadings}
 % \usepackage{scalefnt,lmodern,booktabs}
 
 \usepackage{booktabs}
@@ -712,6 +712,14 @@
 
 \subsection{CAD for CaP}
 
+\begin{frame}[fragile]
+  \frametitle{State-of-the-art}
+  \framesubtitle{CAD for CaP}
+  \begin{block}{\small block}
+    \input{images/state/nb_modality.tex}
+  \end{block}
+\end{frame}
+
 \begin{frame}
   \frametitle{State-of-the-art}
   \framesubtitle{CAD for CaP}
@@ -1357,19 +1365,19 @@
             \begin{itemize}\scriptsize
             \item Intensity
             \item Kirsch filter
-            \item Laplacian filter
-            \item Prewitt filter
-            \item Scharr filter
-            \item Sobel filter
+            \item Laplacian filter*
+            \item Prewitt filter*
+            \item Scharr filter*
+            \item Sobel filter*
             \end{itemize}
           \end{column}
           \begin{column}{0.45\textwidth}
             \begin{itemize}\scriptsize
-            \item DCT decomposition
-            \item Gabor filters
+            \item DCT decomposition*
+            \item Gabor filters*
             \item Phase congruency filter
-            \item Haralick filter
-            \item LBP filter
+            \item Haralick filter*
+            \item LBP filter*
             \end{itemize}
           \end{column}
         \end{columns}
@@ -1967,12 +1975,12 @@
         \toprule
         \multicolumn{1}{c}{\textbf{T$_2$W-MRI}} & \multicolumn{1}{c}{\textbf{ADC}} \\
         \cmidrule(lr){1-1} \cmidrule(lr){2-2}
-        8 edges & 1 DCT \\
-        155 Gabor filters & 32 Gabor filters \\ 
-        2 Haralick features & 1 phase congruency \\
-        1 intensity & \\
-        4 LBP & \\
-        2 phase congruency & \\
+        8/12 edges & 1/243 DCT \\
+        155/256 Gabor filters & 32/256 Gabor filters \\ 
+        2/169 Haralick features & 1/3 phase congruency \\
+        1/1 intensity & \\
+        4/6 LBP & \\
+        2/3 phase congruency & \\
         \cmidrule(lr){1-1} \cmidrule(lr){2-2}
         \multicolumn{1}{c}{\textbf{172 features}} & \multicolumn{1}{c}{\textbf{34 features}} \\
         \bottomrule
@@ -1988,10 +1996,10 @@
         \toprule
         \multicolumn{1}{c}{\textbf{T$_2$W-MRI}} & \multicolumn{1}{c}{\textbf{ADC}} & \multicolumn{1}{c}{\textbf{DCE-MRI}} & \multicolumn{1}{c}{\textbf{MRSI}} \\
         \cmidrule(lr){1-4}
-        113 Gabor filters & 53 Gabor filters & 14 samples  & 78 samples \\
-        1 phase congruency & 2 phase congruency & & \\ 
-        4 edges & & & \\
-        1 intensity & & & \\
+        113/256 Gabor filters & 53/256 Gabor filters & 14/40 samples & 78/101 samples \\
+        1/3 phase congruency & 2/3 phase congruency & & \\ 
+        4/12 edges & & & \\
+        1/1 intensity & & & \\
         & & & \\
         & & & \\
         \cmidrule(lr){1-4}
