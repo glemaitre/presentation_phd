@@ -1181,14 +1181,18 @@
   \frametitle{Toward a mp-MRI CAD for CaP}
   \framesubtitle{DCE-MRI normalization}
   \begin{block}{\small Correction of $\Delta_i$}\scriptsize
-    Find the shortest path in a directed weighted graph $\mathcal{G}=(\mathcal{V}, \mathcal{E})$ with the edge weight $w_{ij}$ between 2 nodes $i$ and $j$ corresponding to 2 pixels at position $(x_i, y_i)$ and $(x_j, y_j)$, respectively defined as:
-    \begin{equation}\tiny
-      w_{ij} = \begin{cases}
-        \alpha \exp(1 - \frac{H(i)}{\max(H)})       & \text{if } x_j = x_i + 1 \text{ and } y_j = y_i, \\
-        (1 - \alpha) \exp(1 - \frac{H(i)}{\max(H)}) & \text{if } x_j = x_i \text{ and } y_j = y_i + 1, \\
-        0                                           & \text{otherwise},
-      \end{cases}
+    \begin{itemize} \scriptsize
+      \item Estimate with smooth transitions
+      \item Estimate the closest of the PDF peak
+      \item[$\rightarrow$] Find the shortest path in a directed weighted graph, with the edge weight $w_{ij}$:
+        \begin{equation}\tiny
+          w_{ij} = \begin{cases}
+            \alpha \exp(1 - \frac{H(i)}{\max(H)})       & \text{if } x_j = x_i + 1 \text{ and } y_j = y_i, \\
+            (1 - \alpha) \exp(1 - \frac{H(i)}{\max(H)}) & \text{if } x_j = x_i \text{ and } y_j = y_i + 1, \\
+            0                                           & \text{otherwise},
+          \end{cases}
     \end{equation}
+    \end{itemize}
     \vspace*{-.5cm}
     \begin{figure}%
       \includegraphics[width=.45\textwidth]{./images/DCE-normalization/estimator.pdf}
@@ -1343,6 +1347,20 @@
 \end{frame}
 
 \subsection{CADe-CADx}
+
+\begin{frame}
+  \frametitle{Toward a mp-MRI CAD for CaP}
+  \framesubtitle{CADe-CADx}
+  \begin{block}{\small Summary of experiments}
+    \begin{itemize}\scriptsize
+    \item Investigate the performance of features from each standalone modality
+    \item Investigate the performance of the combination of features: \emph{coarse combination}
+    \item Investigate the effect of data balancing
+    \item Investigate the effect of selection/extraction
+    \item Investigate the performance of the combination of features: \emph{fine-tuned combination}
+    \end{itemize}
+  \end{block}
+\end{frame}
 
 \subsubsection{Features detection}
 
@@ -1879,7 +1897,7 @@
         \toprule
         \textbf{AUC} & \textbf{T$_2$W-MRI} & \textbf{DCE-MRI} & \textbf{ADC} & \textbf{MRSI} & \textbf{Aggregation} \\
         \cmidrule(lr){1-1} \cmidrule(lr){2-5} \cmidrule(lr){6-6}
-        Mean & 0.762 & 0.685 & 0.715 & 0.685 & 0.824 \\
+        Mean & 0.762 & 0.685 & 0.715 & 0.695 & 0.824 \\
         Std & 0.081 & 0.145 & 0.142 & 0.156 & 0.076 \\
         \cmidrule(lr){1-1} \cmidrule(lr){2-2} \cmidrule(lr){3-3} \cmidrule(lr){4-4} \cmidrule(lr){5-5} \cmidrule(lr){6-6}
         Tendency & \tick & \tick & \tick & $=$ & \tick \\
