@@ -46,7 +46,7 @@
 			scale=\chartScale,
 			background color = white,
 			mix color = gray,
-			title = Prostate zones, 
+			title = Zones studied, 
 			title loc = {(0,3.2)}]
 			{ 162/azulunam, 198/orangeubfc}
 		\foreach \i in {1,...,2} { \fill[black] (pcm \i) circle (.5mm);}                
@@ -60,12 +60,12 @@
 			background color = white,
 			mix color = gray,
 			loc = {(2.5,0)},
-			title = CAD, 
+			title = CAD types, 
 			title loc = {(0,3.2)}]
 		       {252/azulunam, 108/orounam}
 		\foreach \i in {1,...,2} { \fill[black] (pcc \i) circle (.5mm);}
 		\draw[black] (pcc 2) -- ++(-0.8,-2) node[anchor=south west] at ++(0.2,0) {CADe 30\%} coordinate (s1) -- ++(1,0);
-		\draw[black] (pcc 1) -- ++(-0.4, 1.2) node[anchor=south west] {CADx 70\%} coordinate (s1) -- ++(1,0);
+		\draw[black] (pcc 1) -- ++(-0.4, 1.2) node[anchor=south west] {CADe-CADx 70\%} coordinate (s1) -- ++(1,0);
 
 		\draw[black] node[rounded corners=2pt, fill=black!80, text=white, align=center, text width=8em, minimum height=2em, anchor=base] (nr) at (\chartScale*1.25*5, 5) {{\large 56 Studies}};
 		%\path[->] (nr) edge (pcmtitle.north);
