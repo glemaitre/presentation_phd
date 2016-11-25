@@ -215,30 +215,23 @@
 
 \begin{frame}
   \frametitle{Introduction}
-  \framesubtitle{Motivations}
-  \begin{block}{\small Statistics}
-    \begin{figure}%
-      \centering
-      \hspace*{\fill}%
-      \subfigure[][\tiny \# of cancer cases]{%
-        \label{fig:stat1a}%
-        \includegraphics[width=.4\textwidth]{./images/statistics/repartitionCancerIncidence.png}}%
-      \hfill%
-      \subfigure[][\tiny \# of cancer deaths]{%
-        \label{fig:stat1b}%
-        \includegraphics[width=.4\textwidth]{./images/statistics/repartitionCancerDeaths.png}}%
-      \hspace*{\fill}%
-      \label{fig:stat1}%
-      % \caption{Statistics regarding cancer in 2008~\footnotemark}
-    \end{figure}
-  \end{block}
-  \begin{block}{\small Implications\footnotemark}\scriptsize
-    \begin{itemize}
-    \item 2\textsuperscript{nd} most frequently diagnosed men cancer
-    \item Accounting for $7.1\%$ of overall cancers diagnosed
-    \item Accounting for $3.4\%$ of overall cancers death
-    \end{itemize}
-  \end{block}
+  \framesubtitle{Motivations\footnotemark}
+  \only<1>{
+    \begin{block}{\small Statistics\footnotemark}
+      \begin{figure}%
+        \centering
+        \includegraphics[width=.85\textwidth]{./images/statistics/repartitionCancerIncidence.png}
+        \caption{\tiny \# cancer cases}
+      \end{figure}
+    \end{block}}
+  \only<2>{
+    \begin{block}{\small Statistics\footnotemark}
+      \begin{figure}%
+        \centering
+        \includegraphics[width=.85\textwidth]{./images/statistics/repartitionCancerDeaths.png}
+        \caption{\tiny \# cancer deaths}
+      \end{figure}
+    \end{block}}
   \footcitetext{Ferlay2010}
 \end{frame}
 
@@ -302,7 +295,7 @@
         \begin{itemize}\scriptsize
         \item Slow-growing $\rightarrow$ \SI{85}{\percent}
         \item Fast-growing $\rightarrow$ \SI{15}{\percent}
-        \item CaPs in CG are more aggressive
+        \item CaPs in CG (TZ+CZ) are more aggressive
         \end{itemize}
       \end{block}
     \end{column}
@@ -497,46 +490,66 @@
       \label{fig:t2w}%
     \end{figure}
   \end{block}
-  \only<1>{
-    \begin{columns}
-      \begin{column}{0.5\textwidth}
-        \begin{greenblock}{\small Healthy}\footnotesize
-          \begin{itemize}\scriptsize
-          \item Intermediate to high-signal intensity (SI) in PZ
-          \item Low-SI in CG
-          \end{itemize}
-        \end{greenblock}
-      \end{column}
-      \begin{column}{0.5\textwidth}
-        \begin{redblock}{\small CaP}\footnotesize
-          \begin{itemize}\scriptsize
-          \item Low-SI
-          \item Round and ill-defined mass in PZ
-          \item Homogeneous with ill-defined edges in CG
-          \end{itemize}
-        \end{redblock}
-      \end{column}
-    \end{columns}}
-  \setcounter{subfigure}{0}% Reset subfigure counter
-  \only<2>{
-    \begin{columns}
-      \begin{column}{0.5\textwidth}
-        \begin{greenblock}{\small Pros}\footnotesize
-          \begin{itemize}\scriptsize
-          \item Highest spatial resolution
-          \item Anatomy nicely depicted
-          \end{itemize}
-        \end{greenblock}
-      \end{column}
-      \begin{column}{0.5\textwidth}
-        \begin{redblock}{\small Cons}\footnotesize
-          \begin{itemize}\scriptsize
-          \item Low sensitivity in CG
-          \item Lower specificity due to outliers
-          \end{itemize}
-        \end{redblock}
-      \end{column}
-    \end{columns}}
+  \begin{columns}
+    \begin{column}{0.5\textwidth}
+      \begin{block}{\small Healthy \emph{vs.} CaP}\footnotesize
+        \begin{itemize}\scriptsize
+        \item Lower SI
+        \item Ill-defined edges
+        \end{itemize}
+      \end{block}
+    \end{column}
+    \begin{column}{0.5\textwidth}
+      \begin{block}{\small Pros and cons}\footnotesize
+        \begin{itemize}\scriptsize
+        \item[\tick] High resolution
+        \item[\tick] Anatomy well depicted
+        \item[\cross] Low sensitivity in CG
+        \item[\cross] Lower specificity due to outliers
+        \end{itemize}
+      \end{block}
+    \end{column}
+  \end{columns}
+  % \only<1>{
+  %   \begin{columns}
+  %     \begin{column}{0.5\textwidth}
+  %       \begin{greenblock}{\small Healthy}\footnotesize
+  %         \begin{itemize}\scriptsize
+  %         \item Intermediate to high-signal intensity (SI) in PZ
+  %         \item Low-SI in CG
+  %         \end{itemize}
+  %       \end{greenblock}
+  %     \end{column}
+  %     \begin{column}{0.5\textwidth}
+  %       \begin{redblock}{\small CaP}\footnotesize
+  %         \begin{itemize}\scriptsize
+  %         \item Low-SI
+  %         \item Round and ill-defined mass in PZ
+  %         \item Homogeneous with ill-defined edges in CG
+  %         \end{itemize}
+  %       \end{redblock}
+  %     \end{column}
+  %   \end{columns}}
+  % \setcounter{subfigure}{0}% Reset subfigure counter
+  % \only<2>{
+  %   \begin{columns}
+  %     \begin{column}{0.5\textwidth}
+  %       \begin{greenblock}{\small Pros}\footnotesize
+  %         \begin{itemize}\scriptsize
+  %         \item Highest spatial resolution
+  %         \item Anatomy nicely depicted
+  %         \end{itemize}
+  %       \end{greenblock}
+  %     \end{column}
+  %     \begin{column}{0.5\textwidth}
+  %       \begin{redblock}{\small Cons}\footnotesize
+  %         \begin{itemize}\scriptsize
+  %         \item Low sensitivity in CG
+  %         \item Lower specificity due to outliers
+  %         \end{itemize}
+  %       \end{redblock}
+  %     \end{column}
+  %   \end{columns}}
 \end{frame}
 
 \setcounter{subfigure}{0}% Reset subfigure counter
@@ -547,50 +560,71 @@
   \begin{block}{\small DCE-MRI}
     \begin{figure}%
       \centering
-      \includegraphics[width=.7\textwidth]{./images/mri/dce/dce_cancer_healthy_information.eps}
+      \includegraphics[width=.65\textwidth]{./images/mri/dce/dce_cancer_healthy_information.eps}
       \label{fig:dce}%
       \caption{\tiny {\color{green}Green}: healthy - {\color{red}Red}: CaP}
     \end{figure}
   \end{block}
-  \only<1>{
-    \begin{columns}
-      \begin{column}{0.5\textwidth}
-        \begin{greenblock}{\small Healthy}
-          \begin{itemize}\scriptsize
-          \item Slower wash-in, wash-out, time-to-peak enhancement
-          \item Lower integral under the curve, max SI
-          \end{itemize}
-        \end{greenblock}
-      \end{column}
-      \begin{column}{0.5\textwidth}
-        \begin{redblock}{\small CaP}
-          \begin{itemize}\scriptsize
-          \item Faster wash-in, wash-out, time-to-peak enhancement
-          \item Higher integral under the curve, max SI
-          \end{itemize}
-        \end{redblock}
-      \end{column}
-    \end{columns}}
-\setcounter{subfigure}{0}% Reset subfigure counter
-  \only<2>{
-    \begin{columns}
-      \begin{column}{0.5\textwidth}
-        \begin{greenblock}{\small Pros}\footnotesize
-          \begin{itemize}\scriptsize
-          \item Information about vascularity
-          \end{itemize}
-        \end{greenblock}
-      \end{column}
-      \begin{column}{0.5\textwidth}
-        \begin{redblock}{\small Cons}\footnotesize
-          \begin{itemize}\scriptsize
-          \item Spatial mis-registration
-          \item Lower spatial resolution than T$_2$W-MRI
-          \item Difficult detection in CG
-          \end{itemize}
-        \end{redblock}
-      \end{column}
-    \end{columns}}
+  \begin{columns}
+    \begin{column}{0.5\textwidth}
+      \begin{block}{\small Healthy \emph{vs.} CaP}\footnotesize
+        \begin{itemize}\scriptsize
+        \item Faster wash-in, wash-out, time-to-peak enhancement
+        \item Higher integral under the curve, max SI
+        \end{itemize}
+      \end{block}
+    \end{column}
+    \begin{column}{0.5\textwidth}
+      \begin{block}{\small Pros and cons}\footnotesize
+        \begin{itemize}\scriptsize
+        \item[\tick] Information about vascularity
+        \item[\cross] Spatial mis-registration
+        \item[\cross] Lower spatial resolution than T$_2$W-MRI
+        \item[\cross] Difficult detection in CG
+        \item[\cross] Variations of the curves between patients
+        \end{itemize}
+      \end{block}
+    \end{column}
+  \end{columns}
+%   \only<1>{
+%     \begin{columns}
+%       \begin{column}{0.5\textwidth}
+%         \begin{greenblock}{\small Healthy}
+%           \begin{itemize}\scriptsize
+%           \item Slower wash-in, wash-out, time-to-peak enhancement
+%           \item Lower integral under the curve, max SI
+%           \end{itemize}
+%         \end{greenblock}
+%       \end{column}
+%       \begin{column}{0.5\textwidth}
+%         \begin{redblock}{\small CaP}
+%           \begin{itemize}\scriptsize
+%           \item Faster wash-in, wash-out, time-to-peak enhancement
+%           \item Higher integral under the curve, max SI
+%           \end{itemize}
+%         \end{redblock}
+%       \end{column}
+%     \end{columns}}
+% \setcounter{subfigure}{0}% Reset subfigure counter
+%   \only<2>{
+%     \begin{columns}
+%       \begin{column}{0.5\textwidth}
+%         \begin{greenblock}{\small Pros}\footnotesize
+%           \begin{itemize}\scriptsize
+%           \item Information about vascularity
+%           \end{itemize}
+%         \end{greenblock}
+%       \end{column}
+%       \begin{column}{0.5\textwidth}
+%         \begin{redblock}{\small Cons}\footnotesize
+%           \begin{itemize}\scriptsize
+%           \item Spatial mis-registration
+%           \item Lower spatial resolution than T$_2$W-MRI
+%           \item Difficult detection in CG
+%           \end{itemize}
+%         \end{redblock}
+%       \end{column}
+%     \end{columns}}
 \end{frame}
 
 \setcounter{subfigure}{0}% Reset subfigure counter
@@ -613,45 +647,65 @@
       \label{fig:dwadc}%
     \end{figure}
   \end{block}
-  \only<1>{
-    \begin{columns}
-      \begin{column}{0.5\textwidth}
-        \begin{greenblock}{\small Healthy}
-          \begin{itemize}\scriptsize
-          \item DW-MRI: lower SI
-          \item ADC: higher-SI
-          \end{itemize}
-        \end{greenblock}
-      \end{column}
-      \begin{column}{0.5\textwidth}
-        \begin{redblock}{\small CaP}\scriptsize
-          \begin{itemize}
-          \item DW-MRI: higher SI
-          \item ADC: lower-SI
-          \end{itemize}
-        \end{redblock}
-      \end{column}
-    \end{columns}}
-\setcounter{subfigure}{0}% Reset subfigure counter
-  \only<2>{
-    \begin{columns}
-      \begin{column}{0.5\textwidth}
-        \begin{greenblock}{\small Pros}
-          \begin{itemize}\scriptsize
-          \item Information about tissue structure
-          \item ADC correlated with Gleason score
-          \end{itemize}
-        \end{greenblock}
-      \end{column}
-      \begin{column}{0.5\textwidth}
-        \begin{redblock}{\small Cons}\scriptsize
-          \begin{itemize}
-          \item Poor spatial resolution
-          \item Variability of the ADC coefficient
-          \end{itemize}
-        \end{redblock}
-      \end{column}
-    \end{columns}}
+  \begin{columns}
+    \begin{column}{0.5\textwidth}
+      \begin{block}{\small Healthy \emph{vs.} CaP}\footnotesize
+        \begin{itemize}\scriptsize
+        \item DW-MRI: higher SI
+        \item ADC: lower SI
+        \end{itemize}
+      \end{block}
+    \end{column}
+    \begin{column}{0.5\textwidth}
+      \begin{block}{\small Pros and cons}\footnotesize
+        \begin{itemize}\scriptsize
+        \item[\tick] Information about tissue structure
+        \item[\tick] ADC correlated with Gleason score
+        \item[\cross] Poor spatial resolution
+        \item[\cross] Variability of the ADC coefficient
+        \end{itemize}
+      \end{block}
+    \end{column}
+  \end{columns}
+%   \only<1>{
+%     \begin{columns}
+%       \begin{column}{0.5\textwidth}
+%         \begin{greenblock}{\small Healthy}
+%           \begin{itemize}\scriptsize
+%           \item DW-MRI: lower SI
+%           \item ADC: higher-SI
+%           \end{itemize}
+%         \end{greenblock}
+%       \end{column}
+%       \begin{column}{0.5\textwidth}
+%         \begin{redblock}{\small CaP}\scriptsize
+%           \begin{itemize}
+%           \item DW-MRI: higher SI
+%           \item ADC: lower-SI
+%           \end{itemize}
+%         \end{redblock}
+%       \end{column}
+%     \end{columns}}
+% \setcounter{subfigure}{0}% Reset subfigure counter
+%   \only<2>{
+%     \begin{columns}
+%       \begin{column}{0.5\textwidth}
+%         \begin{greenblock}{\small Pros}
+%           \begin{itemize}\scriptsize
+%           \item Information about tissue structure
+%           \item ADC correlated with Gleason score
+%           \end{itemize}
+%         \end{greenblock}
+%       \end{column}
+%       \begin{column}{0.5\textwidth}
+%         \begin{redblock}{\small Cons}\scriptsize
+%           \begin{itemize}
+%           \item Poor spatial resolution
+%           \item Variability of the ADC coefficient
+%           \end{itemize}
+%         \end{redblock}
+%       \end{column}
+%     \end{columns}}
 \end{frame}
 
 \setcounter{subfigure}{0}% Reset subfigure counter
@@ -674,44 +728,63 @@
       \label{fig:mrsi}%
     \end{figure}
   \end{block}
-  \only<1>{
-    \begin{columns}
-      \begin{column}{0.5\textwidth}
-        \begin{greenblock}{\small Healthy}
-          \begin{itemize}\scriptsize
-          \item High citrate concentration
-          \item Moderate choline and spermine concentrations
-          \end{itemize}
-        \end{greenblock}
-      \end{column}
-      \begin{column}{0.5\textwidth}
-        \begin{redblock}{\small CaP}
-          \begin{itemize}\scriptsize
-          \item Decrease of citrate and spermine concentrations
-          \item Increase of choline concentration
-          \end{itemize}
-        \end{redblock}
-      \end{column}
-    \end{columns}}
-\setcounter{subfigure}{0}% Reset subfigure counter
-  \only<2>{
-    \begin{columns}
-      \begin{column}{0.5\textwidth}
-        \begin{greenblock}{\small Pros}\footnotesize
-          \begin{itemize}\scriptsize
-          \item Citrate correlated with Gleason score
-          \end{itemize}
-        \end{greenblock}
-      \end{column}
-      \begin{column}{0.5\textwidth}
-        \begin{redblock}{\small Cons}\footnotesize
-          \begin{itemize}\scriptsize
-          \item Low spatial resolution
-          \item Variation inter-patients
-          \end{itemize}
-        \end{redblock}
-      \end{column}
-    \end{columns}}
+  \begin{columns}
+    \begin{column}{0.5\textwidth}
+      \begin{block}{\small Healthy \emph{vs.} CaP}\footnotesize
+        \begin{itemize}\scriptsize
+        \item Decrease of citrate and spermine concentrations
+        \item Increase of choline concentration
+        \end{itemize}
+      \end{block}
+    \end{column}
+    \begin{column}{0.5\textwidth}
+      \begin{block}{\small Pros and cons}\footnotesize
+        \begin{itemize}\scriptsize
+        \item[\tick] Citrate correlated with Gleason score
+        \item[\cross] Low spatial resolution
+        \item[\cross] Variation inter-patients
+        \end{itemize}
+      \end{block}
+    \end{column}
+  \end{columns}
+%   \only<1>{
+%     \begin{columns}
+%       \begin{column}{0.5\textwidth}
+%         \begin{greenblock}{\small Healthy}
+%           \begin{itemize}\scriptsize
+%           \item High citrate concentration
+%           \item Moderate choline and spermine concentrations
+%           \end{itemize}
+%         \end{greenblock}
+%       \end{column}
+%       \begin{column}{0.5\textwidth}
+%         \begin{redblock}{\small CaP}
+%           \begin{itemize}\scriptsize
+%           \item Decrease of citrate and spermine concentrations
+%           \item Increase of choline concentration
+%           \end{itemize}
+%         \end{redblock}
+%       \end{column}
+%     \end{columns}}
+% \setcounter{subfigure}{0}% Reset subfigure counter
+%   \only<2>{
+%     \begin{columns}
+%       \begin{column}{0.5\textwidth}
+%         \begin{greenblock}{\small Pros}\footnotesize
+%           \begin{itemize}\scriptsize
+%           \item Citrate correlated with Gleason score
+%           \end{itemize}
+%         \end{greenblock}
+%       \end{column}
+%       \begin{column}{0.5\textwidth}
+%         \begin{redblock}{\small Cons}\footnotesize
+%           \begin{itemize}\scriptsize
+%           \item Low spatial resolution
+%           \item Variation inter-patients
+%           \end{itemize}
+%         \end{redblock}
+%       \end{column}
+%     \end{columns}}
 \end{frame}
 
 \subsection{CAD for CaP}
@@ -1834,42 +1907,42 @@
   \end{block}
 \end{frame}
 
-\setcounter{subfigure}{0}% Reset subfigure counter
+% \setcounter{subfigure}{0}% Reset subfigure counter
 
-\begin{frame}
-  \frametitle{Experiments}
-  \framesubtitle{Data balancing}
-  \only<1>{
-    \begin{block}{\small T$_2$W-MRI and ADC}
-      \begin{figure}
-        \centering
-        \hspace*{\fill}
-        \subfigure[\tiny T$_2$W-MRI]{\includegraphics[width=.48\textwidth]{images/exp-3/t2w.pdf}}\hfill
-        \subfigure[\tiny ADC]{\includegraphics[width=.48\textwidth]{images/exp-3/adc.pdf}}
-        \hspace*{\fill}
-        \caption{\tiny ROC analysis for T$_2$W-MRI and ADC}
-      \end{figure}
-    \end{block}}
-  \only<2>{
-    \begin{block}{\small DCE-MRI and MRSI}
-      \begin{figure}
-        \centering
-        \hspace*{\fill}
-        \subfigure[\tiny DCE-MRI]{\includegraphics[width=.48\textwidth]{images/exp-3/dce.pdf}}\hfill
-        \subfigure[\tiny MRSI]{\includegraphics[width=.48\textwidth]{images/exp-3/mrsi.pdf}}
-        \hspace*{\fill}
-        \caption{\tiny ROC analysis for DCE-MRI and MRSI modalities}
-      \end{figure}
-    \end{block}}
-  \only<3>{
-    \begin{block}{\small Aggregation}
-      \begin{figure}
-        \centering
-        \includegraphics[width=.75\textwidth]{images/exp-3/all.pdf}
-        \caption{\tiny ROC analysis while aggregating the features}
-      \end{figure}
-    \end{block}}
-\end{frame}
+% \begin{frame}
+%   \frametitle{Experiments}
+%   \framesubtitle{Data balancing}
+%   \only<1>{
+%     \begin{block}{\small T$_2$W-MRI and ADC}
+%       \begin{figure}
+%         \centering
+%         \hspace*{\fill}
+%         \subfigure[\tiny T$_2$W-MRI]{\includegraphics[width=.48\textwidth]{images/exp-3/t2w.pdf}}\hfill
+%         \subfigure[\tiny ADC]{\includegraphics[width=.48\textwidth]{images/exp-3/adc.pdf}}
+%         \hspace*{\fill}
+%         \caption{\tiny ROC analysis for T$_2$W-MRI and ADC}
+%       \end{figure}
+%     \end{block}}
+%   \only<2>{
+%     \begin{block}{\small DCE-MRI and MRSI}
+%       \begin{figure}
+%         \centering
+%         \hspace*{\fill}
+%         \subfigure[\tiny DCE-MRI]{\includegraphics[width=.48\textwidth]{images/exp-3/dce.pdf}}\hfill
+%         \subfigure[\tiny MRSI]{\includegraphics[width=.48\textwidth]{images/exp-3/mrsi.pdf}}
+%         \hspace*{\fill}
+%         \caption{\tiny ROC analysis for DCE-MRI and MRSI modalities}
+%       \end{figure}
+%     \end{block}}
+%   \only<3>{
+%     \begin{block}{\small Aggregation}
+%       \begin{figure}
+%         \centering
+%         \includegraphics[width=.75\textwidth]{images/exp-3/all.pdf}
+%         \caption{\tiny ROC analysis while aggregating the features}
+%       \end{figure}
+%     \end{block}}
+% \end{frame}
 
 \begin{frame}
   \frametitle{Experiments}
@@ -1941,6 +2014,18 @@
     \item Gini importance
     \end{itemize}
   \end{block}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Toward a mp-MRI CAD for CaP}
+  \framesubtitle{Features selection/extraction}
+  \begin{block}{\small Experiments}
+    \begin{itemize}\scriptsize
+    \item Re-ordered feature depending on their importance
+    \item Perform classification with different amount of features
+    \item Find the threshold leading to the best classification performance
+    \end{itemize}
+  \end{block}
   \begin{greenblock}{\small Conclusions}
     \begin{itemize}\scriptsize
     \item[\tick] T$_2$W-MRI: ANOVA-based selection with \SI{25}{\percent} of features
@@ -1954,7 +2039,7 @@
 
 \begin{frame}
   \frametitle{Experiments}
-  \framesubtitle{Data balancing}
+  \framesubtitle{Features selection/extraction}
   \begin{block}{\small Before features selection/extraction}
     \begin{table}
       \centering
@@ -2036,7 +2121,7 @@
   \end{block}
 \end{frame}
 
-\subsection{MRSI benefit}
+\subsubsection{MRSI benefit}
 
 \begin{frame}
   \frametitle{Experiments}
@@ -2247,7 +2332,7 @@
 %   \end{block}}
 % \end{frame}
 
-\subsection{Fine-tuned combination}
+\subsubsection{Fine-tuned combination}
 
 \begin{frame}
   \frametitle{Experiments}
@@ -2265,7 +2350,7 @@
       \begin{figure}
         \centering
         \includegraphics[width=.75\textwidth]{images/exp-5/plot_all_patients.pdf}
-        \caption{\tiny ROC analysis for each patient}
+        \caption{\tiny Without MRSI: AUC = 0.756 / with MRSI - AUC = 0.786}
       \end{figure}
     \end{block}}
 \end{frame}
@@ -2278,8 +2363,8 @@
       \begin{figure}
         \centering
         \hspace*{\fill}
-        \subfigure[\tiny $\text{AUC} = 0.922$]{\includegraphics[width=.45\textwidth]{images/examples/patient_634.pdf}}\hfill
-        \subfigure[\tiny $\text{AUC} = 0.914$]{\includegraphics[width=.45\textwidth]{images/examples/patient_1036.pdf}}
+        \subfigure[\tiny $\text{AUC} = 0.922$]{\includegraphics[height=.4\textheight]{images/examples/patient_634_roi.pdf}}\hfill
+        \subfigure[\tiny $\text{AUC} = 0.914$]{\includegraphics[height=.4\textheight]{images/examples/patient_1036_roi.pdf}}
         \hspace*{\fill}
       \end{figure}
     \end{block}}
@@ -2288,8 +2373,8 @@
       \begin{figure}
         \centering
         \hspace*{\fill}
-        \subfigure[\tiny $\text{AUC} = 0.692$]{\includegraphics[width=.45\textwidth]{images/examples/patient_410.pdf}}\hfill
-        \subfigure[\tiny $\text{AUC} = 0.735$]{\includegraphics[width=.45\textwidth]{images/examples/patient_1041.pdf}}
+        \subfigure[\tiny $\text{AUC} = 0.692$]{\includegraphics[height=.4\textheight]{images/examples/patient_410_roi.pdf}}\hfill
+        \subfigure[\tiny $\text{AUC} = 0.735$]{\includegraphics[height=.4\textheight]{images/examples/patient_1041_roi.pdf}}
         \hspace*{\fill}
       \end{figure}
     \end{block}}
