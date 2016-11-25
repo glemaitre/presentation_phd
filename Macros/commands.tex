@@ -1,0 +1,159 @@
+%--- Command to make text semi-transparent
+\newcommand{\semitransp}[2][35]{\color{fg!#1}#2}
+
+% Command for a special cell in the table allowing to introduce the new line symbol //
+\newcommand{\specialcell}[2][c]{\begin{tabular}[#1]{@{}l@{}}#2\end{tabular}}
+
+%--- Arrow definition
+\tikzset{
+	>=stealth', %Define standard arrow tip
+	pil/.style={->, thick, shorten <=2pt, shorten >=2pt,} % Define arrow style
+}
+\tikzstyle{every picture}+=[remember picture]
+
+%--- Commands to draw a pie chart
+\pgfkeys
+{%
+	/pchart/.cd,
+	scale/.code                =  {\def\pchartscale{#1}},
+	mix color/.code            =  {\def\pchartmixcolor{#1}},
+	background color/.code     =  {\def\pchartbackcolor{#1}},
+	name/.code                 =  {\def\pchartname{#1}},
+	loc/.code                  =  {\def\pchartloc{#1}},
+	title/.code                =  {\def\pcharttitle{#1}},
+	title loc/.code            =  {\def\pcharttitleloc{#1}}
+}
+\newcommand\pchart[2][]{% 
+	\pgfkeys{/pchart/.cd,
+		scale            = 1,
+		mix color        = white,
+		background color = white,
+		name             = pc,
+		loc              = {(0,0)},
+		title            = {},
+		title loc        = {(0,2)}
+	} 
+\pgfqkeys{/pchart}{#1}
+
+\begin{scope}[scale=\pchartscale]
+	\begin{scope}[xscale=5,yscale=3] 
+		\node[anchor=base,shift=\pcharttitleloc] (\pchartname title) at \pchartloc  {\textbf{\pcharttitle}};
+		%\path[preaction={fill=black,opacity=.2,
+		%	path fading=circle with fuzzy edge 20 percent,
+		%       transform canvas={yshift=-15mm*\pchartscale}}] \pchartloc circle (1cm);
+		%\fill[gray] \pchartloc circle (0.5cm);  
+		%\path[preaction={fill=\pchartbackcolor,opacity=.1,
+		%	  path fading=circle with fuzzy edge 20 percent,
+		%	  transform canvas={yshift=-10mm*\pchartscale}}] \pchartloc circle (0.5cm);
+		\pgfmathsetmacro\totan{0}      \global\let\totan\totan 
+		\pgfmathsetmacro\bottoman{180} \global\let\bottoman\bottoman 
+		\pgfmathsetmacro\toptoman{0}   \global\let\toptoman\toptoman 
+		\begin{scope}[draw=black,thin]
+			\foreach \an/\col [count=\xi] in {#2}{%
+		    	\def\space{ } 
+		    \coordinate (\pchartname\space\xi) at ([shift=\pchartloc] \totan+\an/2:0.75cm); 
+		    \ifdim 180pt>\totan pt 
+		     \ifdim 0pt=\toptoman pt
+		        \shadedraw[left color=\col!80!\pchartmixcolor, %!20
+		                   right color=\col!20!\pchartmixcolor, %!5
+		                   draw=\col!20!\pchartmixcolor,very thin,shift=\pchartloc] (0:.5cm) -- ++(0,-3mm) arc (0:\totan+\an:.5cm) -- ++(0,3mm)  arc (\totan+\an:0:.5cm);
+		        \pgfmathsetmacro\toptoman{180} \global\let\toptoman\toptoman         
+		        \else
+		        \shadedraw[left color=\col!80!\pchartmixcolor,
+		                   right color=\col!20!\pchartmixcolor,
+		                   draw=\col!20!\pchartmixcolor,very thin,shift=\pchartloc](\totan:.5cm) -- ++(0,-3mm) arc(\totan:\totan+\an:.5cm) -- ++(0,3mm)  arc(\totan+\an:\totan:.5cm); 
+		      \fi
+		    \fi   
+		    \fill[\col!90!\pchartmixcolor,draw=\col!90!\pchartmixcolor,shift=\pchartloc] (\totan:0.5cm) -- (\totan:1cm) arc(\totan:\totan+\an:1cm) -- (\totan+\an:0.5cm) arc(\totan+\an:\totan :0.5cm);     
+		   \pgfmathsetmacro\finan{\totan+\an}
+		   \ifdim 180pt<\finan pt 
+		     \ifdim 180pt=\bottoman pt
+		        \shadedraw[left color=\col!80!\pchartmixcolor,
+		                   right color=\col!20!\pchartmixcolor,
+		                   draw=\col!20!\pchartmixcolor,very thin,shift=\pchartloc] (180:1cm) -- ++(0,-3mm) arc (180:\totan+\an:1cm) 
+		                                                   -- ++(0,3mm)  arc (\totan+\an:180:1cm);
+		        \pgfmathsetmacro\bottoman{0} \global\let\bottoman\bottoman
+		        \else
+		        \shadedraw[left color=\col!80!\pchartmixcolor,
+		                   right color=\col!20!\pchartmixcolor,
+		                   draw=\col!20!\pchartmixcolor,very thin,shift=\pchartloc](\totan:1cm)-- ++(0,-3mm) arc(\totan:\totan+\an:1cm)
+		                                                    -- ++(0,3mm)  arc(\totan+\an:\totan:1cm); 
+		      \fi
+		    \fi
+		    \pgfmathsetmacro\totan{\totan+\an}  \global\let\totan\totan 
+			} 
+		\end{scope}
+	%\draw[thin,black](0,0) circle (0.5cm);
+	\end{scope}  
+\end{scope}
+}
+
+
+%--- Define chart styles
+
+%% % A blue and a green bars
+%% \pgfplotsset{chart bar b/.style={draw=none,fill=azulunam!90}}
+%% \pgfplotsset{chart bar g/.style={draw=none,fill=green!90}}
+
+%% % A bar chart for CV single lesion analysis
+%% \pgfplotsset{cvsingle chart/.style={
+%% 	width=0.8\textwidth, height=0.8\textheight,
+%% 	bar width=0.5cm,
+%% 	xmin=0,
+%% 	xmax=35,
+%% 	xlabel=\%, % of the 362 articles,
+%% 	xbar=0,
+%% 	symbolic y coords={C1, C2, C3, C4, C5, C6, C7, C8}, 
+%% 	ytick=data,
+%% 	xtick pos=left,
+%% 	ytick pos=bottom,
+%% 	yticklabels={            
+%% 	    Change detection,
+%% 	    Registration,
+%% 	    3D analysis,
+%% 	    CAD systems,
+%% 	    Classification,
+%% 	    Feature extraction,
+%% 	    Border detection,
+%% 	    Preprocessing
+%% 	},
+%% 	y tick label style={font=\footnotesize,align=right},
+%% 	x tick label style={font=\footnotesize\sansmath\sffamily},
+%% 	enlarge y limits=true,
+%% 	point meta = explicit symbolic,
+%% 	every node near coord/.style = {color=azulunam!90, text width=3mm, align=left, anchor=base, shift={(6pt,-3pt)}},
+%% 	nodes near coords,
+%% 	nodes near coords align = {horizontal},       
+%% 	cycle list={chart bar b},
+%% 	title style={yshift=-8pt, font=\small\bfseries}
+%% 	}
+%% }
+
+%% % A bar chart for CV multiple lesion analysis
+%% \pgfplotsset{cvmultiple chart/.style={
+%% 	width=0.8\textwidth, height=0.6\textheight,
+%% 	bar width=0.5cm,
+%% 	xmin=0,
+%% 	xmax=55,
+%% 	xlabel=\%, %of the 18 articles,
+%% 	xbar=0,
+%% 	symbolic y coords={C1, C2, C3}, 
+%% 	ytick=data,
+%% 	xtick pos=left,
+%% 	ytick pos=bottom,
+%% 	yticklabels={
+%% 		Change detection,
+%% 		Registration,
+%% 		Localization
+%% 	},
+%% 	y tick label style={font=\footnotesize,align=right},
+%% 	x tick label style={font=\footnotesize\sansmath\sffamily},
+%% 	enlarge y limits=0.5,
+%% 	point meta = explicit symbolic,
+%% 	every node near coord/.style = {color=green!90, text width=3mm, align=left, anchor=base, shift={(6pt,-3pt)}},
+%% 	nodes near coords,
+%% 	nodes near coords align = {horizontal},
+%% 	cycle list={chart bar g},
+%% 	title style={yshift=-8pt, font=\small\bfseries}
+%% 	}
+%% }
