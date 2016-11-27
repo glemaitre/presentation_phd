@@ -51,14 +51,14 @@
     \begin{scope}[node distance=3.5cm]
       \node[module,above of=det] (roi) {\Large \textbf{ROIs\\detection/selection}};
     \end{scope}
-    \node[module,below of=det] (sel) {\Large \textbf{Data\\balancing}};
-    \node[module,below of=sel] (bal) {\Large \textbf{Features\\selection/extraction}};
-    \node[moduleorange,below of=bal] (cla) {\Large \textbf{Features\\classification}};
+    %\node[module,below of=det] (sel) {\Large \textbf{Data\\balancing}};
+    %\node[module,below of=sel] (bal) {\Large \textbf{Features\\selection/extraction}};
+    \node[moduleorange,below of=det] (cla) {\Large \textbf{Features\\classification}};
 
     \draw[->] (roi)--(det);
-    \draw[->] (det)--(sel);
-    \draw[->] (sel)--(bal);
-    \draw[->] (bal)--(cla);
+    %\draw[->] (det)--(sel);
+    %\draw[->] (sel)--(bal);
+    \draw[->] (det)--(cla);
 
     \begin{pgfonlayer}{background}
       \path (roi.west |- roi.north)+(-0.25,0.8) node (c) {};
